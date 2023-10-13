@@ -1,12 +1,16 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthModule } from '../auth/auth.module';
+import { LandingModule } from '../landing/landing.module';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    LandingModule,
+    AuthModule
   ]
 })
 export class CoreModule { 
