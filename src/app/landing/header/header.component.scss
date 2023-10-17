@@ -1,0 +1,126 @@
+.landing-header-wrapper{
+    display: flex;
+    padding: 0.4em 1em;
+    align-items: center;
+    height: 100%;
+    min-height: 2.75em;
+    box-sizing: border-box;
+    background-image: linear-gradient(#f0f1f3, #eff0f2);
+    & > .landing-header-left {
+      flex: 0 0 15em;
+    }
+    & > .landing-header-right {
+      flex: 1 1 auto;
+      text-align: right;
+    }
+  
+   h1 > .logo {
+    color: #505961;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin: 0.2em 0;
+  }
+  
+  .slogan {
+    color: #888;
+    font-size: 0.875em;
+    margin: 0;
+  }
+  .header-icons {
+    display: inline-flex;
+    flex: 1 1 auto;
+    align-items: center;
+    border: 0;
+    /* padding: 0 3em; */
+  }
+  
+  .header-icons > li + li {
+    margin-left: 2em;
+    position: relative;
+  }
+  
+  /* 菜单项靠右边 */
+  .header-icons > .nav-right {
+    margin-left: auto;
+  }
+  
+  .header-icons > li > a {
+    display: block;
+    text-align: center;
+    font-size:1em;
+    color:#666;
+    cursor: pointer;
+    position: relative;
+    
+  }
+  .header-icons .nav-links_icon {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    
+  }
+  .header-icons > li > a:hover {
+    // color: hsl(40, 40%, 70%);
+  }
+  
+  .nav-links_icon.scale {
+    transform: scale(1.5);
+    border-radius: 1em;
+    margin-right: 1em;
+  }
+  
+  .header-icons > li > a span.link-text {
+    display: none;
+  }
+  @media (min-width: 50em) {
+    .header-icons > li > a span.link-text {
+      display: inline-block;
+    }
+  }
+  }
+  dl.dropdown-box.toggle {
+      display: block;
+    }
+  dl.dropdown-box {
+    position: absolute;
+    width:max-content;
+    display: none;
+    top:3em;
+    right:0em;
+    border:1px solid #c1c1c3;
+    background-color: #ebebeb;
+    border-radius: 6px;
+    & > dt {
+      position: relative;
+      & > .mini-close {
+        position: absolute;
+        scale: (0.7);
+        right:-0.8em;
+        top:-0.8em;
+      }
+    }
+    & > dd {
+      display: flex;
+      align-items: center;
+      border-top:1px solid #fafafa;
+      border-bottom:1px solid #d4d4d4;
+      // background-image: linear-gradient(#e4e3e8, #ededef);
+      padding:0.5em 1em;
+      font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #777;
+      text-align: left;
+      & > img {
+        width:1em;
+        height:1em;
+        padding-right:0.5em;
+      }
+      & > span {color: #424242; font-size: 0.88rem;}
+    }
+    & > dd:hover {
+      background-image: linear-gradient(#ededef, #e4e3e8);
+      color: #333;
+    }
+  }
+  
+  ///////////////////////////////////////////////----////    

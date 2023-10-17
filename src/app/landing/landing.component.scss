@@ -1,0 +1,28 @@
+.c-container {
+    position: relative;
+    // border: 2px solid red;
+    box-sizing: border-box;
+    height: auto;
+    & > .c-header {
+        position: sticky;
+        width:100%;
+        // background-color: #272d39;
+    background-image: linear-gradient(#f0f1f3, #eff0f2);
+
+        & > .c-header-content {
+            min-height: 2.75em;
+            // border:1px solid green;
+        }
+    }
+    & > .c-body {
+        & > .c-body-content {
+            border: 1px solid gold;
+        }
+    }
+    
+}
+.c-container.fixed-width .c-header-content, 
+.c-container.fixed-width .c-body-content {
+    width:72em;
+    margin: 0 auto;
+}
