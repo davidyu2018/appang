@@ -1,0 +1,17 @@
+{
+  "SECTION": {
+    "LOGO": "数据治理中心",
+    "SLOGAN": "西安市委组织部",
+    "SEARCH_PLACEHOLDER": "输入搜索内容...",
+    "NAV": {
+      "LANG": "语言",
+      "LOGIN": "登录",
+      "LOGOUT": "退出",
+      "SETTING": "设置",
+      "PROFILE": "个人简介",
+      "ENGLISH": "English",
+      "CHINESE": "中文",
+      "NEWS": "消息"
+    }
+  }
+}

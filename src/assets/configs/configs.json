@@ -1,0 +1,56 @@
+{
+    "data": {
+        "logo": {
+            "text": "Manary",
+            "img": "galileo-development-systems.svg"
+        },
+        "headerToolbar": [
+            {
+                "button": {
+                    "name": "NEWS",
+                    "icon": "news.svg"
+                },
+                "dropdown": []
+            },
+            {
+                "button": {
+                    "name": "LANG",
+                    "icon": "map-marker-2.svg",
+                    "langKey": "lan"
+                },
+                "dropdown": [
+                    {
+                        "name": "ENGLISH",
+                        "icon": "user.svg",
+                        "langKey": "en"
+                    },
+                    {
+                        "name": "CHINESE",
+                        "icon": "settings.svg",
+                        "langKey": "zh"
+                    }
+                ]
+            },
+            {
+                "button": {
+                    "name": "LOGIN",
+                    "icon": "user-circle.svg"
+                },
+                "dropdown": [
+                    {
+                        "name": "PROFILE",
+                        "icon": "user.svg"
+                    },
+                    {
+                        "name": "SETTING",
+                        "icon": "settings.svg"
+                    },
+                    {
+                        "name": "LOGOUT",
+                        "icon": "power.svg"
+                    }
+                ]
+            }
+        ]
+    }
+}

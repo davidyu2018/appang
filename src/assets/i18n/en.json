@@ -1,0 +1,16 @@
+{
+  "SECTION": {
+    "SLOGAN": "Organization Department",
+    "SEARCH_PLACEHOLDER": "Input...",
+    "NAV": {
+      "LOGIN": "Login",
+      "LOGOUT": "Logout",
+      "SETTING": "Setting",
+      "LANG": "Language",
+      "PROFILE": "Profile",
+      "ENGLISH": "English",
+      "CHINESE": "中文",
+      "NEWS": "News"
+    }
+  }
+}

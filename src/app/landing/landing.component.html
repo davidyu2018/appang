@@ -1,7 +1,7 @@
 <div class="c-container fixed-width">
     <div class="c-header">
         <div class="c-header-content" style="display: non;">
-            <app-header></app-header>
+            <app-header [logo]="logo" [headerToolbar]="headerToolbar" [headerDropdowns]="headerDropdowns" (onEventMenu)="onEventMenu($event)" (onEventLink)="onEventLink($event)"></app-header>
         </div>
     </div>
     <div class="c-body">

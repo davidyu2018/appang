@@ -1,6 +1,6 @@
 .landing-header-wrapper{
     display: flex;
-    padding: 0.4em 1em;
+    padding: 0em 0em;
     align-items: center;
     height: 100%;
     min-height: 2.75em;
@@ -19,6 +19,11 @@
     text-transform: uppercase;
     font-size: 1.5rem;
     margin: 0.2em 0;
+    & > img {
+      display: block;
+      max-width: 100%;
+      max-height: 2.75em;
+    }
   }
   
   .slogan {
@@ -27,6 +32,7 @@
     margin: 0;
   }
   .header-icons {
+    position: relative;
     display: inline-flex;
     flex: 1 1 auto;
     align-items: center;
@@ -57,11 +63,10 @@
     width: 1.5em;
     height: 1.5em;
     vertical-align: middle;
-    margin-right: 0.5em;
-    
+    margin-right: 0.25em;
   }
   .header-icons > li > a:hover {
-    // color: hsl(40, 40%, 70%);
+    color: hsl(40, 40%, 40%);
   }
   
   .nav-links_icon.scale {
@@ -80,14 +85,17 @@
   }
   }
   dl.dropdown-box.toggle {
-      display: block;
-    }
+    display: block;
+
+  }
   dl.dropdown-box {
     position: absolute;
     width:max-content;
+    z-index: 3;
     display: none;
     top:3em;
-    right:0em;
+    left:0;
+    transition: all 0.25s linear;
     border:1px solid #c1c1c3;
     background-color: #ebebeb;
     border-radius: 6px;
@@ -108,19 +116,44 @@
       // background-image: linear-gradient(#e4e3e8, #ededef);
       padding:0.5em 1em;
       font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #777;
       text-align: left;
+      cursor: pointer;
       & > img {
         width:1em;
         height:1em;
         padding-right:0.5em;
       }
-      & > span {color: #424242; font-size: 0.88rem;}
+      & > span {color: #666666; font-size: 0.88rem;}
+    }
+    & > dd:last-child {
+      border-bottom: 1px solid transparent;
     }
     & > dd:hover {
       background-image: linear-gradient(#ededef, #e4e3e8);
       color: #333;
     }
+    & > dd.active {
+      background-color: #fff;
+    }
   }
-  
+  .triangle {
+    width:0px;
+    height:0px;
+    border:10px solid #c1c1c3;
+    border-top-color:transparent;
+    border-bottom-color:#c1c1c3;
+    border-left-color:transparent;
+    border-right-color:transparent;
+  }
+.triangle.location {
+  position: absolute;
+  left:50%;
+  top:-20px;
+  margin-left:-10px;
+}
+.triangle.inner.location {
+  border-bottom-color:#ebebeb;
+  z-index: 2;
+  top:-19px;
+}
   ///////////////////////////////////////////////----////    
