@@ -11,11 +11,15 @@
     <div class="landing-header-right">
       <ul class="header-icons">
         <li *ngFor="let tool of toolbars; let last = last;" [style]="{'margin-left': last ? '5em' : '2em'}">
-          <a (click)="tapevent(tool, $event)">
+          <a (click)="tapevent(tool, $event)" *ngIf="!isLogin || (isLogin && !last)">
             <img [src]="'./assets/icons/'+tool.button.icon" [title]='"SECTION.NAV." + tool.button.name | translate' *ngIf="tool.button.icon" class="nav-links_icon" />
             <span class="link-text" *ngIf="tool.button.name">{{ "SECTION.NAV." + tool.button.name | translate}}</span>
           </a>
-        </li> 
+          <a (click)="tapevent(tool, $event)" *ngIf="isLogin && last">
+            <img [src]="'./assets/icons/'+tool.button.avatar" class="nav-links_icon" />
+            <span class="link-text" *ngIf="tool.button.name">{{ tool.button.name }}</span>
+          </a>
+        </li>
         <dl class="dropdown-box" [class.toggle]="toggle" *ngIf="dropdowns.length" [style]="{'left': posY + 'px'}">
             <dt>
                 <div class="triangle location"></div>

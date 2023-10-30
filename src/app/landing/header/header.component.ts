@@ -1,5 +1,6 @@
 import { Component,Input, Output, EventEmitter, ElementRef } from '@angular/core';
-
+import { Auth } from 'src/app/user/model';
+import { SocialAuthService } from 'src/app/user/social-auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,6 +8,7 @@ import { Component,Input, Output, EventEmitter, ElementRef } from '@angular/core
 })
 
 export class HeaderComponent {
+  isLogin: boolean = false;
   toggle: boolean = false
   toolbars: any[] = [];
   dropdowns: any[] = [];
@@ -25,7 +27,11 @@ export class HeaderComponent {
 
   @Output() onEventMenu = new EventEmitter<object>()
   @Output() onEventLink = new EventEmitter<object>()
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private auth: SocialAuthService) { 
+    this.auth.getAuth().subscribe((auth: Auth) => {
+      this.isLogin = !!auth.user
+    })
+  }
   ngOnInit() {
   }
   tapevent(li: any, $event: any) {
@@ -34,8 +40,6 @@ export class HeaderComponent {
     this.onEventMenu.emit(li)
     // capture cursor axious
     const tardompos = this.getElementTop(parelm, elm)
-    console.log('poss', tardompos )
-
     this.posY = tardompos - 60
   }
   goLink(link: any) {
