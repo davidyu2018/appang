@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing.component';
+import { AuthGuardService } from '../user/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent
+    component: LandingComponent,
+    canActivate: [AuthGuardService],
   }, 
   {
     path: 'auth',

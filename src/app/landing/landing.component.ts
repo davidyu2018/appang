@@ -4,6 +4,7 @@ import {TranslateService} from '@ngx-translate/core';
 import { SocialAuthService } from '../user/social-auth.service';
 import { Auth } from '../user/model';
 import { filter, map, mergeMap, take, startWith, delay } from 'rxjs/operators';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -16,7 +17,7 @@ export class LandingComponent {
   headerToolbar: any[]  = [];
   headerDropdowns: any[] = [];
   loginfo: object | null ={}
-  constructor(public translate: TranslateService, private http: HttpClient, private auth: SocialAuthService) {
+  constructor(public translate: TranslateService, private http: HttpClient, private auth: SocialAuthService, private router: Router) {
     // 1: init header configs info && nationlizion
     this.http.get('./assets/configs/configs.json').subscribe((data: any) => {
       this.headerToolbar = data.data.headerToolbar
@@ -32,19 +33,22 @@ export class LandingComponent {
       this.onEventLink(initlink)
       // 2: acconding auth update toolbar
       this.auth.getAuth().pipe(map((auth: Auth) => auth.user)).subscribe(user => this.loginfo = user )
+      console.log('LOGIN STATUS', this.loginfo)
       const logintext = this.headerToolbar.find(it => it.button.name === 'LOGIN')
       const logincont = this.loginfo ? this.loginfo : logintext.button
       const logindropdownarr = this.loginfo ? logintext.dropdown : [];
       const i = this.headerToolbar.indexOf(logintext)
       const updatelogin = {...logintext, button: logincont, dropdown: logindropdownarr}
       this.headerToolbar = [...this.headerToolbar.slice(0, i), updatelogin, ...this.headerToolbar.slice(i+1)]
-      // query single sign in
-
     })
     
   }
   onEventMenu(li: any) {
-    if (li.button.name === 'LOGIN' && !this.loginfo) return;
+    if (li.button.name === 'LOGIN' && !this.loginfo) {
+      this.router.navigate(['/auth'])
+      return
+    };
+
     const dropdowns = li.dropdown
     this.headerDropdowns = [...dropdowns]
     this.headerDropdowns = this.headerDropdowns.map (it => {

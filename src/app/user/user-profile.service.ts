@@ -12,10 +12,10 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) { }
 
-  findUser(id: string): Observable<User> { // in fact just login
-    const url = 'https://jsonplaceholder.typicode.com/todos/' + id;
+  findUser(id: string, oos=''): Observable<User> { // in fact just login
+    const url = oos ? oos : `http://rap2api.taobao.org/app/mock/${id}/info`;
     return this.http.get(url).pipe(
-      map((res: any) => res.json() as User)
+      map((res: any) => res)
     )
   }
 }
