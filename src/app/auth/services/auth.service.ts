@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Auth, Loginfo} from './model'
+import {Auth, Loginfo, User} from './model'
 import { Observable, of, ReplaySubject, defer, interval, from } from 'rxjs';
 import { filter, map, mergeMap, take, startWith, delay } from 'rxjs/operators';
 import { UserProfileService } from './user-profile.service';
-import sso from '../../assets/configs/config-info'
+import sso from '../../../assets/configs/config-info'
 @Injectable({
   providedIn: 'root'
 })
-export class SocialAuthService {
+export class AuthService {
   auth: Auth = {user: null, errMsg: '', redirectUrl: ''};
   subject: ReplaySubject<Auth> = new ReplaySubject<Auth>(1);
   constructor(private user: UserProfileService) { 
@@ -40,5 +40,17 @@ export class SocialAuthService {
         return this.auth
       })
     )
+  }
+  register(user: User): Observable<User> {
+    return of({name: 'zsf', id: 123, nickname: '', mobile: '', avatar: '', email: ''})
+  }
+  usernameExisted(val: string): Observable<any> {
+    return of({existed: false})
+  }
+  emailExisted(val: string): Observable<any> {
+    return of({existed: false})
+  }
+  mobileExisted(val: string): Observable<any> {
+    return of({existed: false})
   }
 }

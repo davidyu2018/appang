@@ -1,0 +1,12 @@
+<div class="image-picker-box">
+  <figure><img class="cover selected" [src]="selected"></figure>
+  <div class="scroll-container">
+    <div *ngFor="let item of items; let i = index;" (click)="selectImage(i)" [ngStyle]="{'width': perGridWidth}"
+      class="image-container">
+      <img [src]="item" [ngStyle]="{'width': itemWidth}">
+      <div class="zoom">
+        <img src="./assets/icons/check-circle.svg" />
+      </div>
+    </div>
+  </div>
+</div>

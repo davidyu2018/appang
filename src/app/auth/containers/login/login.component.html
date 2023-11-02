@@ -1,0 +1,8 @@
+<div class="login-page" [ngStyle]="{backgroundImage: 'url(' + photo + ')', backgroundSize:'cover'}">
+    <div class="quote">
+      <app-quote [quote]="(quote$ | async)"></app-quote>
+    </div>
+    <div class="logins">
+      <app-login-form (onLogin)="processLogin($event)"> </app-login-form>
+    </div>
+  </div>

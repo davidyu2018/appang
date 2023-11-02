@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
-
-const DECLARATIONS: any[] = []
-const EXPORT_COPMONENTS: any[] = []
+import {ImagePicker} from './components/image-picker/image-picker.component'
+const COMPONENTS: any[] = [ImagePicker]
 const MODULES = [
   CommonModule, 
   FormsModule, 
@@ -13,8 +12,8 @@ const MODULES = [
 ]
 
 @NgModule({
-  declarations: DECLARATIONS,
+  declarations: COMPONENTS,
   imports: MODULES,
-  exports: [...MODULES, ...EXPORT_COPMONENTS],
+  exports: [...MODULES, ...COMPONENTS],
 })
 export class ShareModule { }

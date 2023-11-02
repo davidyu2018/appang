@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/ro
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { SocialAuthService } from './social-auth.service';
+import { SocialAuthService } from './auth.service';
 import { Auth } from './model';
 
 @Injectable({

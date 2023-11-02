@@ -27,8 +27,8 @@ export class HeaderComponent {
 
   @Output() onEventMenu = new EventEmitter<object>()
   @Output() onEventLink = new EventEmitter<object>()
-  constructor(private el: ElementRef, private auth: SocialAuthService) { 
-    this.auth.getAuth().subscribe((auth: Auth) => {
+  constructor(private el: ElementRef, private socialAuth: SocialAuthService) { 
+    this.socialAuth.getAuth().subscribe((auth: Auth) => {
       this.isLogin = !!auth.user
     })
   }

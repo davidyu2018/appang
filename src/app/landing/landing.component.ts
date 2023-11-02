@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import { SocialAuthService } from '../user/social-auth.service';
+import { AuthService } from '../auth/services/auth.service';
 import { Auth } from '../user/model';
 import { filter, map, mergeMap, take, startWith, delay } from 'rxjs/operators';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class LandingComponent {
   headerToolbar: any[]  = [];
   headerDropdowns: any[] = [];
   loginfo: object | null ={}
-  constructor(public translate: TranslateService, private http: HttpClient, private auth: SocialAuthService, private router: Router) {
+  constructor(public translate: TranslateService, private http: HttpClient, private auth: AuthService, private router: Router) {
     // 1: init header configs info && nationlizion
     this.http.get('./assets/configs/configs.json').subscribe((data: any) => {
       this.headerToolbar = data.data.headerToolbar
@@ -68,7 +68,10 @@ export class LandingComponent {
       this.translate.use(link.langKey)
       localStorage.setItem('SET_LANGAGE', link.langKey)
     } else {
-    // console.log('lnks', link)
+      if (link.name === 'LOGOUT') {
+        this.auth.unAuth()
+        this.router.navigate(['/auth'])
+      }
     }
   }
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import  { LoginComponent } from './login/login.component'
+import  { LoginComponent } from './containers/login/login.component'
+import  { RegisterComponent } from './containers/register/register.component'
+
 const routes: Routes = [
   {
     path: 'auth',
@@ -13,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'auth/register',
-    component: LoginComponent
+    component: RegisterComponent
   },
   {
     path: 'auth/forgot',

@@ -11,7 +11,7 @@ import { AuthGuardService } from './auth-guard.service';
     CommonModule
   ],
   providers: [
-    { provide: 'auth', useClass: SocialAuthService },
+    { provide: 'socialAuth', useClass: SocialAuthService },
     { provide: 'user', useClass: UserProfileService },
     AuthGuardService
   ]

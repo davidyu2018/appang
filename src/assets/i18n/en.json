@@ -12,5 +12,22 @@
       "CHINESE": "中文",
       "NEWS": "News"
     }
+  },
+  "USER": {
+    "SIGNIN_DESC": {
+      "NOT_SIGNUP": "Not sign up yet?",
+      "REGISTERED_GO_LOGIN": "Already registered go login",
+      "FORGOT_PW": "Forgot password?"
+    },
+    "BUTTON": {
+      "SIGNIN": "Sign in",
+      "SIGNUP": "Sign up",
+      "SUBMIT": "Submit",
+      "RESET": "Reset"
+    },
+    "LABEL_NAME": {
+      "USERNAME": "User name",
+      "PASSWORD": "Password"
+    }
   }
 }
