@@ -1,0 +1,39 @@
+.search-bar-box {
+  display: flex;
+  border-top: 1px solid #a3a4a6;
+  border-bottom: 1px solid #e0e0e0;
+  background-image: linear-gradient(#f4f5f7,#fdfdfd);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  align-items: center;
+  input:not([type="checkbox"]):not([type="radio"]) {
+    display: block;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    width: 100%;
+    flex: 1 1 auto;
+    font-size: 1em;
+  }
+  input:focus,
+  input:active {
+    border: none;
+    outline: none;
+  }
+  .clear-icon {
+    width: 0.85em;
+    height: 0.85em;
+    flex: 0 0 1em;
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
+  .search-icon {
+    width: 1em;
+    height: 1em;
+    flex: 0 0 1em;
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
+}

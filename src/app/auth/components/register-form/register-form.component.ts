@@ -8,7 +8,6 @@ import * as _ from 'lodash'
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent {
   @Output() onRegister = new EventEmitter();
@@ -58,9 +57,6 @@ export class RegisterFormComponent {
   ngOnInit() {
     this.avatars = _.range(1, 9).map((i: number) => `${this.avatarName}-${i}.png`)
     .reduce((r: string[], x: string) => [...r, x], [])
-    console.log('kkk',this.avatars)
-
-
   }
   matchPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
@@ -73,7 +69,15 @@ export class RegisterFormComponent {
   }
   onSubmit({valid, value}: FormGroup, ev: Event) {
     if (!valid) return;
-    this.onRegister.emit(value)
+    const user: User = {
+      nickname: value.loginname,
+      id: 0,
+      name: value.loginname,
+      password: value.password.password,
+      email: value.mobile,
+      avatar: value.avatar
+    }
+    this.onRegister.emit(user)
   }
 
 }

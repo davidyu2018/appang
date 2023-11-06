@@ -1,6 +1,6 @@
 import { Component,Input, Output, EventEmitter, ElementRef } from '@angular/core';
-import { Auth } from 'src/app/user/model';
-import { SocialAuthService } from 'src/app/user/social-auth.service';
+import { Auth } from '../../auth/services/model';
+import { AuthService } from '../../auth/services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -27,9 +27,9 @@ export class HeaderComponent {
 
   @Output() onEventMenu = new EventEmitter<object>()
   @Output() onEventLink = new EventEmitter<object>()
-  constructor(private el: ElementRef, private socialAuth: SocialAuthService) { 
+  constructor(private el: ElementRef, private socialAuth: AuthService) { 
     this.socialAuth.getAuth().subscribe((auth: Auth) => {
-      this.isLogin = !!auth.user
+      this.isLogin = !!auth.token
     })
   }
   ngOnInit() {

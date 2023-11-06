@@ -6,6 +6,8 @@ import { RegisterComponent } from './containers/register/register.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { QuoteComponent } from './components/quote/quote.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { ForgotPasswordComponent } from './containers/forgot-password/forgot-password.component';
+import { ForgotPasswordFormComponent } from './components/forgetpw/forgot-password-form'
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     RegisterComponent,
     LoginFormComponent,
     QuoteComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ForgotPasswordComponent,
+    ForgotPasswordFormComponent
   ],
   imports: [
     ShareModule,

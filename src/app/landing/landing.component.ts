@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
 import { AuthService } from '../auth/services/auth.service';
-import { Auth } from '../user/model';
-import { filter, map, mergeMap, take, startWith, delay } from 'rxjs/operators';
+import { Auth } from '../auth/services/model';
+import { filter, map, mergeMap, take, startWith, delay, share } from 'rxjs/operators';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { InternationalizationServiceTsService } from '../core/internationalization.service.ts.service';
 
 @Component({
   selector: 'app-landing',
@@ -16,57 +17,63 @@ export class LandingComponent {
   logo: any = {}
   headerToolbar: any[]  = [];
   headerDropdowns: any[] = [];
-  loginfo: object | null ={}
-  constructor(public translate: TranslateService, private http: HttpClient, private auth: AuthService, private router: Router) {
-    // 1: init header configs info && nationlizion
+  loginfo: any ={token: ''};
+  menus$: Observable<any[]>;
+  internationState: any | null = {}
+  constructor( private http: HttpClient, private auth: AuthService, private router: Router, private internation: InternationalizationServiceTsService) {
     this.http.get('./assets/configs/configs.json').subscribe((data: any) => {
+      // 1: init header configs info && nationlizion
       this.headerToolbar = data.data.headerToolbar
       this.logo = data.data.logo
-      const lang = this.headerToolbar.find(i => i.button.name === 'LANG')
-      const droplang =  lang && lang.dropdown && lang.dropdown.length ? lang.dropdown : []
-      const langkey = droplang.map((lan:any) => lan.langKey)
-      const browserLang = translate.getBrowserLang();
-      const cussetlan = localStorage.getItem('SET_LANGAGE')
-      translate.addLangs(langkey)
-      translate.use(cussetlan ? cussetlan : browserLang?.match(/en|zh/) ? browserLang : 'en');
-      const initlink = droplang.find((dr: any) => dr.langKey === translate.currentLang)
-      this.onEventLink(initlink)
-      // 2: acconding auth update toolbar
-      this.auth.getAuth().pipe(map((auth: Auth) => auth.user)).subscribe(user => this.loginfo = user )
-      console.log('LOGIN STATUS', this.loginfo)
-      const logintext = this.headerToolbar.find(it => it.button.name === 'LOGIN')
-      const logincont = this.loginfo ? this.loginfo : logintext.button
-      const logindropdownarr = this.loginfo ? logintext.dropdown : [];
-      const i = this.headerToolbar.indexOf(logintext)
-      const updatelogin = {...logintext, button: logincont, dropdown: logindropdownarr}
-      this.headerToolbar = [...this.headerToolbar.slice(0, i), updatelogin, ...this.headerToolbar.slice(i+1)]
+      // 2: init nationlizion toolbar
+      this.internationState = this.internation.getInternation()
+      const index = this.headerToolbar.findIndex(it => it.button.langKey)
+      const dropdown = this.internationState.langs
+      const currentLang = this.internationState.currentLang
+      let langItem = this.headerToolbar[index]
+      if (index > -1 && dropdown && dropdown.length) {
+        const updatelangItem = {...langItem, dropdown}
+        this.headerToolbar = [...this.headerToolbar.slice(0, index), updatelangItem, ...this.headerToolbar.slice(index+1)]
+        currentLang && this.onEventLink(currentLang)
+      }
+      // 3: acconding auth update toolbar
+      this.auth.getAuth().subscribe(loginfo => this.loginfo = {...loginfo} )
+      if (this.loginfo.token) {
+      const tI = this.headerToolbar.findIndex(it => it.button.id === 'LOGIN')
+      const loginTool = this.headerToolbar[tI]
+      const newLoginTool = {...loginTool.button, name: this.loginfo.loginname, icon: this.loginfo.avatar}
+      const updateLoginTool = {...loginTool, button: newLoginTool}
+      this.headerToolbar = [...this.headerToolbar.slice(0, tI), updateLoginTool, ...this.headerToolbar.slice(tI+1)]
+      console.log(this.headerToolbar)
+      }
+      // 3: according to auth get main menu
+      this.loginfo.token && (this.menus$ = this.auth.getMenus().pipe(share()))
     })
     
   }
   onEventMenu(li: any) {
-    if (li.button.name === 'LOGIN' && !this.loginfo) {
+    if (li.button.name === 'LOGIN' && !this.loginfo.token) {
       this.router.navigate(['/auth'])
       return
     };
 
-    const dropdowns = li.dropdown
+    const dropdowns = li.dropdown || []
     this.headerDropdowns = [...dropdowns]
-    this.headerDropdowns = this.headerDropdowns.map (it => {
-      if (it.langKey && it.langKey === this.translate.currentLang) {
-        it = {...it, active: true}
-      } else {
-        it = {...it, active: false}
-      }
-      return it
-    })
+    // this.headerDropdowns = this.headerDropdowns.map (it => {
+    //   if (it.langKey && it.langKey === this.translate.currentLang) {
+    //     it = {...it, active: true}
+    //   } else {
+    //     it = {...it, active: false}
+    //   }
+    //   return it
+    // })
   }
   onEventLink(link: any) {
     if ('langKey' in link) {
-      const iLang = this.headerToolbar.findIndex(i => !!i.button.langKey)
-      const updateItem = Object.assign({}, this.headerToolbar[iLang], {button: link});
+      const iLang = this.headerToolbar.findIndex(to => !!to.button.langKey)
+      const updateItem = {...this.headerToolbar[iLang], button: link};
       this.headerToolbar = [...this.headerToolbar.slice(0, iLang), updateItem, ...this.headerToolbar.slice(iLang + 1)];
-      this.translate.use(link.langKey)
-      localStorage.setItem('SET_LANGAGE', link.langKey)
+      this.internation.setInternation(link.langKey)
     } else {
       if (link.name === 'LOGOUT') {
         this.auth.unAuth()

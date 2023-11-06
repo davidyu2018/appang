@@ -1,5 +1,5 @@
 import { AbstractControl, FormControl, ValidationErrors } from "@angular/forms";
-import { AuthService } from "../../app/auth/auth.service";
+import { AuthService } from "../../app/auth/services/auth.service";
 import { map } from 'rxjs/operators'
 export class SmsValidator {
   static validateSmsCode(service: AuthService) {

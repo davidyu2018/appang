@@ -16,25 +16,14 @@
                 "button": {
                     "name": "LANG",
                     "icon": "map-marker-2.svg",
-                    "langKey": "lan"
-                },
-                "dropdown": [
-                    {
-                        "name": "ENGLISH",
-                        "icon": "user.svg",
-                        "langKey": "en"
-                    },
-                    {
-                        "name": "CHINESE",
-                        "icon": "settings.svg",
-                        "langKey": "zh"
-                    }
-                ]
+                    "langKey": "langage"
+                }
             },
             {
                 "button": {
                     "name": "LOGIN",
-                    "icon": "user-circle.svg"
+                    "icon": "user-circle.svg",
+                    "id": "LOGIN"
                 },
                 "dropdown": [
                     {

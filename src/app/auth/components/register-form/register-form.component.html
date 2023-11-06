@@ -1,46 +1,53 @@
 <div class="register-page">
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
-      <div class="form-group">
+    <form class="form-group" [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
+      <div class="form-item">
         <label>Loginname</label>
-        <input placeholder="you login name" type="text" formControlName="loginname">
+        <div class="form-control">
+          <input placeholder="you login name" type="text" formControlName="loginname">
+        </div>
       </div>
-      <div class="form-group">
+      <div class="form-item">
         <label>Mobile</label>
-        <input placeholder="you mobile number" type="text" formControlName="mobile">
+        <div class="form-control">
+          <input placeholder="you mobile number" type="text" formControlName="mobile">
+        </div>
       </div>
-      <div class="form-group">
+      <div class="form-item">
         <label>E-mail</label>
-        <input placeholder="you e-email" type="text" formControlName="email">
+        <div class="form-control">
+          <input placeholder="you e-email" type="text" formControlName="email">
+        </div>
       </div>
-      <div class="form-group">
+      <div class="form-item">
         <label>Name</label>
-        <input placeholder="you number" type="text" formControlName="name">
+        <div class="form-control">
+          <input placeholder="you number" type="text" formControlName="name">
+        </div>
       </div>
       <div formGroupName="passwords">
-        <div class="form-group" >
-            <label>Password</label>
+        <div class="form-item" >
+          <label>Password</label>
+          <div class="form-control">
             <input placeholder="you password" type="password" formControlName="password">
+          </div>
         </div>
-        <div class="form-group">
-            <label>Repeat password</label>
+        <div class="form-item">
+          <label>Repeat password</label>
+          <div class="form-control">
             <input placeholder="you password again" type="password" formControlName="repeat">
+          </div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-item">
         <label>Select Avatar</label>
-        <image-picker [cols]="6" [items]="avatars" formControlName="avatar">
-        </image-picker>
+        <div class="form-control">
+          <image-picker [cols]="6" [items]="avatars" formControlName="avatar"></image-picker>
+        </div>
       </div>
-      
-      <br />
-      <div>
-        <button type="submit">{{"USER.BUTTON.SIGNUP" | translate}}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="form-buttons">
+        <button type="submit">{{"USER.BUTTON.SIGNUP" | translate}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="reset" >{{"USER.BUTTON.RESET" | translate}}</button>
       </div>
-      <br />
-      <div>
-        <a routerLink="/auth/login">{{"USER.SIGNIN_DESC.REGISTERED_GO_LOGIN"  | translate}}</a>
-        <a routerLink="/auth/forgetpw" style="float: right;">{{"USER.SIGNIN_DESC.FORGOT_PW" | translate}}</a>
-      </div>
     </form>
-  </div>
+ </div>

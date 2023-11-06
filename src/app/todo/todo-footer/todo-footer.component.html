@@ -1,0 +1,9 @@
+<footer *ngIf="itemCount > 0" class="footer-ops">
+  <div> <strong>{{itemCount}}</strong> {{itemCount == 1 ? 'item' : 'items'}} left</div>
+  <div>
+      <a routerLink='/todo/ALL'>All</a>
+      <a routerLink="/todo/ACTIVE">Active</a>
+      <a routerLink="/todo/COMPLETED">Completed</a>
+  </div>
+  <div><button (click)="clearAllCompleted()">Clear completed</button></div>
+</footer>

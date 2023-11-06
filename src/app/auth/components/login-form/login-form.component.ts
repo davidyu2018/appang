@@ -1,24 +1,18 @@
-import { Component, Output ,EventEmitter} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import  { Loginfo } from '../../../user/model'
+import { Component, Output ,Input, EventEmitter} from '@angular/core';
+import  { Auth } from '../../services/model'
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  langs = ['en', 'zh']
-  loginfo: Loginfo = {loginname: '', password: ''};
+  loginfo: Auth = {loginname: '', password: '', token:''};
+  @Input() captchaUrl: string | undefined = '';
+  @Output() onLogin =  new EventEmitter<Auth>()
+
   @Output() refreshCaptcha = new EventEmitter<void>()
   @Output() codeInput = new EventEmitter<string>()
-  @Output() onLogin =  new EventEmitter<Loginfo>()
-  constructor(public translate: TranslateService) {
-      const browserLang = translate.getBrowserLang();
-      const cussetlan = localStorage.getItem('SET_LANGAGE')
-      translate.addLangs(this.langs)
-      translate.use(cussetlan ? cussetlan : browserLang?.match(/en|zh/) ? browserLang : 'en');
-      
-  }
+  constructor() {  }
   loginSubmit(loginForm: any) {
     this.loginfo = {...loginForm.value.loginform}
     this.onLogin.emit(this.loginfo)

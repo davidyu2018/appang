@@ -14,7 +14,17 @@
     }
   },
   "USER": {
-    "SIGNIN_DESC": {
+    "TITLE": {
+      "SIGNIN": "Sign in",
+      "SIGNUP": "Sign up",
+      "CHANGE_PW": "Change you password"
+    },
+    "SUBTITLE": {
+      "SIGNIN": "Sign in",
+      "SIGNUP": "Sign up",
+      "CHANGE_PW": "Change password by verifying mobile communication code"
+    },
+    "ADD_LINK": {
       "NOT_SIGNUP": "Not sign up yet?",
       "REGISTERED_GO_LOGIN": "Already registered go login",
       "FORGOT_PW": "Forgot password?"

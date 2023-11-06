@@ -1,0 +1,23 @@
+header.user-info-header > h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #777;
+    font-family: math;
+    margin-bottom:1em;
+    padding-top:1em;
+  }
+  header > h3 {
+    font-size: 1.25rem;
+    color: #000;
+    padding-left: 3em;
+    font-family: ui-monospace;
+    margin-bottom:1em;
+  }
+  footer.user-info-footer {
+    text-align: right;
+    & > a {
+    text-decoration: underline;
+    color:#666;
+    font-size: 0.9rem;
+    }
+  }

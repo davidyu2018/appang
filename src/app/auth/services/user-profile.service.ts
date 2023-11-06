@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from './model';
+import { User, Captcha } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,20 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) { }
 
-  findUser(id: string, oos=''): Observable<User> { // in fact just login
-    const url = oos ? oos : `http://rap2api.taobao.org/app/mock/${id}/info`;
-    return this.http.get(url).pipe(
-      map((res: any) => res)
-    )
+  findUser(id: string, oos=''): Observable<any> { // in fact just login
+    // https://randomuser.me/api/    //User
+    // http://jsonplaceholder.typicode.com/posts // comments get ->query post -> add
+    // http://jsonplaceholder.typicode.com/posts/2
+    const url = oos ? oos : `https://randomuser.me/api/`;
+    return this.http.get(url)
+  }
+  refreshCaptcha(): Observable<Captcha> {
+    return of({ captcha_token: 'bdgfhf', captcha_url: './assets/images/bg/lbg3.jpg' })
+  }
+  verifyCaptcha(token: string, code: string): Observable<any> {
+    return of({ validate_token: 'okkk' })
+  }
+  getMenus(): Observable<any[]> {
+    return of([{name: 'Todo', id: '23546', path: 'todo', params: 'ALL'}, {name: 'Stock', id:'3546', path: 'stock'}])
   }
 }

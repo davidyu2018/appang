@@ -1,0 +1,18 @@
+<form class="form-group" [formGroup]="form">
+  <div class="form-item reverse">
+    <label>
+    </label>
+    <div class="form-control">
+      <input placeholder="输入绑定手机号码" formControlName="regMobile">
+      <span class="form-control-tips" *ngIf="mobileErrors">{{mobileErrors}}</span>
+    </div>
+  </div>
+  <div class="form-item reverse">
+    <label>
+      <button #veriBtn type="button" [disabled]="(btnLabel$ | async)?.indexOf('发送') === -1 || form.get('resMobile')?.errors !== null">{{btnLabel$ | async}} </button>
+    </label>
+    <div class="form-control">
+      <input placeholder="输入获取验证码" formControlName="smsCode">
+    </div>
+  </div>
+</form>

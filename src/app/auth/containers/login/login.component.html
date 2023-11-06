@@ -1,8 +1,11 @@
 <div class="login-page" [ngStyle]="{backgroundImage: 'url(' + photo + ')', backgroundSize:'cover'}">
     <div class="quote">
-      <app-quote [quote]="(quote$ | async)"></app-quote>
+      <!-- <app-quote [quote]="(quote$ | async)"></app-quote> -->
     </div>
     <div class="logins">
-      <app-login-form (onLogin)="processLogin($event)"> </app-login-form>
+      <app-login-form (onLogin)="processLogin($event)" 
+      (refreshCaptcha)="refreshCaptcha()" (codeInput)="verifyCaptcha($event)" 
+      [captchaUrl]="(captcha$ | async)?.captcha_url"
+      > </app-login-form>
     </div>
   </div>

@@ -2,6 +2,7 @@
     <div class="c-header">
         <div class="c-header-content" style="display: non;">
             <app-header [logo]="logo" [headerToolbar]="headerToolbar" [headerDropdowns]="headerDropdowns" (onEventMenu)="onEventMenu($event)" (onEventLink)="onEventLink($event)"></app-header>
+            <app-menu *ngIf="(menus$ | async)?.length" [menus]="(menus$ | async)"></app-menu>
         </div>
     </div>
     <div class="c-body">

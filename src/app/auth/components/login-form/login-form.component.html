@@ -1,21 +1,8 @@
-<!-- <div class="login-page-box">
-    <div class="login-page-right">
-        <h2>{{"USER.BUTTON.SIGNIN" | translate}}</h2>
-        <section>
-            {{"USER.LABEL_NAME.USERNAME" | translate}}<input />
-            {{"USER.LABEL_NAME.PASSWORD" | translate}} <input />
-            <div><button>{{"USER.BUTTON.SUBMIT" | translate }}</button></div>
-        </section>
-        <section>
-            <a href="#" > {{"USER.SIGNIN_DESC.NOT_SIGNUP"  | translate}} </a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <a href="#">{{"USER.SIGNIN_DESC.FORGOT_PW" | translate}}</a>
-        </section>
-    </div>
-</div> -->
 <div class="login-form-box">
     <div class="login-form-content">
       <header class="">
-        <h3>{{"USER.BUTTON.SIGNIN" | translate}}</h3>
+        <h3>{{"USER.TITLE.SIGNIN" | translate}}</h3>
+        <h4>{{"USER.SUBTITLE.SIGNIN" | translate}}</h4>
       </header>
       <form (ngSubmit)="loginSubmit(loginForm)" #loginForm="ngForm"
         style="padding-bottom:2em;border-bottom:1px solid #264677">
@@ -38,13 +25,14 @@
           </div>
           <div class="controls-item">
             <!-- <label>Captcha</label> -->
-            <!-- <div class="controls-field">
+            <div class="controls-field">
               <div class="controls-input">
-                <input placeholder="图形验证码" name="captcha" ngModel (input)="verifyCaptcha(loginForm.value.auth.captcha)" />
+                <input placeholder="图形验证码" name="captcha" ngModel (input)="verifyCaptcha(loginForm.value.loginform.captcha)" />
               </div>
-              <span class="suffix-icon"><img [src]="captchaUrl" (click)="processClick()" width="50px"
-                  height="30px" /></span>
-            </div> -->
+              <span class="suffix-icon">
+                <img [src]="captchaUrl" (click)="processClick()" width="50px" height="30px" />
+              </span>
+            </div>
           </div>
           <div>
             <button type="submit" [disabled]="" class="my-btn-blue"> {{"USER.BUTTON.SUBMIT" | translate }} </button>
@@ -52,8 +40,9 @@
         </div>
       </form>
       <footer style="border-top:1px solid #5276a8;padding:1em;">
-        <a routerLink="/auth/register" style="color:#9baece">{{"USER.SIGNIN_DESC.NOT_SIGNUP"  | translate}}</a>
-        <a routerLink="/auth/forgetpw" style="color:#9baece;float: right;">{{"USER.SIGNIN_DESC.FORGOT_PW" | translate}}</a>
+        <a routerLink="/auth/register" style="float:left;color:#9baece">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a routerLink="/auth/forgetpw" style="color:#9baece;float: right;">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
       </footer>
     </div>
   </div>

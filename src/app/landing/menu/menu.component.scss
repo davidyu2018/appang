@@ -1,0 +1,7 @@
+.menu-item-box {
+    display: flex;
+    & > li {
+        padding:1em;
+        flex: 1;
+    }
+}

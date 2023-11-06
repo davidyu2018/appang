@@ -2,14 +2,14 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingModule } from '../landing/landing.module';
 import { AuthModule } from '../auth/auth.module';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-// import { UserModule } from '../user/user.module';
+import { ApiIntercepter } from './api.interceptor';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-
 
 @NgModule({
   imports: [
@@ -17,7 +17,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     LandingModule,
     AuthModule,
-    // UserModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -25,6 +24,9 @@ export function HttpLoaderFactory(http: HttpClient) {
           deps: [HttpClient]
       }
     }),
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiIntercepter, multi: true }
   ]
 })
 export class CoreModule { 

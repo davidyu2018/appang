@@ -1,0 +1,8 @@
+.process-step-box {
+    display: flex;
+    & > .cell {
+        flex:1;
+        text-align: center;
+        border:1px dotted #999
+    }
+}

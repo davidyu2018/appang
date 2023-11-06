@@ -8,7 +8,7 @@ import { AsyncValidatorFn } from '@angular/forms';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['../login/login.component.scss']
 })
 export class RegisterComponent {
   // usernameValidator: AsyncValidatorFn;

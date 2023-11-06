@@ -1,0 +1,5 @@
+<app-todo-header (onEnterUp)="addTodo($event)"></app-todo-header>
+<app-todo-list [todos]="todos$ | async" (onRemoveTodo)="removeTodo($event)" (onToggleTodo)="toggleTodo($event)"
+  (onToggleAll)="toggleAll()">
+</app-todo-list>
+<app-todo-footer [itemCount]="(todos$ | async)!.length" (onClear)="clearAllCompleted()"></app-todo-footer>

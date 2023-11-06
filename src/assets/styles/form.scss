@@ -1,0 +1,64 @@
+.form-group-wrapper {
+
+}
+.form-group {
+    border:1px solid #f5f5f5;
+    margin-bottom: 1em;
+   
+    .form-item {
+        display: flex;
+        // align-items: center;
+        margin-bottom:1em;
+        & > label {
+            flex: 0 0 10em;
+            padding-top: 4px;
+            padding-right:0.5em;
+            text-align: right;
+        }
+        & > label:not(:empty)::after {
+            content: ":";
+        }
+        & > label:empty {
+            display: none;
+        }
+        & > .form-control {
+            flex: 1 1 auto;
+            position: relative;
+            & > input {
+                display: block;
+                width:100%;
+                min-height: 32px;
+                box-sizing: border-box;
+            }
+            & > .form-control-tips {
+                position: absolute;
+                left:0;bottom:-1.5em;
+                font-size: 0.7rem;
+                color:orangered;
+            }
+        }
+    }
+    .form-item.reverse {
+        flex-direction: row-reverse;
+        & > label {
+            padding-top:0;
+            padding-right: 0;
+        }
+        & > label::after {
+            content: '';
+        }
+        button {
+            width:90%;
+            min-height: 32px;
+        }
+    }
+    & > .form-buttons {
+        text-align: center;
+    }
+    & > .form-buttons.left {
+        text-align: left;
+    }
+    & > .form-buttons.right {
+        text-align: right;
+    }
+}

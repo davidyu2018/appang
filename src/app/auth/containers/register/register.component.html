@@ -1,4 +1,15 @@
 <div class="register-page">
-    <app-register-form (onRegister)="processRegister($event)" 
-    ></app-register-form>
+    <header class="user-info-header">
+        <h2>{{"USER.TITLE.SIGNUP" | translate}}</h2>
+        <h3>{{"USER.SUBTITLE.SIGNUP" | translate}}</h3>
+    </header>
+    <main>
+        <app-register-form (onRegister)="processRegister($event)" 
+        ></app-register-form>
+    </main>
+    <footer class="user-info-footer">
+        <a routerLink="/auth/login">{{"USER.ADD_LINK.REGISTERED_GO_LOGIN"  | translate}}</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a routerLink="/auth/forgetpw">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
+      </footer>
 </div>

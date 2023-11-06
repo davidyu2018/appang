@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InternationalizationServiceTsService } from './core/internationalization.service.ts.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'appang';
+  constructor(private internation: InternationalizationServiceTsService) {
+    this.internation.setInternation()
+  }
 }

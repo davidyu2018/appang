@@ -15,7 +15,17 @@
     }
   },
   "USER": {
-    "SIGNIN_DESC": {
+    "TITLE": {
+      "SIGNIN": "登录",
+      "SIGNUP": "注册",
+      "CHANGE_PW": "修改密码"
+    },
+    "SUBTITLE": {
+      "SIGNIN": "用绑定手机号登录",
+      "SIGNUP": "注册用户可获得积分",
+      "CHANGE_PW": "通过验证手机通信码更改密码"
+    },
+    "ADD_LINK": {
       "NOT_SIGNUP": "还没有注册用户？",
       "REGISTERED_GO_LOGIN": "已注册， 去登陆",
       "FORGOT_PW": "忘记密码？"

@@ -2,20 +2,19 @@ export interface User {
     id: number;
     name: string;
     nickname?: string;
+    password?: string,
     mobile?: string;
     avatar?: string;
     email?: string;
 }
 export interface Auth {
-    user:User | null;
-    errMsg: string;
-    redirectUrl: string;
-}
-export interface Loginfo {
     loginname: string;
     password: string;
+    token:string;
+    avatar?: string;
     captcha?: number | string;
     osso?: string;
+    redirectUrl?: string;
 }
 export interface Quote {
     cn: string;

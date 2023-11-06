@@ -1,0 +1,20 @@
+.footer-ops {
+    display: flex;
+    padding: 2em;
+    & > div {
+        flex: 2;
+        text-align: center;
+        & > a {
+            display: inline-block;
+            padding:0 2em;
+        }
+    }
+    & > div:first-child {
+        flex: 1;
+        text-align: left;
+    }
+    & > div:last-child {
+        flex: 1;
+        text-align: right;
+    }
+}

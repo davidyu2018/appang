@@ -1,0 +1,12 @@
+<div style="border-bottom: 1px solid white; border-radius: 2em">
+  <div class="search-bar-box">
+    <input type="text" name="angsearch" [(ngModel)]="searchString"
+      [placeholder]="'SECTION.SEARCH_PLACEHOLDER' | translate" (keyup.enter)="search()" [ngStyle]="searchBoxStyle"
+      autocomplete="off" />
+    <!-- <span class="search-icon"> -->
+    <img src="./assets/icons/clear.svg" *ngIf="searchString.length > 3" (click)="searchRemove($event)"
+      class="clear-icon" />
+    <img src="./assets/icons/search2.svg" class="search-icon" />
+    <!-- </span> -->
+  </div>
+</div>
