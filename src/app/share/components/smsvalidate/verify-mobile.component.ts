@@ -16,7 +16,7 @@ import { mobileErrorMsg, mobilePattern } from "../../../../assets/validte/index"
 })
 export class VerifyMobileComponent implements ControlValueAccessor, OnDestroy {
   @Input() countdown = 60;
-  @Input() mobile: string | null = '';
+  @Input() mobile: string | null;
   @Output() requestCode = new EventEmitter<string>();
   @Output() mobileInputEvent = new EventEmitter<string>();
   btnLabel$?: Observable<string>;
@@ -28,7 +28,7 @@ export class VerifyMobileComponent implements ControlValueAccessor, OnDestroy {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       regMobile: [
-        '',
+        this.mobile,
         Validators.compose([Validators.required, Validators.pattern(/^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/)])
       ],
       smsCode: [
@@ -38,6 +38,7 @@ export class VerifyMobileComponent implements ControlValueAccessor, OnDestroy {
     });
 
   }
+  
   ngOnInit() {
     if (!this.mobile) {
       const mobile = this.form.get('regMobile');
@@ -55,18 +56,6 @@ export class VerifyMobileComponent implements ControlValueAccessor, OnDestroy {
     }
 
     const smsCode = this.form.get('smsCode')
-    const countDown$ = interval(1000).pipe( // 产生正增长的自然序列数
-      map(i => this.countdown - i), // 60- 得到倒数的计数
-      takeWhile(v => v >= 0), // 让其到0后自动完成
-      startWith(this.countdown) // 因为是时间间隔 要给定初始值
-    );
-      this.btnLabel$ = fromEvent(this.veriBtn.nativeElement, 'click').pipe(
-        tap(_ => this.requestCode.emit(this.form.get('regMobile')?.value)), // 点击后立即发送给外部
-        switchMap(_ => countDown$), // 此时将点击事件流转换成倒计时数字的数据流
-        map(i => (i > 0 ? `还剩${i}秒` : '再次发送')),
-        startWith('发送')
-      );
-    
     if (smsCode) {
       const code$ = smsCode.valueChanges;
       this.subs.push(code$.pipe(debounceTime(400)).subscribe((v: string) => this.propagateChange({
@@ -74,6 +63,19 @@ export class VerifyMobileComponent implements ControlValueAccessor, OnDestroy {
         code: v
       })))
     }
+  }
+  ngAfterViewInit() {
+    const countDown$ = interval(1000).pipe( // 产生正增长的自然序列数
+      map(i => this.countdown - i), // 60- 得到倒数的计数
+      takeWhile(v => v >= 0), // 让其到0后自动完成
+      startWith(this.countdown) // 因为是时间间隔 要给定初始值
+    );
+    this.btnLabel$ = fromEvent(this.veriBtn.nativeElement, 'click').pipe(
+      tap(_ => this.requestCode.emit()), // 点击后立即发送给外部
+      switchMap(_ => countDown$), // 此时将点击事件流转换成倒计时数字的数据流
+      map(i => (i > 0 ? `还剩${i}秒` : '再次发送')),
+      startWith('发送')
+    );
   }
   ngOnDestroy() {
     this.subs.forEach(sub => {

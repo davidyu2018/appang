@@ -1,14 +1,17 @@
+.user-info-card {
+  background-color: #eaeaea;
+}
 header.user-info-header > h2 {
     font-size: 2rem;
     text-align: center;
-    color: #777;
-    font-family: math;
+    color: #505961;
+    font-family: BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
     margin-bottom:1em;
     padding-top:1em;
   }
   header > h3 {
     font-size: 1.25rem;
-    color: #000;
+    color: #959a9e;
     padding-left: 3em;
     font-family: ui-monospace;
     margin-bottom:1em;
@@ -16,7 +19,7 @@ header.user-info-header > h2 {
   footer.user-info-footer {
     text-align: right;
     & > a {
-    text-decoration: underline;
+    text-decoration: underline; 
     color:#666;
     font-size: 0.9rem;
     }

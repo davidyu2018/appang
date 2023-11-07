@@ -55,4 +55,7 @@ export class HeaderComponent {
 
     return (subClient.left - parentClient.left)
   }
+  onClickOutside($event: boolean) {
+    $event && (this.dropdowns = [])
+  }
 }

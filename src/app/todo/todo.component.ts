@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
-import { Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, filter, switchMap } from 'rxjs/operators';
 
 import { Todo } from './todo.model'
 import { TodoService } from './todo.service'
@@ -19,6 +19,7 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
     // 如果组件只加载一次，且只从它导航到另一个组件或路由时没有问题，但要是使用不同的参数加载同一个组件，就不要用快照
     // 相反可以将参数和查询参数当成Observable就像调HTTP请求一样，每次URL更改都会触发订阅，会重新加载数据。
+    // this.route.paramMap.pipe(switchMap(param => of(param.get('filter')))).subscribe((d) => console.log('gggddd', d))
     this.route.params.pipe(map(v => v['filter'])).subscribe(filter => { 
       this.service.filterTodos(filter)
       this.todos$ = this.service.todos

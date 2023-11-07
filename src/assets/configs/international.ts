@@ -1,11 +1,11 @@
 const MAP_INTERNATION_NAME: any = {
     en: {
         name: 'ENGLISH',
-        icon: 'settings.svg'
+        icon: 'american-flag-vector.png'
     },
     zh: {
         name:  'CHINESE',
-        icon: 'settings.svg'
+        icon: 'china-flag-vector.png'
     }
 }
 export default MAP_INTERNATION_NAME

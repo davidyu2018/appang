@@ -23,6 +23,7 @@
         }
         & > .form-control {
             flex: 1 1 auto;
+            align-content: center;
             position: relative;
             & > input {
                 display: block;
@@ -35,6 +36,16 @@
                 left:0;bottom:-1.5em;
                 font-size: 0.7rem;
                 color:orangered;
+            }
+        }
+        & > .form-control.suffix {
+            & > input {
+                width: calc(100% - 4em);
+            }
+            & > img {
+                position: absolute;
+                right:0;
+                top:0;
             }
         }
     }

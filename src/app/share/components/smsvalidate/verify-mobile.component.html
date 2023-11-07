@@ -9,7 +9,7 @@
   </div>
   <div class="form-item reverse">
     <label>
-      <button #veriBtn type="button" [disabled]="(btnLabel$ | async)?.indexOf('发送') === -1 || form.get('resMobile')?.errors !== null">{{btnLabel$ | async}} </button>
+      <button #veriBtn type="button" [disabled]="(btnLabel$ | async)?.indexOf('发送') === -1">{{btnLabel$ | async}} </button>
     </label>
     <div class="form-control">
       <input placeholder="输入获取验证码" formControlName="smsCode">

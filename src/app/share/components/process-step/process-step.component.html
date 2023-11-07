@@ -1,7 +1,8 @@
 <div class="process-step-box">
-    <div class="cell start">验证绑定手机</div>
-    <div class="cell">设置新密码</div>
-    <div class="cell">完成</div>
-    <div class="cell">完成</div>
-    <div class="cell last">完成完成完成完成</div>
+    <div class="cell start" *ngFor="let step of steps; let i = index" [ngClass]="{'current': (i + 1) === active, 'past': (i+1) < active}">
+        <span >
+            <img [src]="'../../../../assets/icons/'+step.icon" /><br/>
+            <strong>{{step.text}}</strong>
+        </span>
+    </div>
 </div>

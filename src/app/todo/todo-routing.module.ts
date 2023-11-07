@@ -4,6 +4,11 @@ export const routes: Routes = [
   {
     path: '',
     component: TodoComponent,
+  },
+  {
+    path: '',
+    outlet: 'whole',
+    component: TodoComponent,
   }
 ];
 

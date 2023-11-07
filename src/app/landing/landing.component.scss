@@ -26,3 +26,14 @@
     width:72em;
     margin: 0 auto;
 }
+.collapse-menu-box {
+    display: flex;
+    & > .collapse-menu-aside {
+        flex: 0 0 200px;
+        border:1px solid red;
+    }
+    & > .collapse-menu-main {
+        flex: 1 1 auto;
+        border: 1px solid green;
+    }
+}

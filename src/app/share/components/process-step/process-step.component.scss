@@ -1,8 +1,71 @@
 .process-step-box {
     display: flex;
+    align-items: center;
+    margin-bottom: 1em;
     & > .cell {
         flex:1;
         text-align: center;
-        border:1px dotted #999
+        // border:1px dotted #999;
+        & > span {
+            position: relative;
+            background-color: #eaeaea;
+            display: inline-block;
+            z-index: 2;
+            padding: 0 1em;
+        }
+        & > span::after {
+            content: '';
+            position: absolute;
+            display: inline-flex;
+            border-top:1px solid #666;
+            height: 0;
+            width: 100%;
+            top:50%;
+            right:-100%;
+        }
+        & > span::before {
+            content: '';
+            position: absolute;
+            border-top:1px solid #666;
+            height: 0;
+            width: 100%;
+            top:50%;
+            left:-100%;
+        }
+    }
+    & > .cell.past {
+        & > span {
+            color:#d8d8d8;
+        }
+        & > span::after,  & > span::before{
+            border-top:1px solid #d8d8d8;
+        }
+    }
+    & > .cell.current {
+        & > span {
+            color:skyblue;
+        }
+        & > span::after,  & > span::before{
+            border-top:1px solid skyblue;
+        }
     }
 }
+
+p {
+    position: relative; 
+    display: inline-block;
+    }
+    p::before, p::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 50%;
+    top: 50%;
+    background-color: black;
+    }
+    p::before {
+    left: -1%;
+    }
+    p::after {
+    right: -1%;
+    }
