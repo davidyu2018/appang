@@ -1,0 +1,20 @@
+<header style="margin-bottom: 1em;display: flex;align-items: center;">
+  <h3 style="font-weight: bold;">ADMIN STORE</h3>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div style="flex:2;text-align: right;">
+    <button routerLink="../">GO TO STORE</button>
+  </div>
+</header>
+<div class="equal-altitude">
+  <div class="columns_1 aside-box">
+    <button class="category-btn" routerLink="./products" routerLinkActive="active">
+      Products
+    </button>
+    <button class="category-btn" routerLink="./orders" routerLinkActive="active">
+      Orders
+    </button>
+  </div>
+  <div class="columns_2">
+    <router-outlet></router-outlet>
+  </div>
+</div>

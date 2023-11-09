@@ -72,7 +72,4 @@ export class AuthService {
     return of(mobile === '2435465' && code === '435465')
   }
 
-  getMenus(): Observable<any[]> {
-    return this.user.getMenus()
-  }
 }

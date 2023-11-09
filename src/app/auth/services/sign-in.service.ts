@@ -42,4 +42,12 @@ export class SignInService {
     ]
     return of(quotoes)
   }
+  getMenus(): Observable<any[]> {
+    return of([
+      {name: 'Todo', id: '23546', path: 'todo', params: 'ALL'}, 
+      {name: 'Stock', id:'354633', path: 'stock'},
+      {name: 'Sports', id:'354677', path: 'sports'},
+      {name: 'Admin', id:'354664', path: 'admin'},
+    ])
+  }
 }

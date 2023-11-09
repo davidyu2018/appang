@@ -1,12 +1,16 @@
 <div class="c-container fixed-width">
-    <div class="c-header">
-        <div class="c-header-content" style="display: non;">
+    <header class="c-header">
+        <div class="c-header-body">
             <app-header [logo]="logo" [headerToolbar]="headerToolbar" [headerDropdowns]="headerDropdowns" (onEventMenu)="onEventMenu($event)" (onEventLink)="onEventLink($event)"></app-header>
+        </div>
+    </header>
+    <nav class="c-nav">
+        <div class="c-nav-body">
             <app-menu *ngIf="(menus$ | async)?.length" [menus]="(menus$ | async)"></app-menu>
         </div>
-    </div>
-    <div class="c-body">
-        <div class="c-body-content">
+    </nav>
+    <main class="c-main">
+        <div class="c-main-body">
             <router-outlet></router-outlet>
             <!-- <div class="collapse-menu-box">
                 <div class="collapse-menu-aside">
@@ -65,5 +69,5 @@
             dfghjkl的功夫好看
             <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
             </div> -->
-    </div>
+        </main>
 </div>

@@ -13,10 +13,10 @@
         [captchaUrl]="(captcha$ | async)?.captcha_url"
         > </app-login-form>
       </main>
-      <footer style="border-top:1px solid #5276a8;padding:1em;">
-        <a routerLink="/auth/register" style="float:left;color:#9baece">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
+      <footer class="user-info-footer">
+        <a routerLink="/auth/register">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a routerLink="/auth/forgetpw" style="color:#9baece;float: right;">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
+        <a routerLink="/auth/forgetpw">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
       </footer>
     </div>
 </div>

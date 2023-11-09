@@ -1,0 +1,58 @@
+.equal-altitude {
+  display: flex;
+  & > .columns_1 {
+    width:20%
+  }
+  & > .columns_2 {
+  width:80%;margin-left:1.5em; word-break: break-all;
+  }
+}
+button.category-btn {
+  border:none;
+  background-color: transparent;
+  display: block;
+  width:100%;
+  text-align: left;
+  padding:1em 2em;
+  border-top:1px solid #74797f;
+  border-bottom:1px solid #3e4248;
+  background-color: #5d6166;
+  color: #d1d3d4;
+  font-size: 1.1rem;
+}
+button.category-btn:first-child {
+  border-radius:7px 7px  0 0 ;
+}
+button.category-btn:last-child {
+  border-radius: 0 0 7px 7px;
+}
+
+button.category-btn.active {    
+  // background-color: #3b3e44;
+  border-top:1px solid #e08e40;
+  border-bottom:1px solid #9a2f09;
+  background-image: linear-gradient(#d16413,#8d2908);
+  color: #fff;
+}
+//////////////////////////////////table////////////
+.my-table {
+  border:1px solid #c0c0c0;
+  width:100%;
+  margin-bottom: 1em;
+  & > thead > tr > th {
+    font-weight: bold;
+    text-align: left;
+    padding:0.5em;
+  }
+  & > tbody > tr > td {
+    padding:0.5em;
+    border-top:1px solid #d4d4d4;
+  }
+  & > tbody > tr > td:last-child {
+    text-align: right;
+  }
+}
+
+.bg-info {
+  background-color: #e08e40;
+}

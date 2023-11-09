@@ -5,7 +5,8 @@ import { Auth } from '../auth/services/model';
 import { filter, map, mergeMap, take, startWith, delay, share } from 'rxjs/operators';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { InternationalizationServiceTsService } from '../core/internationalization.service.ts.service';
+import { InternationalizationServiceTsService } from '../core/internationalization.service';
+import { SignInService } from '../auth/services/sign-in.service';
 
 @Component({
   selector: 'app-landing',
@@ -20,7 +21,7 @@ export class LandingComponent {
   loginfo: any ={token: ''};
   menus$: Observable<any[]>;
   internationState: any | null = {}
-  constructor( private http: HttpClient, private auth: AuthService, private router: Router, private internation: InternationalizationServiceTsService) {
+  constructor( private http: HttpClient, private auth: AuthService, private signService: SignInService, private router: Router, private internation: InternationalizationServiceTsService) {
     this.http.get('./assets/configs/configs.json').subscribe((data: any) => {
       // 1: init header configs info && nationlizion
       this.headerToolbar = data.data.headerToolbar
@@ -47,7 +48,7 @@ export class LandingComponent {
       console.log(this.headerToolbar)
       }
       // 3: according to auth get main menu
-      this.loginfo.token && (this.menus$ = this.auth.getMenus().pipe(share()))
+      this.loginfo.token && (this.menus$ = this.signService.getMenus().pipe(share()))
     })
     
   }
@@ -70,10 +71,12 @@ export class LandingComponent {
   }
   onEventLink(link: any) {
     if ('langKey' in link) {
-      const iLang = this.headerToolbar.findIndex(to => !!to.button.langKey)
-      const updateItem = {...this.headerToolbar[iLang], button: link};
-      this.headerToolbar = [...this.headerToolbar.slice(0, iLang), updateItem, ...this.headerToolbar.slice(iLang + 1)];
       this.internation.setInternation(link.langKey)
+      const iLang = this.headerToolbar.findIndex(to => !!to.button.langKey)
+      const nLink = {...link, name: ''}
+      const updateItem = {...this.headerToolbar[iLang], button: nLink};
+      this.headerToolbar = [...this.headerToolbar.slice(0, iLang), updateItem, ...this.headerToolbar.slice(iLang + 1)];
+      console.log('aaaaaa', this.headerToolbar)
     } else {
       if (link.name === 'LOGOUT') {
         this.auth.unAuth()

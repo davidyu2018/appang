@@ -1,0 +1,45 @@
+<table class="cal">
+  <caption>
+    <div class="date-picker-header">
+      <input type="number" name="year" [(ngModel)]="finllyDate.year" (change)="changeYear()" />
+      <select name="months" [(ngModel)]="finllyDate.month" (change)="changeMonth()">
+        <option *ngFor="let month of [1,2,3,4,5,6,7,8,9,10,11,12]" value="{{month}}">{{MONTH_ENUM[month]}}</option>
+      </select>
+    </div>
+  </caption>
+  <colgroup>
+    <col class="cal-mon">
+    <!-- col\colgroup 可用的样式只有：background\border\width\visibility有效 -->
+    <col class="cal-tue">
+    <col class="cal-wed">
+    <col class="cal-thu">
+    <col class="cal-fri">
+    <col class="cal-sat cal-weekend">
+    <col class="cal-sun cal-weekend">
+  </colgroup>
+  <thead>
+    <tr>
+      <th scope="col">Mon</th>
+      <th scope="col">Tue</th>
+      <th scope="col">Wed</th>
+      <th scope="col">Thu</th>
+      <th scope="col">Fri</th>
+      <th scope="col">Sat</th>
+      <th scope="col">Sun</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let daterow of daterows; let first = index">
+      <td *ngFor="let td of daterow" [class.cal-current]="finllyDate.day == td"
+        [class.cal-inactive]="(td > 10 && first == 0) || (td < 10 && first == daterows.length -1)">
+        <button [disabled]="(td > 10 && first == 0) || (td < 10 && first == daterows.length -1)"
+          (click)="selectDay(td)">{{td}}</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="7"><button>OK</button></td>
+    </tr>
+  </tfoot>
+</table>

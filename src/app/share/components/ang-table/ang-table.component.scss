@@ -1,0 +1,78 @@
+.cal {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width:100%;
+  max-width: 25em;
+  font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
+  text-align: center;
+}
+.cal-wed {
+  color:red
+}
+.cal caption {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  line-height: 2;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.cal thead {
+  border-bottom: 3px solid #666;
+}
+.cal-weekend {
+  background-color: #fef0f0;
+  background-color: rgba(255, 0, 0, 0.05);
+}
+.cal th {
+  padding:1em
+}
+.cal th, .cal td {
+  line-height: 1;
+  // padding: 1em;
+  width:14.285%;
+  word-break: normal;
+  box-sizing: border-box;
+}
+.cal td {
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  & > button {
+    border:none;
+    padding:1em;
+    background-color: transparent;
+    color: #666;
+    font-family: system-ui,'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  &.cal-inactive {
+    background-color: #f0f0f0;
+    color: silver;
+  }
+  &.cal-inactive >  button {
+    cursor: not-allowed;
+  }
+}
+
+.cal td:hover:not(.cal-current):not(.cal-inactive), .cal td:focus {
+  background-color: #cde7ca;
+  background-color: rgba(167, 240, 210, .3);
+}
+
+
+.cal td.cal-current:not(.cal-inactive) {
+  background-color: rgba(71,14,62, .6);
+  & > button {
+    color: #fff;
+  }
+}
+
+//////////////////////
+.date-picker-header {
+  display: flex;
+  & > input{
+    flex: 1;
+  }
+  & > select {
+    flex: 1;
+  }
+}
+/// 

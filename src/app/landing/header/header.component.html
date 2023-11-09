@@ -1,6 +1,6 @@
 <div class="landing-header-wrapper">
     <div class="landing-header-left">
-      <h1>
+      <h1 style="margin: 0;">
         <span class="logo">
            <strong *ngIf = "!logo.img">{{logo.text || 'LOGO'}}</strong>
            <img *ngIf = "logo.img" [src]="'./assets/images/logo/' + logo.img"/>
@@ -10,9 +10,10 @@
     </div>
     <div class="landing-header-right">
       <ul class="header-icons" >
+        <li *ngIf="true"><app-search ></app-search></li>
         <li *ngFor="let tool of toolbars; let last = last;let i = index" [style]="{'margin-left': last ? '5em' : '2em'}" >
           <a (click)="tapevent(tool, $event)" *ngIf="!isLogin || (isLogin && !last)">
-            <img [id]="'OUTSIDE_CLICK_AREA' + i" [src]="'./assets/icons/' + tool.button.icon" [title]='"SECTION.NAV." + tool.button.name | translate' *ngIf="tool.button.icon" class="nav-links_icon" />
+            <img [id]="'OUTSIDE_CLICK_AREA' + i" [src]="'./assets/icons/' + tool.button.icon" [title]='"SECTION.NAV." + tool.button.id | translate' *ngIf="tool.button.icon" class="nav-links_icon" />
             <span [id]="'OUTSIDE_CLICK_AREA' + i" class="link-text" *ngIf="tool.button.name">{{ "SECTION.NAV." + tool.button.name | translate}}</span>
           </a>
           <a (click)="tapevent(tool, $event)" *ngIf="isLogin && last">
@@ -28,7 +29,7 @@
             </dt>
             <dd *ngFor="let link of dropdowns" (click)="goLink(link)" [class.active]="link.active">
               <img [src]="'./assets/icons/' + link.icon" />
-              <span>{{ "SECTION.NAV." + link.name | translate}}</span>
+              <span>{{ "SECTION.NAV." + link.name || link.id | translate}}</span>
             </dd>
           </dl>
       </ul>

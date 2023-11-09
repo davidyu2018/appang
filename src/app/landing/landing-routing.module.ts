@@ -10,6 +10,14 @@ const routes: Routes = [
     // canActivateChild: [AuthGuardService], // 针对自己的第一层子路由的拦截
     children: [
       {
+        path: 'sports',
+        loadChildren: () => import('../sports/sports.module').then(m => m.SportsModule) // 懒加载模块 通常放在 模糊匹配路由之前
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule) // 懒加载模块 通常放在 模糊匹配路由之前
+      },
+      {
         path: 'stock',
         loadChildren: () => import('../stock/stock.module').then(m => m.StockModule) // 懒加载模块 通常放在 模糊匹配路由之前
       },

@@ -1,0 +1,27 @@
+<div class="checkout" *ngIf="!orderSent">
+  <h2>Thanks!</h2>
+  <p>Thanks for placing your order.</p>
+  <p>We'll ship your good as soon as possible.</p>
+  <button routerLink="../">Return to Sports</button>
+  <form *ngIf="!orderSent" #form="ngForm" novalidate (ngSubmit)="submitOrder(form)">
+    <div class="">
+      <label>Name</label>
+      <input #name="ngModel" name="name" [(ngModel)]="order.name" required />
+      <span *ngIf="submitted && name.invalid">Please enter your name</span>
+    </div>
+    <div class="">
+      <label>Address</label>
+      <input #address="ngModel" name="address" [(ngModel)]="order.address" required />
+      <span *ngIf="submitted && address.invalid">Please enter your address</span>
+    </div>
+    <div class="">
+      <label>City</label>
+      <input #city="ngModel" name="city" [(ngModel)]="order.city" required />
+      <span *ngIf="submitted && city.invalid">Please enter your address</span>
+    </div>
+    <div>
+      <button routerLink="../cart">Back</button>
+      <button type="submit">Complete Order</button>
+    </div>
+  </form>
+</div>

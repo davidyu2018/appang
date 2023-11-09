@@ -7,16 +7,26 @@
         "headerToolbar": [
             {
                 "button": {
-                    "name": "NEWS",
-                    "icon": "news.svg"
+                    "name": "",
+                    "icon": "news.svg",
+                    "id": "NEWS"
                 },
                 "dropdown": []
             },
             {
                 "button": {
-                    "name": "LANG",
+                    "name": "",
+                    "id": "SETTING",
+                    "icon": "settings.svg"
+                },
+                "dropdown": []
+            },
+            {
+                "button": {
+                    "name": "",
                     "icon": "map-marker-2.svg",
-                    "langKey": "langage"
+                    "langKey": "langage",
+                    "id": "LANG"
                 }
             },
             {

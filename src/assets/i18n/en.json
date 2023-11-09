@@ -39,5 +39,10 @@
       "USERNAME": "User name",
       "PASSWORD": "Password"
     }
+  },
+  "FORM": {
+    "PLACEHOLDER": {
+      "SEARCH": "Input..."
+    }
   }
 }

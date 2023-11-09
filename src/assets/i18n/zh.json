@@ -40,5 +40,10 @@
       "USERNAME": "用户名",
       "PASSWORD": "密码"
     }
+  },
+  "FORM": {
+    "PLACEHOLDER": {
+      "SEARCH": "输入文本..."
+    }
   }
 }

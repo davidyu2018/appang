@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Auth, Quote, Captcha } from "../../services/model";
 import { AuthService } from "../../services/auth.service";
 import { SignInService } from "../../services/sign-in.service";
+import { ToastService } from "src/app/toast/toast.service";
 @Component({
   selector: 'app-login',
   styleUrls: ['./login.component.scss'],
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   verifySub$ = new Subject<string>(); // inputSub --> sub 输入验证码流会引发 校验验证码API流
   sub$ = new Subscription() // API流： this.auth.verifyCaptcha(token, code)
-  constructor(private auth: AuthService, private signinService: SignInService, private router: Router, private route: ActivatedRoute) {
+  constructor(private toast: ToastService, private auth: AuthService, private signinService: SignInService, private router: Router, private route: ActivatedRoute) {
     this.signinService.getImageUrl().subscribe((images: any[]) => {
       this.slides = [...images];
       this.rotateImages(this.slides)
@@ -65,7 +66,9 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+  cuhandlererr(err: any) {
 
+  }
   rotateImages(arr: string[]) {
     const length = arr.length
     let i = 0;

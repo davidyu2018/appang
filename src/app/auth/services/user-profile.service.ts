@@ -25,7 +25,5 @@ export class UserProfileService {
   verifyCaptcha(token: string, code: string): Observable<any> {
     return of({ validate_token: 'okkk' })
   }
-  getMenus(): Observable<any[]> {
-    return of([{name: 'Todo', id: '23546', path: 'todo', params: 'ALL'}, {name: 'Stock', id:'3546', path: 'stock'}])
-  }
+  
 }

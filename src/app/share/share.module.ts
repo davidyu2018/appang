@@ -6,8 +6,9 @@ import { ImagePicker} from './components/image-picker/image-picker.component'
 import { VerifyMobileComponent } from './components/smsvalidate/verify-mobile.component'
 import { SearchComponent } from './components/search/search.component'
 import { ProcessStepComponent } from './components/process-step/process-step.component'
-import { ClickOutsideDirective } from './directives/click-outside.directive'
-const COMPONENTS: any[] = [ImagePicker, VerifyMobileComponent, SearchComponent, ProcessStepComponent]
+import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { AngTableComponent } from './components/ang-table/ang-table.component'
+const COMPONENTS: any[] = [ImagePicker, VerifyMobileComponent, SearchComponent, ProcessStepComponent, AngTableComponent]
 const MODULES = [
   CommonModule, 
   FormsModule, 

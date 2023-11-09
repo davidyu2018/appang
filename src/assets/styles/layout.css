@@ -1,0 +1,87 @@
+.c-header {
+    display: flex;
+    padding: 0.4em 1em;
+    background-image: linear-gradient(#f0f1f3, #eff0f2);
+  }
+
+  @media (min-width: 35em) {
+    .c-header {
+      padding: 1em;
+    }
+  }
+
+  @media (min-width: 50em) {
+    .c-header {
+      padding: 1em 2em;
+    }
+  }
+  .banner {
+    padding: 2em 1em;
+    text-align: center;
+    background-image: url('/clan-yu/photo/woman-3377839_960_720.webp');
+    background-size: 100%;
+    color: #fff;
+    text-shadow: 0.1em 0.1em 0.3em #000;
+  }
+
+  @media (min-width: 35em) {
+    .banner {
+      padding: 5em 3em;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (min-width: 50em) {
+    .banner {
+      padding: 7em 6em;
+    }
+  }
+.c-aside {
+  border: 2px solid red;
+  position: absolute;
+  left:0;
+  width: 17em;
+  max-height: 100%;
+}
+.c-main {
+  padding: 0em;
+  /* border: 2px solid green; */
+
+}
+
+  @media (min-width: 35em) {
+    main {
+      padding: 2em 1em;
+    }
+  }
+
+  @media (min-width: 50em) {
+    main {
+      padding: 1em 2em;
+    }
+  }
+
+/* 主导航 */
+  .c-nav {
+  }
+
+  @media (min-width:35em) {
+    .row {
+      display: flex;
+      margin-left: -.75em;
+      margin-right: -.75em;
+    }
+
+    .column {
+      flex: 1;
+      margin-right: 0.75em;
+      margin-left: 0.75em;
+    }
+  }
+
+  @media print {
+    * {
+      color: black !important;
+      background: none !important;
+    }
+  }

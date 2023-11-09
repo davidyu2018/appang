@@ -1,0 +1,33 @@
+<div style="color: silver;">
+  指令自定义事件发送数据：newProductcCtegory :{{newProductcCtegory}}
+  <button routerLink="../products/create" style="float: right;">Create New Product</button>
+</div>
+<table class="my-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of getProducts()" [pa-product]="p" (pa-category)="newProductcCtegory = $event"
+      [add-class]="getProducts().length < 6 ? 'bg-info' : 'bg-warning'">
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.category}}</td>
+      <td>{{p.price | currency:"USD":"symbol":"2.2-2"}}</td>
+      <td>
+        <button [routerLink]="['../products/view', p.id]">View</button>
+        &nbsp;&nbsp;
+        <button [routerLink]="['../products/edit', p.id]">Edit</button>
+        &nbsp;&nbsp;
+        <button (click)="deleteProduct(p.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+</div>

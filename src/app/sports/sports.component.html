@@ -1,0 +1,54 @@
+<div class="sports-store">
+  <header class="page-header">
+    <h3>Sports Store</h3>
+    <div class="header-right">
+      <button routerLink="/landing/sports/admin">Admin Product</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <app-cart></app-cart>
+    </div>
+  </header>
+  <div class="equal-altitude">
+    <div class="columns_1 aside-box">
+      <div class="category-header">
+        <span>Categories</span>
+      </div>
+      <button class="category-btn" [class.active]="'' == selectedCategory" (click)="changeCategory('')">All</button>
+      <button class="category-btn" *ngFor="let cat of categories" [class.active]="cat == selectedCategory"
+        (click)="changeCategory(cat)">{{cat}}</button>
+    </div>
+    <div class="columns_2">
+      <div class="card-box">
+        <div class="card-header">Products list <span style="float: right;">{{products.length}}</span></div>
+        <div class="card-body">
+          <div *ngFor="let product of products" class="cuto-ff-gray">
+            <h4>{{product.name}}</h4>
+            <span style="float: right;">{{product.price | currency:"USD":"symbol":"2.2-2" }}</span>
+            <div>{{product.description}}
+              <button style="float: right;" (click)="addProductToCart(product)">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="pager-container">
+            <div class="left-side">
+              <select [value]="productsPerPage" (change)="changePageSize(productsPerPage)">
+                <option value="4">2 per Page</option>
+                <option value="4">4 per Page</option>
+                <option value="6">6 per Page</option>
+                <option value="8">8 per Page</option>
+                <option value="12">12 per Page</option>
+                <option value="15">15 per Page</option>
+              </select>
+            </div>
+            <div class="pager-count right-side">
+              <button *counter="let page of pageCount" (click)="changePage(page)"
+                [class.active]="page == selectedPage">{{page}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>{{datedisplay?.symbolYMD}}</h2>
+      <ang-table [dateValue]="dateValue" (outputDate)="outputDate($event)"></ang-table>
+    </div>
+  </div>
+</div>
