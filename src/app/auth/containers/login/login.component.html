@@ -1,4 +1,4 @@
-<div class="login-page" [ngStyle]="{backgroundImage: 'url(' + photo + ')', backgroundSize:'cover'}">
+<div class="login-page" [ngStyle]="{backgroundImage: 'ul(' + photo + ')', backgroundSize:'cover'}">
     <!-- <div class="quote">
       <app-quote [quote]="(quote$ | async)"></app-quote>
     </div> -->
@@ -15,11 +15,11 @@
         [captchaUrl]="(captcha$ | async)?.captcha_url"
         > </app-login-form>
       </main>
-      <footer class="user-info-footer">
+      <!-- <footer class="user-info-footer">
         <a routerLink="/auth/register">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a routerLink="/auth/forgetpw">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
-      </footer>
+      </footer> -->
     </div>
 </div>
 

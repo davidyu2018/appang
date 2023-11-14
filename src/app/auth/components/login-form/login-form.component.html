@@ -1,6 +1,6 @@
     
     <div class="form-group-wrapper custom-input">
-    <form (ngSubmit)="loginSubmit(loginForm)" #loginForm="ngForm" class="form-group">
+    <!-- <form (ngSubmit)="loginSubmit(loginForm)" #loginForm="ngForm" class="form-group">
         <div ngModelGroup="loginform">
           <div class="form-item">
             <label></label>
@@ -28,5 +28,49 @@
             <button type="submit" [disabled]="" class="my-btn-blue"> {{"USER.BUTTON.SUBMIT" | translate }} </button>
           </div>
         </div>
-    </form>
+    </form> -->
     </div>
+    <div class="content">
+      <form (ngSubmit)="loginSubmit(loginForm)" #loginForm="ngForm">
+        <div ngModelGroup="loginform">
+         <div class="field">
+            <input type="text" class="input" name="loginname" ngModel placeholder="{{'USER.PLACLEHOLDER.USERNAME' | translate}}">
+            <span class="span"><svg class="" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" y="0" x="0" height="20" width="50" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><path class="" data-original="#000000" fill="#595959" d="M256 0c-74.439 0-135 60.561-135 135s60.561 135 135 135 135-60.561 135-135S330.439 0 256 0zM423.966 358.195C387.006 320.667 338.009 300 286 300h-60c-52.008 0-101.006 20.667-137.966 58.195C51.255 395.539 31 444.833 31 497c0 8.284 6.716 15 15 15h420c8.284 0 15-6.716 15-15 0-52.167-20.255-101.461-57.034-138.805z"></path></g></svg></span>
+            <label class="label">Email or Phone</label>
+         </div>
+         <div class="field">
+            <input type="password" class="input"  name="password" ngModel placeholder="{{'USER.PLACLEHOLDER.PASSWORD' | translate}}">
+            <span class="span"><svg class="" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" y="0" x="0" height="20" width="50" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg"><g><path class="" data-original="#000000" fill="#595959" d="M336 192h-16v-64C320 57.406 262.594 0 192 0S64 57.406 64 128v64H48c-26.453 0-48 21.523-48 48v224c0 26.477 21.547 48 48 48h288c26.453 0 48-21.523 48-48V240c0-26.477-21.547-48-48-48zm-229.332-64c0-47.063 38.27-85.332 85.332-85.332s85.332 38.27 85.332 85.332v64H106.668zm0 0"></path></g></svg></span>
+            <label class="label">Password</label>
+         </div>
+         <button class="button" type="submit">{{"USER.BUTTON.SUBMIT" | translate }}</button>
+         <label class="checkbox">
+          <input type="checkbox">
+          <span class="checkmark"></span>
+          <span class="text">Agree item</span>
+        </label>
+         <div class="sign-up">
+            Not a member? <a href="#">signup now</a>
+            <a href="#" style="float: right;">Forgot password?</a>
+         </div>
+         <div class="or">OR</div>
+         <button class="google">
+          <svg xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" y="0" x="0" height="24" width="24" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path data-original="#167ee6" fill="#167ee6" d="m492.668 211.489-208.84-.01c-9.222 0-16.697 7.474-16.697 16.696v66.715c0 9.22 7.475 16.696 16.696 16.696h117.606c-12.878 33.421-36.914 61.41-67.58 79.194L384 477.589c80.442-46.523 128-128.152 128-219.53 0-13.011-.959-22.312-2.877-32.785-1.458-7.957-8.366-13.785-16.455-13.785z"></path>
+            <path data-original="#12b347" fill="#12b347" d="M256 411.826c-57.554 0-107.798-31.446-134.783-77.979l-86.806 50.034C78.586 460.443 161.34 512 256 512c46.437 0 90.254-12.503 128-34.292v-.119l-50.147-86.81c-22.938 13.304-49.482 21.047-77.853 21.047z"></path>
+            <path data-original="#0f993e" fill="#0f993e" d="M384 477.708v-.119l-50.147-86.81c-22.938 13.303-49.48 21.047-77.853 21.047V512c46.437 0 90.256-12.503 128-34.292z"></path>
+            <path class="" data-original="#ffd500" fill="#ffd500" d="M100.174 256c0-28.369 7.742-54.91 21.043-77.847l-86.806-50.034C12.502 165.746 0 209.444 0 256s12.502 90.254 34.411 127.881l86.806-50.034c-13.301-22.937-21.043-49.478-21.043-77.847z"></path>
+            <path class="" data-original="#ff4b26" fill="#ff4b26" d="M256 100.174c37.531 0 72.005 13.336 98.932 35.519 6.643 5.472 16.298 5.077 22.383-1.008l47.27-47.27c6.904-6.904 6.412-18.205-.963-24.603C378.507 23.673 319.807 0 256 0 161.34 0 78.586 51.557 34.411 128.119l86.806 50.034c26.985-46.533 77.229-77.979 134.783-77.979z"></path>
+            <path data-original="#d93f21" fill="#d93f21" d="M354.932 135.693c6.643 5.472 16.299 5.077 22.383-1.008l47.27-47.27c6.903-6.904 6.411-18.205-.963-24.603C378.507 23.672 319.807 0 256 0v100.174c37.53 0 72.005 13.336 98.932 35.519z"></path>
+          </g>
+        </svg>&nbsp;&nbsp;
+        <span>Sign In with Google</span></button>
+        <button class="btn apple">
+          <svg version="1.1" height="24" width="24" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 22.773 22.773" style="enable-background:new 0 0 22.773 22.773;" xml:space="preserve"> <g> <g> <path d="M15.769,0c0.053,0,0.106,0,0.162,0c0.13,1.606-0.483,2.806-1.228,3.675c-0.731,0.863-1.732,1.7-3.351,1.573 c-0.108-1.583,0.506-2.694,1.25-3.561C13.292,0.879,14.557,0.16,15.769,0z"></path> <path d="M20.67,16.716c0,0.016,0,0.03,0,0.045c-0.455,1.378-1.104,2.559-1.896,3.655c-0.723,0.995-1.609,2.334-3.191,2.334 c-1.367,0-2.275-0.879-3.676-0.903c-1.482-0.024-2.297,0.735-3.652,0.926c-0.155,0-0.31,0-0.462,0 c-0.995-0.144-1.798-0.932-2.383-1.642c-1.725-2.098-3.058-4.808-3.306-8.276c0-0.34,0-0.679,0-1.019 c0.105-2.482,1.311-4.5,2.914-5.478c0.846-0.52,2.009-0.963,3.304-0.765c0.555,0.086,1.122,0.276,1.619,0.464 c0.471,0.181,1.06,0.502,1.618,0.485c0.378-0.011,0.754-0.208,1.135-0.347c1.116-0.403,2.21-0.865,3.652-0.648 c1.733,0.262,2.963,1.032,3.723,2.22c-1.466,0.933-2.625,2.339-2.427,4.74C17.818,14.688,19.086,15.964,20.67,16.716z"></path> </g></g></svg>
+          &nbsp;&nbsp;
+          <span>Sign In withApple </span>
+        </button>
+      </div>
+    </form>
+   </div>

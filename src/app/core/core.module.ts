@@ -7,7 +7,7 @@ import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { AuthIntercepter } from './auth.interceptor';
 import { ErrorIntercepter } from './error.interceptor';
-import { ToastModule } from '../toast/toast.module';
+import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { LogIntercepter } from './log.interceptor';
 import { MessageErrorHandler } from './angular.error.handler'
 
@@ -21,7 +21,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     LandingModule,
     AuthModule,
-    ToastModule.forRoot(),
+    ToastrModule.forRoot(),
+    ToastNoAnimationModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
