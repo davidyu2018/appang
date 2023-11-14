@@ -11,10 +11,12 @@ const routes: Routes = [
     children: [
       {
         path: 'sports',
+        // canLoad: [AuthGuardService],
         loadChildren: () => import('../sports/sports.module').then(m => m.SportsModule) // 懒加载模块 通常放在 模糊匹配路由之前
       },
       {
         path: 'admin',
+        canLoad: [AuthGuardService],
         loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule) // 懒加载模块 通常放在 模糊匹配路由之前
       },
       {

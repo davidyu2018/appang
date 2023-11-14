@@ -2,7 +2,7 @@
   <header class="page-header">
     <h3>Sports Store</h3>
     <div class="header-right">
-      <button routerLink="/landing/sports/admin">Admin Product</button>
+      <button class="button-gray" routerLink="/admin">Admin Product</button>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <app-cart></app-cart>
     </div>
@@ -21,9 +21,9 @@
         <div class="card-header">Products list <span style="float: right;">{{products.length}}</span></div>
         <div class="card-body">
           <div *ngFor="let product of products" class="cuto-ff-gray">
-            <h4>{{product.name}}</h4>
+            <h4>{{product.title}}</h4>
             <span style="float: right;">{{product.price | currency:"USD":"symbol":"2.2-2" }}</span>
-            <div>{{product.description}}
+            <div>{{product.id}}
               <button style="float: right;" (click)="addProductToCart(product)">Add To Cart</button>
             </div>
           </div>

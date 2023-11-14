@@ -11,7 +11,10 @@
       "PROFILE": "个人简介",
       "ENGLISH": "English",
       "CHINESE": "中文",
-      "NEWS": "消息"
+      "NEWS": "消息",
+      "FIXED_WIDTH": "固定宽度",
+      "FIXED_HEADER": "固定头部",
+      "SIDEBAR_RIGHT": "菜单置右"
     }
   },
   "USER": {
@@ -39,6 +42,11 @@
     "LABEL_NAME": {
       "USERNAME": "用户名",
       "PASSWORD": "密码"
+    },
+    "PLACLEHOLDER": {
+      "USERNAME": "用户名",
+      "PASSWORD": "密码",
+      "CAPTCHA": "验证码"
     }
   },
   "FORM": {

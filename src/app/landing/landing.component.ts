@@ -19,6 +19,7 @@ export class LandingComponent {
   headerToolbar: any[]  = [];
   headerDropdowns: any[] = [];
   loginfo: any ={token: ''};
+  hasHeaderSearch: boolean = false
   menus$: Observable<any[]>;
   internationState: any | null = {}
   constructor( private http: HttpClient, private auth: AuthService, private signService: SignInService, private router: Router, private internation: InternationalizationServiceTsService) {
@@ -26,6 +27,7 @@ export class LandingComponent {
       // 1: init header configs info && nationlizion
       this.headerToolbar = data.data.headerToolbar
       this.logo = data.data.logo
+      this.hasHeaderSearch = data.data.hasHeaderSearch
       // 2: init nationlizion toolbar
       this.internationState = this.internation.getInternation()
       const index = this.headerToolbar.findIndex(it => it.button.langKey)
@@ -45,10 +47,10 @@ export class LandingComponent {
       const newLoginTool = {...loginTool.button, name: this.loginfo.loginname, icon: this.loginfo.avatar}
       const updateLoginTool = {...loginTool, button: newLoginTool}
       this.headerToolbar = [...this.headerToolbar.slice(0, tI), updateLoginTool, ...this.headerToolbar.slice(tI+1)]
-      console.log(this.headerToolbar)
       }
       // 3: according to auth get main menu
-      this.loginfo.token && (this.menus$ = this.signService.getMenus().pipe(share()))
+      // this.loginfo.token && 
+      (this.menus$ = this.signService.getMenus().pipe(share()))
     })
     
   }
@@ -60,14 +62,13 @@ export class LandingComponent {
 
     const dropdowns = li.dropdown || []
     this.headerDropdowns = [...dropdowns]
-    // this.headerDropdowns = this.headerDropdowns.map (it => {
-    //   if (it.langKey && it.langKey === this.translate.currentLang) {
-    //     it = {...it, active: true}
-    //   } else {
-    //     it = {...it, active: false}
-    //   }
-    //   return it
-    // })
+    this.headerDropdowns = this.headerDropdowns.map (it => {
+      if (it.switch) {
+        const itStoreSwitchState = !!JSON.parse(localStorage.getItem(it.id) || 'null')
+        it = {...it, switchState: itStoreSwitchState}
+      }
+      return it
+    })
   }
   onEventLink(link: any) {
     if ('langKey' in link) {
@@ -76,12 +77,14 @@ export class LandingComponent {
       const nLink = {...link, name: ''}
       const updateItem = {...this.headerToolbar[iLang], button: nLink};
       this.headerToolbar = [...this.headerToolbar.slice(0, iLang), updateItem, ...this.headerToolbar.slice(iLang + 1)];
-      console.log('aaaaaa', this.headerToolbar)
-    } else {
-      if (link.name === 'LOGOUT') {
+    } else if (link.name === 'LOGOUT') {
         this.auth.unAuth()
         this.router.navigate(['/auth'])
-      }
+    } else if (link.switch) {
+      // console.log('stting:',link)
     }
+  }
+  onSwitchEvent(e: any) {
+    console.log('sss', e)
   }
 }

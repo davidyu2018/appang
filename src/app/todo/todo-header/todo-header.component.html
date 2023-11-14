@@ -1,4 +1,6 @@
-<header>
-  <h2 style="text-align: center;font-size: 1.2rem;margin-bottom: 1em;">MY TODOS</h2>
-  <app-search (onSearch)="onSearch($event)" [inputSearch]="true"></app-search>
+<header class="page-header">
+  <h3>My Todos</h3>
+  <div class="header-right">
+    <app-search (onSearch)="onSearch($event)" [inputSearch]="true"></app-search>
+  </div>
 </header>

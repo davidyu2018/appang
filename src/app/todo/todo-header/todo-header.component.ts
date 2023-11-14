@@ -4,7 +4,7 @@ import { map, debounceTime, distinctUntilChanged, share } from 'rxjs/operators';
 @Component({
   selector: 'app-todo-header',
   templateUrl: './todo-header.component.html',
-  styleUrls: ['./todo-header.component.sass']
+  styleUrls: ['./todo-header.component.scss']
 })
 export class TodoHeaderComponent implements OnInit {
   inputValue: string = ''

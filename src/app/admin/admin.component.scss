@@ -1,3 +1,19 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 1em 0;
+  color:#767676;
+  & > h3 {
+    flex: 1;
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+  & > div {
+    flex: 2;
+    text-align: right;
+    align-self: center;
+  }
+}
 .equal-altitude {
   display: flex;
   & > .columns_1 {
@@ -55,4 +71,30 @@ button.category-btn.active {
 
 .bg-info {
   background-color: #e08e40;
+}
+
+.button-gray {
+  outline: none;
+  cursor: pointer;
+  padding:0.5em 1em;
+  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  border-radius: 1.2em;
+  border: 1px solid #8F9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+}
+.button-gray:hover {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+}
+
+.button-gray:active {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.button-gray:focus {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
 }

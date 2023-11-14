@@ -6,12 +6,12 @@ import { RestDataSource } from './rest.datasource';
 @Injectable()
 export class ProductRepository {
   private products: Product[] = [];
-  private categories: string[] = [];
+  private categories: any[] = [];
   private locator = (p: Product, id: string) => p.id == id;
   constructor(private dataSource: RestDataSource) {
     dataSource.getProducts().subscribe((data: Product[]) => {
       this.products = data;
-      this.categories = data.map(p => p.category)
+      this.categories = data.map(p => p.albumId)
         .filter((c, index, array) => array.indexOf(c) == index).sort()
     })
   }

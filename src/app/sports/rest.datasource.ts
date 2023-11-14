@@ -15,7 +15,7 @@ export class RestDataSource {
     this.auth.getAuth().subscribe((auth) => this.auth_token = auth.token)
   }
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl + '/data/posts')
+    return this.http.get<Product[]>(this.baseUrl + '/photos')
   }
   saveOrder(order: Order): Observable<Order> {
     return this.http.get<Order>(this.baseUrl + 'orders')

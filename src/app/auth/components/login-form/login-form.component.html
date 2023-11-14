@@ -1,23 +1,26 @@
     
-    <div class="form-page">
+    <div class="form-group-wrapper custom-input">
     <form (ngSubmit)="loginSubmit(loginForm)" #loginForm="ngForm" class="form-group">
-        <div ngModelGroup="loginform" class="controls-group">
+        <div ngModelGroup="loginform">
           <div class="form-item">
-            <label>Login name</label>
+            <label></label>
             <div class="form-control">
-              <input type="text"  name="loginname" ngModel />
+              <span class="input-left-icon"><img src="../../../../assets/icons/user.svg" width="24" height="24" /></span>
+              <input type="text"  name="loginname" ngModel placeholder="{{'USER.PLACLEHOLDER.USERNAME' | translate}}"/>
             </div>
           </div>
           <div class="form-item">
-            <label>Password</label>
+            <label></label>
             <div class="form-control">
-                <input type="password"  name="password" ngModel />
+                <span class="input-left-icon"><img src="../../../../assets/icons/unlock-s.svg" width="24" height="24" /></span>
+                <input type="password"  name="password" ngModel placeholder="{{'USER.PLACLEHOLDER.PASSWORD' | translate}}"/>
             </div>
           </div>
           <div class="form-item">
-            <label>Captcha</label>
+            <label></label>
             <div class="form-control suffix">
-              <input placeholder="图形验证码" name="captcha" ngModel (input)="verifyCaptcha(loginForm.value.loginform.captcha)" />
+              <span class="input-left-icon"><img src="../../../../assets/icons/key-s.svg" width="24" height="24" /></span>
+              <input placeholder="{{'USER.PLACLEHOLDER.CAPTCHA' | translate}}" name="captcha" ngModel (input)="verifyCaptcha(loginForm.value.loginform.captcha)" />
               <img [src]="captchaUrl" (click)="processClick()" width="50px" height="30px" />
             </div>
           </div>

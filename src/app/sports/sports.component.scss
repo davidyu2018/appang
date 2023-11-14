@@ -33,7 +33,8 @@
   border-top:1px solid #8d7d95;
   border-bottom:1px solid #221e26;
   background-image: linear-gradient(#5a505f,#372f3b);
-  
+  border-radius: 8px 8px 0 0;
+  padding:1em 1em;
   color: #dbdbdb;
   font-size: 1.2rem;
 }
@@ -45,10 +46,13 @@ button.category-btn {
   width:100%;
   text-align: left;
   padding:1em 2em;
-  border-top:1px solid #74797f;
-  border-bottom:1px solid #3e4248;
-  background-color: #5d6166;
-  color: #d1d3d4;
+  border-top:1px solid #fafafa;
+  border-bottom:1px solid #d4d4d4;
+  background-image: linear-gradient(#e4e3e8, #ededef);
+  // border-top:1px solid #74797f;
+  // border-bottom:1px solid #3e4248;
+  // background-color: #5d6166;
+  // color: #d1d3d4;
   font-size: 1.1rem;
 }
 button.category-btn:first-child {
@@ -116,4 +120,29 @@ button.category-btn.active {
     padding: 5px 10px;
     color:#fff;
   }
+}
+.button-gray {
+  outline: none;
+  cursor: pointer;
+  padding:0.5em 1em;
+  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  border-radius: 1.2em;
+  border: 1px solid #8F9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+}
+.button-gray:hover {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+}
+
+.button-gray:active {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.button-gray:focus {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
 }

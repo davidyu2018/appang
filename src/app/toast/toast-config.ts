@@ -10,11 +10,11 @@ export class ToastData {
 export type ToastType = 'warning' | 'info' | 'success';
 
 export interface ToastConfig {
-    position?: {
-        top: number;
-        right: number;
+    position: {
+        top: number | undefined;
+        right: number | undefined;
     };
-    animation?: {
+    animation: {
         fadeOut: number;
         fadeIn: number;
     };

@@ -10,7 +10,10 @@
       "PROFILE": "Profile",
       "ENGLISH": "English",
       "CHINESE": "中文",
-      "NEWS": "News"
+      "NEWS": "News",
+      "FIXED_WIDTH": "Fixed width",
+      "FIXED_HEADER": "Fixed header",
+      "SIDEBAR_RIGHT": "Sidebar To Right"
     }
   },
   "USER": {
@@ -38,6 +41,11 @@
     "LABEL_NAME": {
       "USERNAME": "User name",
       "PASSWORD": "Password"
+    },
+    "PLACLEHOLDER": {
+      "USERNAME": "User name",
+      "PASSWORD": "Password",
+      "CAPTCHA": "Graphael captcha"
     }
   },
   "FORM": {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlSegment, Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -19,6 +19,17 @@ export class AuthGuardService {
       map((auth: Auth) => {
         if(!auth.token ){
           this.router.navigate(['/auth'])
+        } 
+        return !!auth.token
+      })
+    )
+  }
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> {
+    let url: string = segments[0].path;
+    return this.socialAuth.getAuth().pipe(
+      map((auth: Auth) => {
+        if(!auth.token ){
+          this.router.navigate(['/auth'], {fragment: url})
         } 
         return !!auth.token
       })

@@ -1,9 +1,11 @@
 export interface Product {
-  name: string; //
+  title?: string;
+  name?: string; //
   id: string;
   category: string;
   description: string;
-  price?: number
+  price?: number;
+  albumId? :number | string;
 }
 export interface Cart {
   itemCount: number; //

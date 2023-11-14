@@ -1,5 +1,9 @@
 .user-info-card {
-  background-color: #eaeaea;
+  // background-color: #eaeaea;
+  background-color: rgba(255,255,255,0.7);
+  width:50%;
+  margin:0 auto;
+  padding: 1em;
 }
 header.user-info-header > h2 {
     font-size: 2rem;
@@ -24,3 +28,27 @@ header.user-info-header > h2 {
     font-size: 0.9rem;
     }
   }
+  .custom-input {
+    background-color: rgba(255,255,255,0.7);
+    padding: 1em;
+    border-radius: 8px;
+    & .form-control {
+      border-bottom: 1px solid #8a8a8c;
+    }
+    & input {
+      border:none;
+      height: 48px;
+      font-size: 1.25rem;
+      padding-left:40px;
+      margin:0;
+    }
+    .input-left-icon {
+      position: absolute;
+      display: inline-block;
+      left:0;
+      top:50%;
+      margin-top: -12px;
+    }
+   }
+
+  

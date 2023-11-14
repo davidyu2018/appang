@@ -1,80 +1,26 @@
-.login-form-box {
-    background-color: rgba(54,93,152,0.85);
-    border-radius: 7px;
-    width:50%;
-    margin: 10em auto 5em auto;
-    & > .login-form-content {
-      padding: 3em 4em 1em;
-      header > h3 {
-        font-size: 2rem;
-        text-align: center;
-        color: #fff;
-        font-family: math;
-        margin-bottom:1em;
-      }
-      header > h4 {
-        font-size: 1.25rem;
-        color: #baceef;
-        font-family: ui-monospace;
-        margin-bottom:1em;
-      }
-      .controls-item {
-        display: flex;
-        align-items: center;
-        margin-bottom:1em;
-        flex-direction:row;
-        width:100%;
-        & > label {
-          flex: 0 0 10em;
-          text-align: right;
-          padding-right:1em;
-          color:#8ec1f8;
-          font-size: 1.2rem;
-        }
-        & > .controls-field {
-          flex: 1 1 auto;
-          display: flex;
-          align-items: center;
-          .controls-input {
-            flex: 1 1 auto;
-            background-color: #2a4675;
-            box-shadow: 2px 3px 5px rgba(0,0,0,0.25) inset;
-            padding:0.25em 1em;
-            box-sizing: border-box;
-            border-radius: 2em;
-            & > input:not([type=checkbox]):not([type=radio]) {
-              flex: 1 1 auto;
-              height:2em;
-              box-sizing: border-box;
-              border:none;
-              background-color: transparent;
-              display: block;
-              width: 100%;
-              margin: 0;
-              padding:0;
-              color:#fff;
-              font-size: 1rem;
-            }
-          }
-          & > .suffix-icon {
-            flex: 0 0 5em;
-          }
-        }
-      }
-      // @media (max-width:30em) {
-      //   .controls-item {
-      //     flex-direction:row;
-      //     & > label {
-      //       text-align: right;
-      //     }
-      //   }
-      // }
-    }
-  }
+// 
   
-   input:focus {
-        outline: none;
-      }
+   .custom-input {
+    // padding: 1em;
+    // border-radius: 8px;
+    & .form-control {
+      border-bottom: 1px solid #8a8a8c;
+    }
+    & input {
+      border:none;
+      height: 48px;
+      font-size: 1.25rem;
+      padding-left:40px;
+      margin:0;
+    }
+    .input-left-icon {
+      position: absolute;
+      display: inline-block;
+      left:0;
+      top:50%;
+      margin-top: -12px;
+    }
+   }
   .my-btn-blue {
     padding: 0;
     margin: 0;

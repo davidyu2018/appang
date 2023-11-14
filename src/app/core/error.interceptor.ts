@@ -7,7 +7,7 @@ export class ErrorIntercepter implements HttpInterceptor {
   constructor() { }
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-        catchError(err => this.handleError(err)),
+        catchError(err => this.handleError(err))
     )
   }
   private handleError(err: HttpErrorResponse) {
@@ -16,6 +16,6 @@ export class ErrorIntercepter implements HttpInterceptor {
     } else {
         console.error(`Backend returned code ${err.status}, body was: ${err.error}`)
     }
-    return throwError(() => '情况不妙，请稍后再试。')
+    return throwError(() => err)
   }
 }

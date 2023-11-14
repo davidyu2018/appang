@@ -6,6 +6,8 @@ import { Auth, Quote, Captcha } from "../../services/model";
 import { AuthService } from "../../services/auth.service";
 import { SignInService } from "../../services/sign-in.service";
 import { ToastService } from "src/app/toast/toast.service";
+import {NavigationService } from '../../../core/navigation.service'
+// import '../../../../assets/js/utils/clock.js'
 @Component({
   selector: 'app-login',
   styleUrls: ['./login.component.scss'],
@@ -17,14 +19,14 @@ export class LoginComponent implements OnInit {
   photo: string = './assets/images/bg/lbg1.jpg';
   subscription: Subscription = new Subscription()
   quote$: Observable<Quote>;
-
+  redirectUrl: string = ''
   captcha$: Observable<Captcha | null>;
   clickSub$ = new Subject(); // clickSub --> captchaSub 点击验证码图像的事件流  会引发下面API流captchaSub
   captchaSub$ = new BehaviorSubject<Captcha | null>(null) // API流： this.auth.requestCaptcha()
 
   verifySub$ = new Subject<string>(); // inputSub --> sub 输入验证码流会引发 校验验证码API流
   sub$ = new Subscription() // API流： this.auth.verifyCaptcha(token, code)
-  constructor(private toast: ToastService, private auth: AuthService, private signinService: SignInService, private router: Router, private route: ActivatedRoute) {
+  constructor(private navBack: NavigationService,private toast: ToastService, private auth: AuthService, private signinService: SignInService, private router: Router, private route: ActivatedRoute) {
     this.signinService.getImageUrl().subscribe((images: any[]) => {
       this.slides = [...images];
       this.rotateImages(this.slides)
@@ -43,8 +45,11 @@ export class LoginComponent implements OnInit {
         ([code, captcha]) => this.auth.verifyCaptcha(captcha!.captcha_token, code).pipe( map(res => res.validate_token), catchError(err => of(err.error.title))) 
       )
     ).subscribe(t => console.log(t))
+    console.log('rouuu', this.route)
+    this.route.fragment.pipe(map(param => param)).subscribe((d) => d && (this.redirectUrl = d))
   }
   ngOnInit(): void {
+
   }
   ngOnDestroy() {
     if (this.sub$) this.sub$.unsubscribe()
@@ -56,11 +61,13 @@ export class LoginComponent implements OnInit {
     this.verifySub$.next(code)
   }
   processLogin(loginform: any) {
+    // this.toast.show({text: 'dgfhgjh', type:'success'})
     this.auth.loginWithCredentials(loginform).pipe(
       take(1) // 为了收到一个数据后就完成这个流的订阅，同时也销毁动作。
     ).subscribe((auth: Auth) => {
       if (auth.token) {
-        this.router.navigate([auth.redirectUrl || '/'])
+        this.redirectUrl && this.router.navigate(['/' + this.redirectUrl])
+        !this.redirectUrl && this.navBack.back()
       } else {
         console.log('login-success:', '找不到本用户')
       }

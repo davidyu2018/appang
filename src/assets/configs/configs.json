@@ -4,6 +4,7 @@
             "text": "Manary",
             "img": "Adidas-Trefoil-Logo-400x400.png"
         },
+        "hasHeaderSearch": false,
         "headerToolbar": [
             {
                 "button": {
@@ -19,7 +20,26 @@
                     "id": "SETTING",
                     "icon": "settings.svg"
                 },
-                "dropdown": []
+                "dropdown": [
+                    {
+                        "name": "FIXED_WIDTH",
+                        "id": "FIXED_WIDTH",
+                        "icon": "ipad.svg",
+                        "switch": true
+                    },
+                    {
+                        "name": "FIXED_HEADER",
+                        "id": "FIXED_HEADER",
+                        "icon": "support-s.svg",
+                        "switch": true
+                    },
+                    {
+                        "name": "SIDEBAR_RIGHT",
+                        "id": "SIDEBAR_RIGHT",
+                        "icon": "support-s.svg",
+                        "switch": true
+                    }
+                ]
             },
             {
                 "button": {
@@ -39,10 +59,6 @@
                     {
                         "name": "PROFILE",
                         "icon": "user.svg"
-                    },
-                    {
-                        "name": "SETTING",
-                        "icon": "settings.svg"
                     },
                     {
                         "name": "LOGOUT",

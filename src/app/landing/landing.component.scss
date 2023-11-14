@@ -5,18 +5,20 @@
     & > .c-header {
         position: sticky;
         width:100%;
-        background-image: linear-gradient(#f0f1f3, #eff0f2);
-
+        border-bottom:1px solid #d4d4d4;
+        background-color: #f4f3ef;
+        // background-image: linear-gradient(#f0f1f3, #eff0f2);
         & > .c-header-content {
             min-height: 2.75em;
             // border:1px solid green;
         }
     }
     & > .c-nav {
-        background-color: #334050;
-        // background-image: linear-gradient(#d16413, #8d2908);
-        // border-bottom: 1px solid #e08e40;
-        border-top: 1px solid #d5d5d5;
+        // background-color: #ebebeb;
+        background-image: linear-gradient(#f4f3ef, #ecebe7);
+        border-top: 1px solid #fff;
+        // border-bottom:1px solid #cdccca;
+
     }
     & > .c-main {
         & > .c-body {
@@ -28,7 +30,7 @@
 }
 .c-container.fixed-width .c-header-body, 
 .c-container.fixed-width .c-nav-body, .c-container.fixed-width .c-main-body {
-    width:72em;
+    width:48em;
     margin: 0 auto;
 }
 .collapse-menu-box {

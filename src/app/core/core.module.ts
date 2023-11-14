@@ -21,7 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     LandingModule,
     AuthModule,
-    ToastModule,
+    ToastModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

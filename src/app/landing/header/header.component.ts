@@ -14,6 +14,7 @@ export class HeaderComponent {
   dropdowns: any[] = [];
   posY: number = 0;
   @Input() logo: any ={};
+  @Input() hasHeaderSearch: boolean = false
   @Input() 
   set headerToolbar(toolbars: any[]) {
     this.toolbars = [...toolbars]
@@ -27,6 +28,8 @@ export class HeaderComponent {
 
   @Output() onEventMenu = new EventEmitter<object>()
   @Output() onEventLink = new EventEmitter<object>()
+  @Output() onSwitchEvent = new EventEmitter<boolean>()
+
   constructor(private el: ElementRef, private socialAuth: AuthService) { 
     this.socialAuth.getAuth().subscribe((auth: Auth) => {
       this.isLogin = !!auth.token
@@ -40,9 +43,21 @@ export class HeaderComponent {
     this.onEventMenu.emit(li)
     // capture cursor axious
     const tardompos = this.getElementTop(parelm, elm)
-    this.posY = tardompos - 60
+    this.posY = tardompos + 13
+
+    li.dropdown && li.dropdown.length && setTimeout(() => {
+      const dropdom = this.el.nativeElement.querySelector('.dropdown-box')
+      this.posY = this.posY - dropdom.offsetWidth / 2
+    }, 20)
   }
   goLink(link: any) {
+    if (link.switch) {
+      setTimeout(() => {
+      this.onEventLink.emit(link)
+      this.toggle = false
+    }, 1000)
+      return;
+    }
     this.toggle = false
     this.onEventLink.emit(link)
   }
@@ -57,5 +72,10 @@ export class HeaderComponent {
   }
   onClickOutside($event: boolean) {
     $event && (this.dropdowns = [])
+  }
+  onSwitch(e: any, link: any) {
+    const newlink = {...link, switchState: e}
+    localStorage.setItem(link.id, JSON.stringify(e))
+    this.onSwitchEvent.emit(newlink)
   }
 }
