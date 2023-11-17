@@ -1,13 +1,15 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { User } from '../../services/model';
 import { ValidationErrors, AbstractControl, FormBuilder, FormGroup, Validators, AsyncValidatorFn } from '@angular/forms';
-import { emailPattern, mobilePattern } from '../../../../assets/validte/regex';
+import { emailPattern, mobilePattern } from '../../validators/regex';
 import { AuthService } from '../../services/auth.service';
 import {RegisterValidator} from '../../validators/register.validator'
 import * as _ from 'lodash'
+import { UsernameValidator } from 'src/app/auth/validators';
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent {
   @Output() onRegister = new EventEmitter();
@@ -24,38 +26,43 @@ export class RegisterFormComponent {
     this.mobileValidator = RegisterValidator.validateUniqueMobile(auth)
     this.form = this.fb.group({
       loginname: [
-        'Nicholas',
+        '',
         [
-          Validators.required, Validators.minLength(3), Validators.maxLength(20)
+          Validators.required, Validators.minLength(3), Validators.maxLength(20), UsernameValidator.cannotContainSpace
         ],
         this.usernameValidator
       ],
       mobile: [
-        '13528867965',
+        '',
         [Validators.required, Validators.pattern(mobilePattern())],
       ],
       email: [
-        'eryt@qq.com',
+        '',
         [Validators.required, Validators.pattern(emailPattern())],
       ],
       name: [
         '',
         [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
       ],
+      repeat: [
+        '',
+        [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+      ],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+      ],
       avatar: ['', Validators.required],
-      passwords: this.fb.group(
-        {
-          password: ['111111111', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
-          repeat: ['111111111', [Validators.required]]
-        },
-        {
-          validator: this.matchPassword
-        }
-      )
+      // password: this.fb.group(
+      //   {
+      //     password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
+      //     repeat: ['', [Validators.required]]
+      //   }
+      // )
     });
   }
   ngOnInit() {
-    this.avatars = _.range(1, 9).map((i: number) => `${this.avatarName}-${i}.png`)
+    this.avatars = _.range(1, 9).map((i: number) => `${this.avatarName}-${i}.svg`)
     .reduce((r: string[], x: string) => [...r, x], [])
   }
   matchPassword(control: AbstractControl): ValidationErrors | null {

@@ -1,8 +1,6 @@
 // 
   
    .custom-input {
-    // padding: 1em;
-    // border-radius: 8px;
     & .form-control {
       border-bottom: 1px solid #8a8a8c;
     }
@@ -39,9 +37,8 @@
   }
 
   /////////////////////////////、、、、、//////////////////dfdg
-  .content {
-  // width: 330px;
-  padding: 3em 4em;
+.content {
+  padding: 2em;
   background: #dde1e7;
   border-radius: 10px;
   box-shadow: -3px -3px 7px #ffffff73,
@@ -49,20 +46,24 @@
 }
 
 .field {
-  height: 48px;
+  height: 3em;
   width: 100%;
   display: flex;
+  margin: 2em 0;
+  align-items: center;
   position: relative;
-}
-
-.field:nth-child(2) {
-  margin-top: 20px;
+  & > img {
+    width: 6em;
+    height: 3em;
+    display: inline-block;
+    margin-left:1em;
+  }
 }
 
 .field .input {
   height: 100%;
   width: 100%;
-  padding-left: 45px;
+  padding-left: 3.5em;
   outline: none;
   border: none;
   font-size: 18px;
@@ -79,10 +80,22 @@
 }
 
 .field .span {
+  display: block;
   position: absolute;
+  // border:1px solid red;
+  text-align: right;
+  top:50%;
+  left:1em;
+  margin-top: -1.45em;
   color: #595959;
-  width: 50px;
+  width: 2em;
+  height: 2em;
   line-height: 55px;
+  & > img {
+    top: -1em;
+    width:1.25em;
+    height: 1.25em;
+  }
 }
 
 .field .label {
@@ -97,14 +110,17 @@
 .field .input:valid ~ label {
   opacity: 0;
 }
-
+// .button.disabled {
+//   background-color: silver;
+//   cursor: not-allowed;
+// }
 .button {
-  margin: 2em 0;
   width: 100%;
-  height: 50px;
+  height: 3em;
   font-size: 18px;
-  line-height: 50px;
+  line-height: 3em;
   font-weight: 600;
+  margin-bottom: 1em;
   background: #dde1e7;
   border-radius: 25px;
   border: none;
@@ -122,14 +138,16 @@
 }
 
 .sign-up {
-  margin: 10px 0;
+  margin: 1em 0;
   color: #595959;
 }
 
 .sign-up a {
-  color: #3498db;
+  // color: #3498db;
+  color:steelblue;
   font-weight: normal;
   text-decoration: none;
+  font-size: 0.825em;
 }
 
 .sign-up a:hover {
@@ -164,7 +182,7 @@
 }
 //////////////////////////////////////////////
 .google, .apple {
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   margin: 2rem auto;
   border-radius: 2rem;
   display: flex;
@@ -177,7 +195,11 @@
   // color: rgb(161, 161, 161);
   box-shadow: -3px -3px 5px white, 3px 3px 5px rgba(209, 209, 209, 0.705);
   color: rgb(112, 112, 112);
+  justify-content: center;
   cursor: pointer;
+  & > span {
+    // font-weight: bold;
+  }
 }
 .google svg {
   width: 18px;
@@ -218,7 +240,7 @@
   left: 0;
   height: 1em;
   width: 1em;
-  border: 2px solid #666;
+  border: 2px solid #777;
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -247,7 +269,51 @@
 }
 
 .text {
-  margin-left: 3em;
+  margin-left: 2em;
   display: inline-block;
   transition: all 0.2s ease-in-out;
+}
+///////////////////////////////////////////////////////////////////
+
+
+
+.generate-loader::after {
+  content: '';
+  transform: scale(0.5);
+  display: inline-block;
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  margin: auto;
+  width:10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 -30px 0 0 #bbb, 15px -26px 0 0 #aaa, 26px -15px 0 0 #999, 30px 0 0 0 #888,
+  26px 15px 0 0 #777, 15px 26px 0 0 #444, -26px 15px 0 0 #333, -30px 0 0 0 #222, -26px 15px 0 0 #333,
+  -30px 0 0 0 #222, -26px -15px 0 0 #111, -15px -26px 0 0 #000;
+  animation: loading 1s infinite steps(12, start);
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+
+  }
+  100% {
+    transform: rotate(360deg);
+
+  }
+}
+
+.invalid-message {
+  position: absolute;
+  top:3em;
+  left:4em;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.2);
+  & > li {
+    color:red;
+    font-size: 0.825rem;
+  }
 }

@@ -1,0 +1,90 @@
+.form-register {
+    background-color: white;
+    padding: 2em;
+    border-radius: 1em;
+    transition: .4s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
+    & > .register-control {
+        display: flex;
+        align-items: flex-start;
+        // justify-content: center;
+        width: 100%;
+        // height: 3em;
+        margin-bottom: 1em;
+        background-color: transparent;
+        border-bottom: 2px solid rgb(173, 173, 173);
+        border-radius: 1.5em;
+        position: relative;
+        box-sizing: border-box;
+      & > label {
+        flex: 0 0 5em;
+        text-align: center;
+        padding-top:0.75em;
+        & > img {
+          width:1.5em;
+          height: 1.5em;
+        }
+      }
+        &  > input, & > div {
+          flex: 1 1 auto;
+            width: 100%;
+            border: none;
+            height: 3em;
+            background-color: transparent;
+            color: black;
+            font-size: 1rem;
+
+        }
+        & > input:focus {
+          outline: none;
+        }
+    }
+  }
+  
+  .form-register:hover {
+    transform: translateX(-0.5em) translateY(-0.5em);
+    border: 1px solid #171717;
+    box-shadow: 10px 10px 0px #666666;
+  }
+  
+  // .input:hover {
+  //   box-shadow: 6px 6px 0px #969696,
+  //              -3px -3px 10px #ffffff;
+  // }
+  
+  // .input:focus {
+  //   background: #ffffff;
+  //   box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  // }
+  
+  .form-register .btn {
+    padding:  0.75em 2em;
+    border-radius: 2em;
+    border: none;
+    // color: black;
+    transition: .2s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
+  }
+  
+  .form-register .btn:hover {
+    box-shadow: 6px 6px 0px #969696,
+               -3px -3px 10px #ffffff;
+    transform: translateX(-0.5em) translateY(-0.5em);
+  }
+  
+  .form-register .btn:active {
+    transition: .2s;
+    transform: translateX(0em) translateY(0em);
+    box-shadow: none;
+  }
+  
+  .link-rigster {
+    padding-top: 1em;
+    & > a {
+        font-size: 0.825rem;
+        color:steelblue;
+    }
+    & > a:hover {
+      text-decoration: underline;
+    }
+  }

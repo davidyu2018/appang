@@ -4,13 +4,15 @@ import { Observable, of, ReplaySubject, defer, interval, from } from 'rxjs';
 import { filter, map, mergeMap, take, startWith, delay } from 'rxjs/operators';
 import { UserProfileService } from './user-profile.service';
 import sso from '../../../assets/configs/config-info'
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   auth: Auth = {loginname: '', token: '', password: '', redirectUrl: ''};
   subject: ReplaySubject<Auth> = new ReplaySubject<Auth>(1);
-  constructor(private user: UserProfileService) { 
+  constructor(private user: UserProfileService, private router: Router) { 
     sso.osso && this.loginWithCredentials({loginname:'', token: '', password:''}, sso.url).subscribe(() => {})
     const cuser=  JSON.parse(localStorage.getItem('AUTH_LOGIN') || 'null') 
     const currauth = cuser ? cuser : {loginname: '', token: '', redirectUrl: ''}
@@ -25,6 +27,7 @@ export class AuthService {
     this.auth = Object.assign({}, this.auth, {loginname: '', token: '', redirectUrl: '' });
     localStorage.removeItem('AUTH_LOGIN')
     this.subject.next(this.auth)
+    this.router.navigate(['/auth'])
   }
   loginWithCredentials(loginfo: Auth, osso: string = ''): Observable<Auth> {
     return this.user.findUser(loginfo.loginname, loginfo.osso).pipe(

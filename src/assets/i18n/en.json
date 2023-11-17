@@ -48,6 +48,12 @@
       "CAPTCHA": "Graphael captcha"
     }
   },
+  "MENU": {
+    "TODO": "My Todo",
+    "STOCK": "Stocks",
+    "SPORTS": "Sport Store",
+    "SYSTEM": "System Management"
+  },
   "FORM": {
     "PLACEHOLDER": {
       "SEARCH": "Input..."

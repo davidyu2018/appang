@@ -67,3 +67,18 @@ export class Clock {
     this.ball.paint(this.context)
   }
 }
+
+/////------------------------- Tap (用于对后台返回的数据打印处理看)------------------------
+const tap = value => fn => typeof fn === 'function' && fn(value); console.log(value);
+/////------------------------- Once (对于某个给定的函数只需运行一次)------------------------
+const once = fn => {
+  let done = false;
+  return function() {
+    return done ? undefined : ((done = true), fn.apply(this, arguments))
+  }
+};
+/////------------------------- Memoized (记忆某个计算结果-一个参数的)------------------------
+const memoized = fn => {
+  const lookupTable = {}
+  return (arg) => lookupTable[arg] || (lookupTable[arg] = fn(arg))
+}

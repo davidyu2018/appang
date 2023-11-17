@@ -1,4 +1,4 @@
 <div>
-    <a class="menu-text" [routerLink]="[menu.path]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">{{menu.name}}</a>
+    <a class="menu-text" [routerLink]="[menu.path]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">{{ "MENU." + menu.name | translate }}</a>
 </div>
 <!-- [queryParams]="{debug: true}" fragment="education" -->

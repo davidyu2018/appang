@@ -81,3 +81,11 @@
         text-align: right;
     }
 }
+
+//-------------------validter------------------------
+form.ng-invalid button[type="submit"] {
+    background-color: silver!important;
+    color: #999999!important;
+    cursor: not-allowed;
+    opacity: 0.4;
+}

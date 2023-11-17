@@ -10,6 +10,10 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { AngTableComponent } from './components/ang-table/ang-table.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import {BackButtonDirective} from './directives/back-button.directive'
+import {PreventMultiSubmitDirective} from './directives/prevent-multi-submit.directive';
+import { PasswordPatternDirective } from './directives/password-pattern.directive';
+import { MatchPasswordDirective } from './directives/match-password.directive';
+import { ValidateUserNameDirective } from './directives/validate-user-name.directive'
 const COMPONENTS: any[] = [
   ImagePicker, VerifyMobileComponent, SearchComponent, ProcessStepComponent, AngTableComponent,SwitchComponent
 ]
@@ -19,9 +23,9 @@ const MODULES = [
   ReactiveFormsModule,
   TranslateModule
 ]
-const DIRECTIVE = [ClickOutsideDirective, BackButtonDirective]
+const DIRECTIVE = [ClickOutsideDirective, BackButtonDirective, PreventMultiSubmitDirective]
 @NgModule({
-  declarations: [...COMPONENTS, ...DIRECTIVE],
+  declarations: [...COMPONENTS, ...DIRECTIVE, PasswordPatternDirective, MatchPasswordDirective, ValidateUserNameDirective],
   imports: MODULES,
   exports: [...MODULES, ...COMPONENTS, ...DIRECTIVE],
 })

@@ -44,10 +44,18 @@ export class SignInService {
   }
   getMenus(): Observable<any[]> {
     return of([
-      {name: 'Todo', id: '23546', path: 'todo', params: 'ALL'}, 
-      {name: 'Stock', id:'354633', path: 'stock'},
-      {name: 'Sport  Store', id:'354677', path: 'sports'},
-      {name: 'Admin', id:'354664', path: 'admin'},
+      {
+        name: 'TODO', id: '23546', path: 'todo', pathParam: 'ALL', queryParams: {name:'www', age: '234'}, fragment: 'eduction'
+      }, 
+      {
+        name: 'STOCK', id:'354633', path: 'stock'
+      },
+      {
+        name: 'SPORTS', id:'354677', path: 'sports'
+      },
+      {
+        name: 'SYSTEM', id:'354664', path: 'admin'
+      },
     ])
   }
 }

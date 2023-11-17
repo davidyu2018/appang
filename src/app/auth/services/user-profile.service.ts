@@ -19,8 +19,12 @@ export class UserProfileService {
     const url = oos ? oos : `https://randomuser.me/api/`;
     return this.http.get(url)
   }
-  refreshCaptcha(): Observable<Captcha> {
-    return of({ captcha_token: 'bdgfhf', captcha_url: './assets/images/bg/lbg3.jpg' })
+  refreshCaptcha(): Observable<any> {
+    const url = 'https://api.thecatapi.com/v1/images/search?limit=1'
+    return this.http.get(url).pipe(
+      map((res: any) => ({captcha_token: res[0].id, captcha_url: res[0].url}))
+    )
+    // return of({ captcha_token: 'bdgfhf', captcha_url: url })
   }
   verifyCaptcha(token: string, code: string): Observable<any> {
     return of({ validate_token: 'okkk' })

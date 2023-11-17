@@ -47,8 +47,8 @@ export class HeaderComponent {
 
     li.dropdown && li.dropdown.length && setTimeout(() => {
       const dropdom = this.el.nativeElement.querySelector('.dropdown-box')
-      this.posY = this.posY - dropdom.offsetWidth / 2
-    }, 20)
+      dropdom && (this.posY = this.posY - dropdom.offsetWidth / 2)
+    }, 0)
   }
   goLink(link: any) {
     if (link.switch) {

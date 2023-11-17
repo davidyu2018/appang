@@ -79,7 +79,7 @@ export class LandingComponent {
       this.headerToolbar = [...this.headerToolbar.slice(0, iLang), updateItem, ...this.headerToolbar.slice(iLang + 1)];
     } else if (link.name === 'LOGOUT') {
         this.auth.unAuth()
-        this.router.navigate(['/auth'])
+        // this.router.navigate(['/auth'])
     } else if (link.switch) {
       // console.log('stting:',link)
     }

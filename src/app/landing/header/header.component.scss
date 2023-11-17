@@ -145,8 +145,10 @@
       border-bottom: 1px solid transparent;
     }
     & > dd:hover {
-      background-image: linear-gradient(#ededef, #e4e3e8);
-      color: #333;
+      background-color: #5d6155;
+
+      // background-image: linear-gradient(#ededef, #e4e3e8);
+      // color: #fff;
     }
     & > dd.active {
       background-color: #fff;

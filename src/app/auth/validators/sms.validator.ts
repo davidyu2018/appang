@@ -1,5 +1,5 @@
 import { AbstractControl, FormControl, ValidationErrors } from "@angular/forms";
-import { AuthService } from "../../app/auth/services/auth.service";
+import { AuthService } from "../services/auth.service";
 import { map } from 'rxjs/operators'
 export class SmsValidator {
   static validateSmsCode(service: AuthService) {
@@ -14,6 +14,15 @@ export class SmsValidator {
     }
   }
   static cannotControl(control: AbstractControl): ValidationErrors | null {
+    if ((control.value as string).indexOf(' ') >= 0) {
+      return { cannotContainSpace: true }
+    }
+    return null;
+  }
+}
+///  these are angular customizion validater (it must be static class)
+export class UsernameValidator {
+  static cannotContainSpace(control: AbstractControl): ValidationErrors | null {
     if ((control.value as string).indexOf(' ') >= 0) {
       return { cannotContainSpace: true }
     }

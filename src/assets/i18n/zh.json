@@ -49,6 +49,12 @@
       "CAPTCHA": "验证码"
     }
   },
+  "MENU": {
+    "TODO": "我的代表",
+    "STOCK": "股票",
+    "SPORTS": "体育商品",
+    "SYSTEM": "系统管理"
+  },
   "FORM": {
     "PLACEHOLDER": {
       "SEARCH": "输入文本..."

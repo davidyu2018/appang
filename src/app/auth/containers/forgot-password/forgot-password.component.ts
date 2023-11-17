@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AsyncValidatorFn } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { take } from 'rxjs/operators'
-import { SmsValidator } from '../../../../assets/validte/sms.validator'
+import { SmsValidator } from '../../validators/sms.validator'
 @Component({
   selector: 'forgot-password',
   styleUrls: ['../login/login.component.scss'],

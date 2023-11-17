@@ -7,7 +7,6 @@ import { AuthService } from "../../services/auth.service";
 import { SignInService } from "../../services/sign-in.service";
 import { ToastService } from "../../../core/toastrService";
 import {NavigationService } from '../../../core/navigation.service'
-// import '../../../../assets/js/utils/clock.js'
 @Component({
   selector: 'app-login',
   styleUrls: ['./login.component.scss'],
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
       map((quotes: Quote[]) => quotes[Math.floor(Math.random() * 10)])
     )
     this.captcha$ = this.clickSub$.pipe(
-      startWith({}), // 得初始化一个图形码
+      // startWith({}), // 得初始化一个图形码
       switchMap(_ => this.auth.requestCaptcha()), // mergeAll & mergeMap & switchMap 都是把内层流和外层流映射，但switchMap 是只对外层流最新的值映射，而mergeMap每次都会和内层映射
       tap(captcha => { this.captchaSub$.next(captcha)})
     )
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit {
       switchMap(
         ([code, captcha]) => this.auth.verifyCaptcha(captcha!.captcha_token, code).pipe( map(res => res.validate_token), catchError(err => of(err.error.title))) 
       )
-    ).subscribe(t => console.log(t))
+    ).subscribe(t => console.log('cccccppp',t))
     this.route.fragment.pipe(map(param => param)).subscribe((d) => d && (this.redirectUrl = d))
   }
   ngOnInit(): void {
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit {
     if (this.sub$) this.sub$.unsubscribe()
   }
   refreshCaptcha() {
-    this.clickSub$.next(null); // subject 流 这个时候就有值了，但如果是普通obserable fromEvent 流 就要先订阅才产生值
+    this.clickSub$.next({}); // subject 流 这个时候就有值了，但如果是普通obserable fromEvent 流 就要先订阅才产生值
   }
   verifyCaptcha(code: string) {
     this.verifySub$.next(code)

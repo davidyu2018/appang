@@ -9,7 +9,7 @@ import { AuthIntercepter } from './auth.interceptor';
 import { ErrorIntercepter } from './error.interceptor';
 import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 import { LogIntercepter } from './log.interceptor';
-import { MessageErrorHandler } from './angular.error.handler'
+// import { MessageErrorHandler } from './angular.error.handler'
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,7 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorIntercepter, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LogIntercepter, multi: true },
-    { provide: ErrorHandler, useClass: MessageErrorHandler },
+    // { provide: ErrorHandler, useClass: MessageErrorHandler },
   ]
 })
 export class CoreModule { 

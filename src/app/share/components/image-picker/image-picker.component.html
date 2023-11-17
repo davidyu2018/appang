@@ -1,6 +1,10 @@
 <div class="image-picker-box">
-  <figure><img class="cover selected" [src]="selected"></figure>
-  <div class="scroll-container">
+  <figure class="for-">
+    <img class="cover selected" [src]="selected">
+    <span *ngIf="!selected" class="placeholder-text">Select Atater</span>
+    <span class="switch-btn" [class.toggle]="show" (click)="toggle()"></span>
+  </figure>
+  <div class="scroll-container" *ngIf="show">
     <div *ngFor="let item of items; let i = index;" (click)="selectImage(i)" [ngStyle]="{'width': perGridWidth}"
       class="image-container">
       <img [src]="item" [ngStyle]="{'width': itemWidth}">

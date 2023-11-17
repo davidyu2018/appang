@@ -23,6 +23,7 @@ import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } f
 export class ImagePicker implements ControlValueAccessor {
   selected: string | null = './assets/icons/user.svg';
   perGridWidth: string = ''
+  show: boolean = false
   num: number = 6;
   // @Input() title = 'Choose photo:';
   @Input()
@@ -60,5 +61,9 @@ export class ImagePicker implements ControlValueAccessor {
     this.selected = this.items[i];
     this.propagateChange(this.items[i]);
     this.itemChange.emit(this.items[i])
+    this.show= false
+  }
+  toggle() {
+    this.show = !this.show
   }
 }

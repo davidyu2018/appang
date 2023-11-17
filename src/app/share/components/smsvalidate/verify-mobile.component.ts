@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, forwardRef, Input, OnDestroy, OnIni
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
 import { Observable, Subscription, interval, fromEvent } from "rxjs";
 import { debounceTime, filter, map, startWith, switchMap, takeWhile, tap } from 'rxjs/operators'
-import { mobileErrorMsg, mobilePattern } from "../../../../assets/validte/index";
+import { mobileErrorMsg, mobilePattern } from "../../../auth/validators/index";
 
 @Component({
   selector: 'verify-mobile',
