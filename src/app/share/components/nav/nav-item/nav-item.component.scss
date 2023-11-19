@@ -1,0 +1,31 @@
+.nav-item-box {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    background-color: transparent;
+    border-bottom: 1px solid silver;
+    & > div.nav-item-icon {
+        flex: 0 0 3em;
+        padding:0.5em;
+        box-sizing: border-box;
+        justify-content: center;
+        text-align: center;
+        // border:1px solid red;
+        & > img {
+            display: block;
+            width:2em;
+            height: 2em;
+        }
+    }
+    & > div.nav-item-text {
+        flex: 1 1 auto;
+        padding: 0 0.5em;
+    }
+    & > div.nav-item-addicon {
+        padding-right: 0.5em;
+        & > img {
+            width:1em;
+            height: 1em;
+        }
+    }
+}

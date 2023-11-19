@@ -1,0 +1,9 @@
+    <div class="page-wrapper" [class.to-right]="toRight$ | async">
+        <aside *ngIf="asideBar.length">
+            <app-nav [navs]="asideBar"></app-nav>
+        </aside>
+        <main>
+            <ng-content></ng-content>
+         </main> 
+    </div>
+

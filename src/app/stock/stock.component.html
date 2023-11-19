@@ -16,3 +16,16 @@
         <button class="counter" #increment>+1</button>
     </div>
 </div>
+<!-- 十大富豪归还借款 -->
+
+<button (click)="clearSelection()">Clear Selection</button>
+<!-- AG Grid Angular Component -->
+<ag-grid-angular
+    style="width: 100%; height: 500px"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData$ | async"
+    [animateRows]="true"
+    (gridReady)="onGridReady($event)"
+    (cellClicked)="onCellClicked($event)"
+  ></ag-grid-angular>

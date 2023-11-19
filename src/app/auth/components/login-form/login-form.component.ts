@@ -1,6 +1,7 @@
 import { Component, Output ,Input, EventEmitter} from '@angular/core';
 import  { Auth } from '../../services/model'
 import {passwordPattern} from '../../validators'
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',

@@ -13,7 +13,7 @@ import { StockItemComponent } from './stock-item/stock-item.component';
   ],
   imports: [
     routing,
-    ShareModule
+    ShareModule,
   ]
 })
 export class StockModule { }

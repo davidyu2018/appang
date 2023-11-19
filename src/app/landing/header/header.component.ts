@@ -53,7 +53,6 @@ export class HeaderComponent {
   goLink(link: any) {
     if (link.switch) {
       setTimeout(() => {
-      this.onEventLink.emit(link)
       this.toggle = false
     }, 1000)
       return;
@@ -75,7 +74,6 @@ export class HeaderComponent {
   }
   onSwitch(e: any, link: any) {
     const newlink = {...link, switchState: e}
-    localStorage.setItem(link.id, JSON.stringify(e))
     this.onSwitchEvent.emit(newlink)
   }
 }

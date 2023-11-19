@@ -46,8 +46,9 @@
          <button class="button" type="submit" [disabled]="!loginForm.valid">{{"USER.BUTTON.SUBMIT" | translate }}</button>
          
          <div class="sign-up">
-            <a routerLink="/auth/register">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
-            <a  routerLink="/auth/forgetpw" style="float: right;">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
+          <!-- routerLink="/auth/register" -->
+          <a [routerLink]="['/auth/register']">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
+            <a  [routerLink]="['/auth/forgetpw']" style="float: right;">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
          </div>
          <!-- <a routerLink="/auth/register">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -1,0 +1,11 @@
+<div class="nav-item-box" (click)="navItemHandler(nav)">
+    <div class="nav-item-icon">
+        <img [src]="'../../../assets/icons/' + nav.icon" />
+    </div>
+    <div class="nav-item-text">
+        {{nav.text}}
+    </div>
+    <div class="nav-item-addicon">
+        <img [src]="'../../../assets/icons/' + nav.addicon" />
+    </div>
+</div>

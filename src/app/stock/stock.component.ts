@@ -2,10 +2,16 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable, fromEvent, merge, map, Subject} from 'rxjs';
 import { debounceTime, distinctUntilChanged, scan, share, startWith, switchMap, tap} from 'rxjs/operators'
 import { StockService } from './stock.service'
+import {MockStockService} from './mock-stock.service'
+import { Stock, Currency } from './stock.model';
+import { AgGridAngular } from 'ag-grid-angular';
+import { CellClickedEvent, GridReadyEvent ,ColDef} from 'ag-grid-community';
+
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.component.html',
-  styleUrls: ['./stock.component.scss']
+  styleUrls: ['./stock.component.scss'],
+  providers: [MockStockService]
 })
 export class StockComponent {
   @ViewChild('increment', { read: ElementRef })
@@ -13,37 +19,27 @@ export class StockComponent {
   @ViewChild('decrement', { read: ElementRef })
   decrement: ElementRef;
   click$: Observable<number>;
-
-  stocks$: Observable<any[]>;
+  ////////////////////////////////////////////
   searchString: string = '';
-  nodes = [
-    {
-      id: 1,
-      name: 'root1',
-      children: [
-        { id: 2, name: 'child1' },
-        { id: 3, name: 'child2' }
-      ]
-    },
-    {
-      id: 4,
-      name: 'root2',
-      children: [
-        { id: 5, name: 'child2.1' },
-        {
-          id: 6,
-          name: 'child2.2',
-          children: [
-            { id: 7, name: 'subsub' }
-          ]
-        }
-      ]
-    }
-  ];
-  options = {};
+  stocks$: Observable<any[]>;
   private searchTerms: Subject<string> = new Subject()
+  //////////////////////////////
+  public currencies$: Observable<Currency[]>;
+  public columnDefs$: Observable<ColDef[]>;
+  public rowData$: Observable<any[]>;
+  public immutableData: boolean;
+  /////////////////////////////////////////
+  public columnDefs: ColDef[] = [
+    { field: 'make'},
+    { field: 'model'},
+    { field: 'price' }
+  ];
 
-  constructor(private stockService: StockService) {}
+  @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
+  constructor(private stockService: StockService, private mockServer: MockStockService) {
+    this.immutableData = true;
+    // this.getRowNodeId = (data: any): string => data.id
+  }
 
   ngOnInit(){
     this.stocks$ = this.searchTerms.pipe(
@@ -53,6 +49,11 @@ export class StockComponent {
       switchMap(query => this.stockService.getStocks(query)),
       share()
     )
+    /////////////////////////////////
+    this.currencies$ = this.mockServer.getCurrencyObservable();
+    this.rowData$ = this.mockServer.getDataObservable();
+    this.columnDefs$ = this.mockServer.getColumnObservable();
+    
   }
   ngAfterViewInit() {
     setTimeout(() => this.click$ = this.getCounterObservable(), 50)
@@ -75,4 +76,17 @@ export class StockComponent {
   search() {
     this.searchTerms.next(this.searchString)
   }
+  // stock -ag-ag---------------
+  onGridReady(params: GridReadyEvent) {
+    this.rowData$ = this.mockServer.getAgGridData().pipe(tap(r => console.log('rrr', r)))
+  }
+
+  onCellClicked( e: any): void {
+    console.log('cellClicked', e);
+  }
+
+  clearSelection(): void {
+    this.agGrid.api.deselectAll();
+  }
+
 }

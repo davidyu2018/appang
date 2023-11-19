@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         ([code, captcha]) => this.auth.verifyCaptcha(captcha!.captcha_token, code).pipe( map(res => res.validate_token), catchError(err => of(err.error.title))) 
       )
     ).subscribe(t => console.log('cccccppp',t))
-    this.route.fragment.pipe(map(param => param)).subscribe((d) => d && (this.redirectUrl = d))
+    // this.route.fragment.pipe(map(param => param)).subscribe((d) => d && (this.redirectUrl = d))
   }
   ngOnInit(): void {
 
@@ -59,21 +59,17 @@ export class LoginComponent implements OnInit {
     this.verifySub$.next(code)
   }
   processLogin(loginform: any) {
-    // this.toast.show({text: 'dgfhgjh', type:'success'})
     this.auth.loginWithCredentials(loginform).pipe(
       take(1) // 为了收到一个数据后就完成这个流的订阅，同时也销毁动作。
     ).subscribe((auth: Auth) => {
       if (auth.token) {
         this.toastr.showSuccess('login sucess')
-        this.redirectUrl && this.router.navigate(['/' + this.redirectUrl])
-        !this.redirectUrl && this.navBack.back()
+        const goUdrl = auth.redirectUrl || '/'
+        this.router.navigate([goUdrl])
       } else {
         console.log('login-success:', '找不到本用户')
       }
     })
-  }
-  cuhandlererr(err: any) {
-
   }
   rotateImages(arr: string[]) {
     const length = arr.length

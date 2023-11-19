@@ -23,16 +23,16 @@ export class AuthService {
   getAuth(): Observable<Auth> {
     return this.subject.asObservable()
   }
-  unAuth(): void {
-    this.auth = Object.assign({}, this.auth, {loginname: '', token: '', redirectUrl: '' });
+  unAuth(url: string = ''): void {
+    this.router.navigate(['/auth'])
+    const curUrl = url ? url : this.router.url
+    this.auth = Object.assign({}, this.auth, {loginname: '', token: '', redirectUrl: curUrl });
     localStorage.removeItem('AUTH_LOGIN')
     this.subject.next(this.auth)
-    this.router.navigate(['/auth'])
   }
   loginWithCredentials(loginfo: Auth, osso: string = ''): Observable<Auth> {
     return this.user.findUser(loginfo.loginname, loginfo.osso).pipe(
       map((res:any) => {
-        console.log('auth-info', res)
         if (res.results) {
           const loginfo = res.results[0].login
           const loginname = loginfo.username

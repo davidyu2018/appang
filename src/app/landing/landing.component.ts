@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth/services/auth.service';
 import { Auth } from '../auth/services/model';
 import { filter, map, mergeMap, take, startWith, delay, share } from 'rxjs/operators';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { InternationalizationServiceTsService } from '../core/internationalization.service';
 import { SignInService } from '../auth/services/sign-in.service';
+import { LayoutService } from '../core/layout.service';
 
 @Component({
   selector: 'app-landing',
@@ -22,7 +22,10 @@ export class LandingComponent {
   hasHeaderSearch: boolean = false
   menus$: Observable<any[]>;
   internationState: any | null = {}
-  constructor( private http: HttpClient, private auth: AuthService, private signService: SignInService, private router: Router, private internation: InternationalizationServiceTsService) {
+  layoutOption: any = {}
+  constructor( private http: HttpClient, private auth: AuthService, 
+    private signService: SignInService, private internation: InternationalizationServiceTsService,
+    private layoutService: LayoutService) {
     this.http.get('./assets/configs/configs.json').subscribe((data: any) => {
       // 1: init header configs info && nationlizion
       this.headerToolbar = data.data.headerToolbar
@@ -51,12 +54,16 @@ export class LandingComponent {
       // 3: according to auth get main menu
       // this.loginfo.token && 
       (this.menus$ = this.signService.getMenus().pipe(share()))
+      // 4: init layout option
+      this.layoutService.getLayoutOption.subscribe(option => {
+        this.layoutOption = {...option}
+      })
     })
     
   }
   onEventMenu(li: any) {
     if (li.button.name === 'LOGIN' && !this.loginfo.token) {
-      this.router.navigate(['/auth'])
+      this.auth.unAuth()
       return
     };
 
@@ -64,11 +71,11 @@ export class LandingComponent {
     this.headerDropdowns = [...dropdowns]
     this.headerDropdowns = this.headerDropdowns.map (it => {
       if (it.switch) {
-        const itStoreSwitchState = !!JSON.parse(localStorage.getItem(it.id) || 'null')
-        it = {...it, switchState: itStoreSwitchState}
+        it = {...it, switchState: this.layoutOption[it.id]}
       }
       return it
     })
+
   }
   onEventLink(link: any) {
     if ('langKey' in link) {
@@ -79,12 +86,12 @@ export class LandingComponent {
       this.headerToolbar = [...this.headerToolbar.slice(0, iLang), updateItem, ...this.headerToolbar.slice(iLang + 1)];
     } else if (link.name === 'LOGOUT') {
         this.auth.unAuth()
-        // this.router.navigate(['/auth'])
     } else if (link.switch) {
       // console.log('stting:',link)
     }
   }
   onSwitchEvent(e: any) {
-    console.log('sss', e)
+    const opti = {[e.id]: e.switchState}
+    this.layoutService.setLayoutOption(opti)
   }
 }

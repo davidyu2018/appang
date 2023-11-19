@@ -1,0 +1,8 @@
+[
+    {
+      "colId": "amount",
+      "field": "amount",
+      "type": "currencyColumn"
+    }
+  ]
+  

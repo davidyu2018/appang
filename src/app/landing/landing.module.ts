@@ -4,7 +4,7 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
-import { MenuItemComponent } from './menu-item/menu-item.component';
+import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
     LandingComponent,
     HeaderComponent,
     MenuComponent,
-    MenuItemComponent
+    MenuItemComponent,
   ],
   imports: [
     ShareModule,

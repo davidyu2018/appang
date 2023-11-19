@@ -1,0 +1,19 @@
+.page-wrapper {
+    position: relative;
+    display: flex;
+    & > aside {
+      // position: absolute;
+      // top:0;
+      // left:0;
+      // width:14em;
+      flex: 0 0 15em;
+      height: 100%;
+    }
+    & > main {
+      flex: 1 1 auto;
+      border:1px solid yellow;
+    }
+}
+ .page-wrapper.to-right {
+  flex-direction: row-reverse;
+ }

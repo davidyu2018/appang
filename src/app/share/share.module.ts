@@ -9,23 +9,37 @@ import { ProcessStepComponent } from './components/process-step/process-step.com
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { AngTableComponent } from './components/ang-table/ang-table.component';
 import { SwitchComponent } from './components/switch/switch.component';
-import {BackButtonDirective} from './directives/back-button.directive'
-import {PreventMultiSubmitDirective} from './directives/prevent-multi-submit.directive';
+import { BackButtonDirective} from './directives/back-button.directive'
+import { PreventMultiSubmitDirective} from './directives/prevent-multi-submit.directive';
 import { PasswordPatternDirective } from './directives/password-pattern.directive';
 import { MatchPasswordDirective } from './directives/match-password.directive';
-import { ValidateUserNameDirective } from './directives/validate-user-name.directive'
+import { ValidateUserNameDirective } from './directives/validate-user-name.directive';
+import { InputRefDirective} from './directives/input-ref.directive'
+import { AuFaInputComponent } from './components/awesoment-input/awesoment-input.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { NavComponent } from './components/nav/nav.component';
+import { NavItemComponent } from './components/nav/nav-item/nav-item.component'
+import { AgGridModule } from 'ag-grid-angular';
+
 const COMPONENTS: any[] = [
-  ImagePicker, VerifyMobileComponent, SearchComponent, ProcessStepComponent, AngTableComponent,SwitchComponent
+  ImagePicker, VerifyMobileComponent, SearchComponent,
+   ProcessStepComponent, 
+  AngTableComponent,SwitchComponent, AuFaInputComponent,
+  LayoutComponent, NavComponent, NavItemComponent
 ]
+const DIRECTIVE = [
+  InputRefDirective, ClickOutsideDirective, BackButtonDirective,
+  PreventMultiSubmitDirective, PasswordPatternDirective,
+   MatchPasswordDirective, ValidateUserNameDirective]
 const MODULES = [
   CommonModule, 
   FormsModule, 
   ReactiveFormsModule,
-  TranslateModule
+  TranslateModule,
+  AgGridModule
 ]
-const DIRECTIVE = [ClickOutsideDirective, BackButtonDirective, PreventMultiSubmitDirective]
 @NgModule({
-  declarations: [...COMPONENTS, ...DIRECTIVE, PasswordPatternDirective, MatchPasswordDirective, ValidateUserNameDirective],
+  declarations: [...COMPONENTS, ...DIRECTIVE],
   imports: MODULES,
   exports: [...MODULES, ...COMPONENTS, ...DIRECTIVE],
 })

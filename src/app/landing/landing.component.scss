@@ -3,7 +3,7 @@
     box-sizing: border-box;
     // height: auto;
     & > .c-header {
-        position: sticky;
+        // position: sticky;
         width:100%;
         border-bottom:1px solid #d4d4d4;
         background-color: #f4f3ef;
@@ -32,6 +32,7 @@
 .c-container.fixed-width .c-nav-body, .c-container.fixed-width .c-main-body {
     width:48em;
     margin: 0 auto;
+    z-index: 2;
 }
 .collapse-menu-box {
     display: flex;

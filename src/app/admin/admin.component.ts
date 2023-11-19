@@ -7,6 +7,18 @@ import { AuthService } from "../auth/services/auth.service";
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+  asideBar: any[] = [
+    {
+      icon: 'serve-f.svg',
+      text: 'Products',
+      addicon: 'mobile.svg'
+    },
+    {
+      icon: 'file-f.svg',
+      text: 'Order list',
+      addicon: 'arrow-up.png'
+    }
+  ]
   constructor(private auth: AuthService, private router: Router) { }
   // logoutAdmin() {
   //   this.auth.clear();
