@@ -2,14 +2,22 @@
     "data": {
         "logo": {
             "text": "Manary",
-            "img": "Adidas-Trefoil-Logo-400x400.png"
+            "img": "Nike_Sneakers-OKaXiu1MQ_brandlogos.net.svg"
         },
         "hasHeaderSearch": false,
         "headerToolbar": [
             {
                 "button": {
                     "name": "",
-                    "icon": "news.svg",
+                    "icon": "search-icon.svg",
+                    "id": "SEARCH"
+                },
+                "dropdown": []
+            },
+            {
+                "button": {
+                    "name": "",
+                    "icon": "youtube-subscribe-bell-icon.svg",
                     "id": "NEWS"
                 },
                 "dropdown": []
@@ -18,25 +26,31 @@
                 "button": {
                     "name": "",
                     "id": "SETTING",
-                    "icon": "settings.svg"
+                    "icon": "gear-icon.svg"
                 },
                 "dropdown": [
                     {
                         "name": "FIXED_WIDTH",
                         "id": "FIXED_WIDTH",
-                        "icon": "ipad.svg",
+                        "icon": "desktop-mobile-icon.svg",
                         "switch": true
                     },
                     {
                         "name": "FIXED_HEADER",
                         "id": "FIXED_HEADER",
-                        "icon": "support-s.svg",
+                        "icon": "pushpin-icon.svg",
                         "switch": true
                     },
                     {
                         "name": "SIDEBAR_RIGHT",
                         "id": "SIDEBAR_RIGHT",
-                        "icon": "support-s.svg",
+                        "icon": "sidebar-panel-expand-icon.svg",
+                        "switch": true
+                    },
+                    {
+                        "name": "SIDEBAR_COLLAPSE",
+                        "id": "SIDEBAR_COLLAPSE",
+                        "icon": "increase-text-indent-icon.svg",
                         "switch": true
                     }
                 ]
@@ -58,7 +72,7 @@
                 "dropdown": [
                     {
                         "name": "PROFILE",
-                        "icon": "user.svg"
+                        "icon": "resume-cv-icon.svg"
                     },
                     {
                         "name": "LOGOUT",

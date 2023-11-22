@@ -1,8 +1,23 @@
 [
     {
-      "colId": "amount",
+      "colId": "Stock",
+      "field": "stock",
+      "filter": "stockColumn"
+    },
+    {
+      "colId": "Currency",
+      "field": "currency",
+      "filter": "currencyColumn"
+    },
+    {
+      "colId": "Price",
       "field": "amount",
-      "type": "currencyColumn"
+      "filter": "PriceColumn"
+    },
+    {
+      "colId": "USD",
+      "field": "code",
+      "filter": "usdColumn"
     }
   ]
   

@@ -14,7 +14,8 @@
       "NEWS": "消息",
       "FIXED_WIDTH": "固定宽度",
       "FIXED_HEADER": "固定头部",
-      "SIDEBAR_RIGHT": "菜单置右"
+      "SIDEBAR_RIGHT": "菜单置右",
+      "SIDEBAR_COLLAPSE": "折叠菜单"
     }
   },
   "USER": {

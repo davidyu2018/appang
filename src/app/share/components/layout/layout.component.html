@@ -1,6 +1,7 @@
-    <div class="page-wrapper" [class.to-right]="toRight$ | async">
+    <div class="layout-wrapper" [fixHeader]="fixHeader$ | async"
+     [class.to-right]="toRight$ | async" [class.collapse]="collapse$ | async">
         <aside *ngIf="asideBar.length">
-            <app-nav [navs]="asideBar"></app-nav>
+            <app-menu [menus]="asideBar"></app-menu>
         </aside>
         <main>
             <ng-content></ng-content>

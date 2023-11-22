@@ -1,11 +1,14 @@
 export interface Product {
-  title?: string;
-  name?: string; //
+  title: string;
+  rating: number; //
   id: string;
+  brand: string;
   category: string;
   description: string;
-  price?: number;
-  albumId? :number | string;
+  price: number;
+  thumbnail?: string;
+  discountPercentage?: number;
+  images?: [];
 }
 export interface Cart {
   itemCount: number; //

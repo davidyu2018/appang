@@ -3,16 +3,16 @@ import { ShareModule } from '../share/share.module';
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './menu/menu.component';
-import { MenuItemComponent } from './menu/menu-item/menu-item.component';
+import { NavComponent } from './nav/nav.component';
+import { NavItemComponent } from './nav/nav-item/nav-item.component';
 
 
 @NgModule({
   declarations: [
     LandingComponent,
     HeaderComponent,
-    MenuComponent,
-    MenuItemComponent,
+    NavComponent,
+    NavItemComponent,
   ],
   imports: [
     ShareModule,

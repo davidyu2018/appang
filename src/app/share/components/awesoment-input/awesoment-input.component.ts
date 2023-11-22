@@ -3,14 +3,13 @@ import {InputRefDirective} from "../../directives/input-ref.directive";
 
 @Component({
     selector: 'aweso-input',
-    template: `
-        <img [src]="'../../../assets/icons/'+ icon" class="icon fa" [ngClass]="classes" />   
-        <ng-content></ng-content>       
-    `,
-    styleUrls: ['./awesoment-input.component.scss']
+    templateUrl: './awesoment-input.component.html',
+    styleUrls: ['./awesoment-input.component.css']
 })
 export class AuFaInputComponent implements AfterContentInit {
     @Input() icon: string;
+    @Input() label: string;
+
     @ContentChild(InputRefDirective)
     input: InputRefDirective;
     ngAfterContentInit() {

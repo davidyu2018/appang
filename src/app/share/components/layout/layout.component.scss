@@ -1,6 +1,7 @@
-.page-wrapper {
+.layout-wrapper {
     position: relative;
     display: flex;
+    overflow-y: auto;
     & > aside {
       // position: absolute;
       // top:0;
@@ -8,12 +9,19 @@
       // width:14em;
       flex: 0 0 15em;
       height: 100%;
+      transition: 0.2s ease;
     }
     & > main {
       flex: 1 1 auto;
-      border:1px solid yellow;
+      // border:1px solid yellow;
     }
 }
- .page-wrapper.to-right {
+ .layout-wrapper.to-right {
   flex-direction: row-reverse;
+ }
+ .layout-wrapper.collapse aside {
+  flex: 0 0 3em;
+  overflow: hidden;
+  transition: 0.2s ease;
+
  }

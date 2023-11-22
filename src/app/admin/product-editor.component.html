@@ -1,35 +1,35 @@
-<div [class.bg-warning]="mode === 'edit'" [class.text-dark]="mode === 'edit'">
-  <h5>{{editing ? "Edit" : "Create" }} Product</h5>
-</div>
-<form novalidate #form="ngForm" (ngSubmit)="save(form)">
-  <div class="form-group">
-    <label>Name</label>
-    <input class="form-control" name="name" [(ngModel)]="product.name" />
-  </div>
-  <div class="form-group">
-    <label>Category</label>
-    <input class="form-control" name="category" [(ngModel)]="product.category" />
-  </div>
-  <div class="form-group">
-    <label>Description</label>
-    <input class="form-control" name="description" [(ngModel)]="product.description" />
-  </div>
-  <div class="form-group">
-    <label>Price</label>
-    <input class="form-control" name="price" [(ngModel)]="product.price" />
-  </div>
-  <button type="submit" *ngIf="mode !== 'view'" [class.btn-waring]="editing">{{mode === 'edit' ? "Save" : "Create"
+<form novalidate #form="ngForm" (ngSubmit)="save(form)" class="form-group">
+  <h4 class="form-caption">{{mode }} Product</h4>
+  <aweso-input label="Name">
+    <input class="form-control" inputRef name="name" [disabled]="mode === 'view'" [(ngModel)]="product.title" />
+  </aweso-input>
+  <aweso-input icon="upload-s.svg" label="Category">
+    <input class="form-control" inputRef name="category" [disabled]="mode === 'view'" [(ngModel)]="product.category" />
+  </aweso-input>
+  
+  <aweso-input label="Price" icon="calendar-color-icon.svg">
+    <input class="form-control" inputRef name="price" [disabled]="mode === 'view'" [(ngModel)]="product.price" />
+  </aweso-input>
+  <aweso-input label="Description">
+    <input class="form-control" inputRef name="description" [disabled]="mode === 'view'" [(ngModel)]="product.description" />
+  </aweso-input>
+  <aweso-input label="Description">
+    <select >
+      <option>USD</option>
+      <option>EUR</option>
+      <option>RMB</option>
+    </select>
+  </aweso-input>
+  <div class="form-buttons-box">
+    <button type="submit" class="form-button" *ngIf="mode !== 'view'" [class.btn-waring]="mode === 'editing'">{{mode === 'edit' ? "Save" : "Create"
     }}</button>
-  &nbsp;&nbsp;
-  <button type="button" routerLink="../../">Cancel</button>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button type="button" *ngIf="mode !== 'create'"
-    [routerLink]="['/landing/sports/admin/products/edit', repository.getPreviousProductId(product.id)]">
-    Previous
-  </button>
-  &nbsp;&nbsp;
-  <button type="button" *ngIf="mode !== 'create'"
-    [routerLink]="['/landing/sports/admin/products/edit', repository.getNextProductId(product.id)]"> Next
-  </button>
-  <!-- // 因为是同一个组件 导航到下一个组件时数据没有更新，路由的周期函数没有执行。那要这样取值： -->
+    <button type="button" class="form-button" routerLink="../../">Cancel</button>
+    <button type="button" *ngIf="mode !== 'create'" class="form-button"
+      [routerLink]="['/landing/sports/admin/products/edit', repository.getPreviousProductId(product.id)]">
+      Previous
+    </button>
+    <button type="button" *ngIf="mode !== 'create'" class="form-button"
+      [routerLink]="['/landing/sports/admin/products/edit', repository.getNextProductId(product.id)]"> Next
+    </button>
+  </div>
 </form>

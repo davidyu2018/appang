@@ -1,1 +1,9 @@
-<p>awesoment-input works!</p>
+<!-- <div class="awes-control-wrapper"> -->
+    <label [title]="label" class="ellipsis">{{label}}</label>
+    <div class="awes-input-wrapper">
+        <!-- <img [src]="'../../../assets/images/icons/'+ icon" class="icon fa" [ngClass]="classes" />    -->
+        <ng-content></ng-content>  
+        <img *ngIf="icon" [src]="'../../../assets/images/icons/'+ icon" class="icon fa" [ngClass]="classes" />  
+        <span class="input-highlight"></span> 
+    </div>     
+<!-- </div> -->

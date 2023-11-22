@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Observable, map, of } from "rxjs";
+import { Observable, of } from "rxjs";
 import { AuthService } from '../auth/services/auth.service';
-// import { of } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Product, Order } from "./product.model";
 const PROTOCOL = 'http';
 const PORT = 3500;
@@ -11,11 +11,11 @@ export class RestDataSource {
   baseUrl: string;
   auth_token: string | null = null;
   constructor(private http: HttpClient, private auth: AuthService) {
-    this.baseUrl = `https://jsonplaceholder.typicode.com`;
+    this.baseUrl = `https://dummyjson.com`;
     this.auth.getAuth().subscribe((auth) => this.auth_token = auth.token)
   }
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl + '/photos')
+    return this.http.get<any>(this.baseUrl + '/products').pipe(map(res => res.products))
   }
   saveOrder(order: Order): Observable<Order> {
     return this.http.get<Order>(this.baseUrl + 'orders')

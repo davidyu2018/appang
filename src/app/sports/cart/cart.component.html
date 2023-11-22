@@ -5,8 +5,10 @@
       {{cart.cartPrice | currency:"USD":"symbol":"2.2-2"}}
     </span>
     <span *ngIf="cart.itemCount == 0">(empty) </span>
+    <img *ngIf="cart.itemCount == 0" src="./assets/images/icons/shopping-cart-icon.svg" />
+    <img *ngIf="cart.itemCount > 0" src="./assets/images/icons/cart-icon.svg" />
   </small>
-  <a routerLink="./cart" class="buton-cart">
-    <img src="./assets/icons/shopping-cart.svg" />
-  </a>
+  <!-- <a routerLink="./cart" class="buton-cart">
+    <img src="./assets/images/icons/shopping-cart-icon.svg" />
+  </a> -->
 </span>

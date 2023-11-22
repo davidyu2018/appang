@@ -8,13 +8,7 @@ export interface Stock {
     email?: string;
 }
 export interface Currency {
-    id: number;
-    name: string;
-    nickname?: string;
-    password?: string,
-    mobile?: string;
-    avatar?: string;
-    email?: string;
+    code: string;
 }
 export interface ColDef {
     field: string;

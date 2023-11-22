@@ -15,16 +15,17 @@ export class SearchComponent {
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private elementRef: ElementRef) {
-    const event$ = fromEvent(this.elementRef.nativeElement, 'keyup')
-    event$.pipe(map(() => this.searchString), debounceTime(this.delay), distinctUntilChanged(), share())
-      .subscribe((input: string) => {
+    const keyup$ = fromEvent(this.elementRef.nativeElement, 'keyup')
+    keyup$.pipe(
+      map(() => this.searchString),
+      debounceTime(this.delay), 
+      distinctUntilChanged(), 
+      share()
+    ).subscribe((input: string) => {
         this.onSearch.emit(input)
       })
   }
-  search() {
-    // !this.inputSearch && this.onSearch.emit(this.searchString)
-    // this.router.navigate(['/ware-search', { wareName: this.searchString }])
-  }
+  search() {}
   searchRemove(e: any) {
     this.searchString = '';
     e.preventDefault()

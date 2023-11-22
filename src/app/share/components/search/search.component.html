@@ -4,9 +4,9 @@
       [placeholder]="'FORM.PLACEHOLDER.SEARCH' | translate" (keyup.enter)="search()" [ngStyle]="searchBoxStyle"
       autocomplete="off" />
     <!-- <span class="search-icon"> -->
-    <img src="./assets/icons/clear.svg" *ngIf="searchString.length > 3" (click)="searchRemove($event)"
+    <img src="./assets/images/icons/x-circle.svg" class="search-icon" *ngIf="searchString.length > 3" (click)="searchRemove($event)"
       class="clear-icon" />
-    <img src="./assets/icons/search.svg" class="search-icon" />
+    <img src="./assets/images/icons/search.svg" class="search-icon" />
     <!-- </span> -->
   </div>
 </div>

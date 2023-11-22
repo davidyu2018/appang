@@ -26,8 +26,9 @@ export class StockComponent {
   //////////////////////////////
   public currencies$: Observable<Currency[]>;
   public columnDefs$: Observable<ColDef[]>;
-  public rowData$: Observable<any[]>;
-  public immutableData: boolean;
+  public rowData$: Observable<Stock[]>;
+  selectedCurrency: string = 'USD'
+  // public immutableData: boolean;
   /////////////////////////////////////////
   public columnDefs: ColDef[] = [
     { field: 'make'},
@@ -36,10 +37,7 @@ export class StockComponent {
   ];
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
-  constructor(private stockService: StockService, private mockServer: MockStockService) {
-    this.immutableData = true;
-    // this.getRowNodeId = (data: any): string => data.id
-  }
+  constructor(private stockService: StockService, private mockServer: MockStockService) {  }
 
   ngOnInit(){
     this.stocks$ = this.searchTerms.pipe(
@@ -51,9 +49,9 @@ export class StockComponent {
     )
     /////////////////////////////////
     this.currencies$ = this.mockServer.getCurrencyObservable();
-    this.rowData$ = this.mockServer.getDataObservable();
+    this.rowData$ = this.mockServer.getDataObservable()
+    // .pipe(tap(r => console.log('ddd', r)));
     this.columnDefs$ = this.mockServer.getColumnObservable();
-    
   }
   ngAfterViewInit() {
     setTimeout(() => this.click$ = this.getCounterObservable(), 50)
@@ -78,15 +76,19 @@ export class StockComponent {
   }
   // stock -ag-ag---------------
   onGridReady(params: GridReadyEvent) {
-    this.rowData$ = this.mockServer.getAgGridData().pipe(tap(r => console.log('rrr', r)))
+    // this.rowData$ = this.mockServer.getAgGridData().pipe(tap(r => console.log('rrr', r)))
   }
+  onChange(e: any) {
+    this.agGrid.api.refreshCells();
+    this.agGrid.api.refreshHeader();
 
+  }
   onCellClicked( e: any): void {
     console.log('cellClicked', e);
   }
 
-  clearSelection(): void {
-    this.agGrid.api.deselectAll();
-  }
+  // clearSelection(): void {
+  //   this.agGrid.api.deselectAll();
+  // }
 
 }

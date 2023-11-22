@@ -18,14 +18,24 @@
 </div>
 <!-- 十大富豪归还借款 -->
 
-<button (click)="clearSelection()">Clear Selection</button>
+<!-- <button (click)="clearSelection()">Clear Selection</button> -->
 <!-- AG Grid Angular Component -->
+<div style="width: 900px;">
+    <select [(ngModel)]="selectedCurrency" (ngModelChange)="onChange($event)">
+        <option
+            *ngFor="let currency of currencies$ | async"
+            [ngValue]="currency.code">
+            {{currency.code}}
+        </option>
+    </select>
 <ag-grid-angular
+    #agGrid
     style="width: 100%; height: 500px"
     class="ag-theme-alpine"
-    [columnDefs]="columnDefs"
+    [columnDefs]="columnDefs$ | async"
     [rowData]="rowData$ | async"
     [animateRows]="true"
     (gridReady)="onGridReady($event)"
     (cellClicked)="onCellClicked($event)"
   ></ag-grid-angular>
+</div>

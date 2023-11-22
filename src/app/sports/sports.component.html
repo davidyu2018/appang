@@ -1,33 +1,51 @@
-<div class="sports-store">
-  <header class="page-header">
-    <h3>Sports Store</h3>
-    <div class="header-right">
-      <button class="button-gray" routerLink="/admin">Admin Product</button>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <app-cart></app-cart>
-    </div>
-  </header>
-  <div class="equal-altitude">
-    <div class="columns_1 aside-box">
-      <div class="category-header">
-        <span>Categories</span>
+<app-layout [asideBar]="categories">
+  <div class="sports-store">
+    <header class="page-header">
+      <h3>Sports Store</h3>
+      <div class="header-right">
+        <button class="button-gray" routerLink="/admin">Admin Product</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <app-cart></app-cart>
       </div>
-      <button class="category-btn" [class.active]="'' == selectedCategory" (click)="changeCategory('')">All</button>
-      <button class="category-btn" *ngFor="let cat of categories" [class.active]="cat == selectedCategory"
-        (click)="changeCategory(cat)">{{cat}}</button>
-    </div>
-    <div class="columns_2">
-      <div class="card-box">
-        <div class="card-header">Products list <span style="float: right;">{{products.length}}</span></div>
-        <div class="card-body">
-          <div *ngFor="let product of products" class="cuto-ff-gray">
-            <h4>{{product.title}}</h4>
-            <span style="float: right;">{{product.price | currency:"USD":"symbol":"2.2-2" }}</span>
-            <div>{{product.id}}
-              <button style="float: right;" (click)="addProductToCart(product)">Add To Cart</button>
+    </header>
+    <div class="equal-altitude">
+      <!-- <div class="columns_1 aside-box">
+        <button class="category-btn" [class.active]="'' == selectedCategory" (click)="changeCategory('')">All</button>
+        <button class="category-btn" *ngFor="let cat of categories" [class.active]="cat == selectedCategory"
+          (click)="changeCategory(cat)">{{cat}}</button>
+      </div> -->
+      <div class="columns_2">
+        <div class="my-grid" *ngFor="let product of products">
+            <section class="card" >
+              <div class="card-front">
+                <!-- <img [src]="product.thumbnail" width="96" height="96" /> -->
+              <svg
+                viewBox="0 0 16 16"
+                class="bi bi-image-fill"
+                fill="currentColor"
+                height="96"
+                width="96"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"
+                ></path>
+              </svg>
+              <h3 class="title">{{product.title}}</h3>
+              <p>★★★★★ ({{product.rating}})</p>
+              <p>{{product.discountPercentage}}</p>
+              <div>
+                <span class="price">${{product.price}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </div>
             </div>
-          </div>
-        </div>
+              <div class="card__content">
+                <p class="card__title">{{product.brand}}</p>
+                <p class="card__description">{{product.description}}</p>
+                <a class="subscribe-button" href="#">Add to Cart</a>
+              </div>
+           </section>
+        
+      </div>
         <div class="card-footer">
           <div class="pager-container">
             <div class="left-side">
@@ -46,9 +64,9 @@
             </div>
           </div>
         </div>
+        <h2>{{datedisplay?.symbolYMD}}</h2>
+        <ang-table [dateValue]="dateValue" (outputDate)="outputDate($event)"></ang-table>
       </div>
-      <h2>{{datedisplay?.symbolYMD}}</h2>
-      <ang-table [dateValue]="dateValue" (outputDate)="outputDate($event)"></ang-table>
     </div>
   </div>
-</div>
+</app-layout>

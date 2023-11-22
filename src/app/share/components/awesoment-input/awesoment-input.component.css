@@ -1,0 +1,75 @@
+
+
+:host {
+    display: inline-flex;
+    width:33.33%;
+    align-items: center;
+    border-radius: 0.25em;
+    margin-bottom: 1em;
+    
+  }
+  :host::ng-deep label {
+    flex: 0 0  12em;
+    text-align: right;
+    padding-right: 1em;
+    color: #313a46
+  }
+  :host::ng-deep .awes-input-wrapper {
+    display: inline-flex;
+    align-items: center;
+    flex: 1 1 auto;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.25em;
+    padding:0 0.5em;
+    
+  }
+  :host::ng-deep img {
+    width: 1.5em;
+    height: 1.5em;
+  }
+  :host::ng-deep input, :host::ng-deep select {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    min-height: 2em;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+
+  :host.focus ::ng-deep .awes-input-wrapper{
+    border-bottom: 1px solid transparent;
+    position: relative;
+  }
+  :host ::ng-deep .awes-input-wrapper .input-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background-color: #000;
+    transition: transform 0.3s ease-in-out;
+
+  }
+  :host.focus ::ng-deep .awes-input-wrapper .input-highlight {
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    transform: scaleX(1);
+  }
+  
+  @media (max-width: 100em) {
+    :host {
+      width: 50%;
+      display: inline-flex;
+    }
+  } 
+  
+  @media screen and (max-width: 65em) {
+    :host {
+      width: 100%;
+      display: flex;
+    }
+  } 
+  
+  
+  

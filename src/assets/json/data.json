@@ -4,6 +4,90 @@
       "stock": "AAPL",
       "currency": "EUR",
       "amount": 103.50
+    },
+    {
+      "id": 1,
+      "stock": "TESLA",
+      "currency": "USD",
+      "amount": 73.50
+    },
+    {
+      "id": 2,
+      "stock": "MARY",
+      "currency": "RMB",
+      "amount": 23.50
+    },
+    {
+      "id": 0,
+      "stock": "AAPL",
+      "currency": "EUR",
+      "amount": 103.50
+    },
+    {
+      "id": 1,
+      "stock": "TESLA",
+      "currency": "USD",
+      "amount": 73.50
+    },
+    {
+      "id": 2,
+      "stock": "MARY",
+      "currency": "RMB",
+      "amount": 23.50
+    },
+    {
+      "id": 0,
+      "stock": "AAPL",
+      "currency": "EUR",
+      "amount": 103.50
+    },
+    {
+      "id": 1,
+      "stock": "TESLA",
+      "currency": "USD",
+      "amount": 73.50
+    },
+    {
+      "id": 2,
+      "stock": "MARY",
+      "currency": "RMB",
+      "amount": 23.50
+    },
+    {
+      "id": 0,
+      "stock": "AAPL",
+      "currency": "EUR",
+      "amount": 103.50
+    },
+    {
+      "id": 1,
+      "stock": "TESLA",
+      "currency": "USD",
+      "amount": 73.50
+    },
+    {
+      "id": 2,
+      "stock": "MARY",
+      "currency": "RMB",
+      "amount": 23.50
+    },
+    {
+      "id": 0,
+      "stock": "AAPL",
+      "currency": "EUR",
+      "amount": 103.50
+    },
+    {
+      "id": 1,
+      "stock": "TESLA",
+      "currency": "USD",
+      "amount": 73.50
+    },
+    {
+      "id": 2,
+      "stock": "MARY",
+      "currency": "RMB",
+      "amount": 23.50
     }
   ]
   

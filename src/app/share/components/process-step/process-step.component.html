@@ -1,7 +1,7 @@
 <div class="process-step-box">
     <div class="cell start" *ngFor="let step of steps; let i = index" [ngClass]="{'current': (i + 1) === active, 'past': (i+1) < active}">
         <span >
-            <img [src]="'../../../../assets/icons/'+step.icon" /><br/>
+            <img [src]="'../../../../assets/images/icons/'+step.icon" /><br/>
             <strong>{{step.text}}</strong>
         </span>
     </div>

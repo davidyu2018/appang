@@ -19,7 +19,7 @@ export class LayoutService {
   }
   setLayoutOption(option: any) {
     this.layoutOptions = {...this.layoutOptions, ...option}
-    console.log('dgfhg', this.layoutOptions)
+    // console.log('dgfhg', this.layoutOptions)
     localStorage.setItem('LAYOUT_OPTIONS', JSON.stringify(this.layoutOptions))
     this.subject$.next(this.layoutOptions)
   }

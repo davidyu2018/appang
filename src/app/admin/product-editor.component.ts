@@ -8,20 +8,24 @@ import { ProductRepository } from '../sports/product.repository';
   templateUrl: './product-editor.component.html',
 })
 export class ProductEditorComponent {
-  editing: boolean = false;
-  viewing: boolean = false;
-  mode: string = ''
-  product: Product = { name: '', id: '', category: '', price: 0, description: '' };
-  originalProduct: Product = { name: '', id: '', category: '', price: 0, description: '' };
+  mode: string = '';
+  product: Product = {
+    price: 0,
+    id: '', 
+    title: '',
+     rating: 0, 
+     category: '', 
+     brand: '', 
+     description:''
+    };
+  originalProduct: Product;
 
   products: Product[] = [];
   constructor(public repository: ProductRepository, private router: Router, activeRoute: ActivatedRoute) {
-    // this.mode = activeRoute.snapshot.params['mode']
-    // this.mode !== 'create' && Object.assign(this.product, repository.getProduct(activeRoute.snapshot.params['id']))
     activeRoute.params.subscribe(params => {
       this.mode = params['mode'];
       let id = params['id'];
-      id && (Object.assign(this.product, repository.getProduct(id)))
+      id && (this.product = Object.assign({}, this.product, repository.getProduct(id)))
     })
   }
   save(form: NgForm) {

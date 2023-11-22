@@ -1,6 +1,12 @@
 [
     {
       "code": "USD"
+    },
+    {
+      "code": "EUR"
+    },
+    {
+      "code": "RMB"
     }
   ]
   

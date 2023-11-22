@@ -13,7 +13,8 @@
       "NEWS": "News",
       "FIXED_WIDTH": "Fixed width",
       "FIXED_HEADER": "Fixed header",
-      "SIDEBAR_RIGHT": "Sidebar To Right"
+      "SIDEBAR_RIGHT": "Sidebar To Right",
+      "SIDEBAR_COLLAPSE": "Collapse sidebar"
     }
   },
   "USER": {

@@ -11,12 +11,12 @@ export class AdminComponent {
     {
       icon: 'serve-f.svg',
       text: 'Products',
-      addicon: 'mobile.svg'
+      addicon: 'line-angle-down-icon.svg'
     },
     {
       icon: 'file-f.svg',
       text: 'Order list',
-      addicon: 'arrow-up.png'
+      addicon: ''
     }
   ]
   constructor(private auth: AuthService, private router: Router) { }

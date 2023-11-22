@@ -18,10 +18,10 @@
 .equal-altitude {
   display: flex;
   & > .columns_1 {
-    width:20%
+    flex: 0 0 15em;
   }
   & > .columns_2 {
-  width:80%;margin-left:1.5em; word-break: break-all;
+    flex: 1 1  auto;
   }
 }
 .aside-box {
@@ -39,37 +39,7 @@
   font-size: 1.2rem;
 }
 ////////////////////////////////////////////////
-button.category-btn {
-  border:none;
-  background-color: transparent;
-  display: block;
-  width:100%;
-  text-align: left;
-  padding:1em 2em;
-  border-top:1px solid #fafafa;
-  border-bottom:1px solid #d4d4d4;
-  background-image: linear-gradient(#e4e3e8, #ededef);
-  // border-top:1px solid #74797f;
-  // border-bottom:1px solid #3e4248;
-  // background-color: #5d6166;
-  // color: #d1d3d4;
-  font-size: 1.1rem;
-}
-button.category-btn:first-child {
-  // border-top: 0px solid #fff;
-  border-radius: 7px 7px 0 0 ;
-}
-button.category-btn:last-child {
-  border-radius: 0 0 7px 7px;
-}
 
-button.category-btn.active {    
-  // background-color: #3b3e44;
-  border-top:1px solid #e08e40;
-  border-bottom:1px solid #9a2f09;
-  background-image: linear-gradient(#d16413,#8d2908);
-  color: #fff;
-}
 ////////////////////////////
 .card-box {
   border:1px solid #98a1aa;
@@ -145,4 +115,104 @@ button.category-btn.active {
 
 .button-gray:focus {
   box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+////////////////////////////////////////////////----------------
+section.card {
+  position: relative;
+  min-width: 10em;
+  min-height: 10em;
+  height: 20em;
+  width:100%;
+  background-color: #fff;
+  border-radius: 10px;
+  // display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  & > .card-front {
+    text-align: center;
+    padding: 1em;
+  }
+}
+.card svg {
+  fill: #333;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 3px;
+}
+.card:hover {
+  // transform: scale(1.05);
+  box-shadow: 0 8px 16px #999999;
+  background-color: #474dc3;
+  color: #ffffff;
+}
+
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #474dc3;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  padding-left: 5px;
+  font-size: 24px;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.card:hover svg {
+  scale: 0;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.4;
+}
+/* Commands to change the shadows in dark mode
+@media (prefers-color-scheme: dark) {
+  .card:hover {
+  box-shadow: 0 8px 16px #000000;
+  }
+}*/
+.subscribe-button {
+  display: inline-block;
+  padding: 0.2em 0.75em;
+  background-color: #40B3A2;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid gray;
+  border-radius: 30px;
+  // margin-top: 20px;
+  transition: 0.2s ease;
+}
+.subscribe-button:hover {
+  opacity: .85;
+}
+.price {
+  color: #40B3A2;
+  font-size: 1.25rem;
+}
+.title {
+  color:#4C5656;
+  font-size: 1.5em;
+  font-weight: bold;
+  
 }

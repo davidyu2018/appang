@@ -10,7 +10,7 @@ export class UnsavedGuard {
   }
   canDeactivate(component: ProductEditorComponent, route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if (component.editing) {
+    if (component.mode = 'editing') {
       if (
         ["name", "category", "price"]
         // .some((prop:string) => component.product[prop] != component.originalProduct[prop])

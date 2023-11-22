@@ -21,7 +21,7 @@ import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } f
   ]
 })
 export class ImagePicker implements ControlValueAccessor {
-  selected: string | null = './assets/icons/user.svg';
+  selected: string | null = './assets/images/icons/user.svg';
   perGridWidth: string = ''
   show: boolean = false
   num: number = 6;

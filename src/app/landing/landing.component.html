@@ -1,4 +1,4 @@
-<div class="c-container fixed-width">
+<div class="c-container" [class.fixed-width]="fixWidth$ | async">
     <header class="c-header">
         <div class="c-header-body">
             <app-header [logo]="logo" (onSwitchEvent)="onSwitchEvent($event)" [hasHeaderSearch]="hasHeaderSearch" [headerToolbar]="headerToolbar" [headerDropdowns]="headerDropdowns" (onEventMenu)="onEventMenu($event)" (onEventLink)="onEventLink($event)"></app-header>
@@ -6,7 +6,7 @@
     </header>
     <nav class="c-nav">
         <div class="c-nav-body">
-            <app-menu *ngIf="(menus$ | async)?.length" [menus]="(menus$ | async)"></app-menu>
+            <app-nav *ngIf="(navs$ | async)?.length" [navs]="(navs$ | async)"></app-nav>
         </div>
     </nav>
     <main class="c-main">

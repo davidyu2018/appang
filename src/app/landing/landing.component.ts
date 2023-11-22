@@ -20,7 +20,8 @@ export class LandingComponent {
   headerDropdowns: any[] = [];
   loginfo: any ={token: ''};
   hasHeaderSearch: boolean = false
-  menus$: Observable<any[]>;
+  navs$: Observable<any[]>;
+  fixWidth$: Observable<boolean>
   internationState: any | null = {}
   layoutOption: any = {}
   constructor( private http: HttpClient, private auth: AuthService, 
@@ -53,13 +54,16 @@ export class LandingComponent {
       }
       // 3: according to auth get main menu
       // this.loginfo.token && 
-      (this.menus$ = this.signService.getMenus().pipe(share()))
+      (this.navs$ = this.signService.getMenus().pipe(share()))
       // 4: init layout option
       this.layoutService.getLayoutOption.subscribe(option => {
         this.layoutOption = {...option}
       })
     })
     
+  }
+  ngOnInit() {
+    this.fixWidth$ = this.layoutService.getLayoutOption.pipe(map(x => x['FIXED_WIDTH']))
   }
   onEventMenu(li: any) {
     if (li.button.name === 'LOGIN' && !this.loginfo.token) {

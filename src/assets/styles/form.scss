@@ -2,9 +2,18 @@
     
 }
 .form-group {
-    // border:1px solid #f5f5f5;
+    .form-caption {
+        text-align: center;
+        font-weight: bold;
+        color:#293745;
+        text-transform: uppercase;
+        margin-bottom: 1em;
+    }
+    // border:1px solid #ccc;
+    background-color: #f5f5f5;
+    // box-shadow: 2px 2px 10px #ccc;
     margin-bottom: 1em;
-   
+   padding: 1em;
     .form-item {
         display: flex;
         // align-items: center;
@@ -70,9 +79,24 @@
             min-height: 32px;
         }
     }
-    & .form-buttons {
+    & .form-buttons-box {
         padding-top: 1em;
         text-align: center;
+        & > .form-button {
+            display: inline-flex;
+            margin: 0 1em;
+            padding:0.5em 1em;
+            border: 1px solid transparent;
+            border-radius: 0.3em;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px #b7b7b7;
+            background: #eeeeee;
+            color:#4b4b4b;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        & > .form-button:hover {
+            color: #000;
+        }
     }
     & > .form-buttons.left {
         text-align: left;
@@ -88,4 +112,16 @@ form.ng-invalid button[type="submit"] {
     color: #999999!important;
     cursor: not-allowed;
     opacity: 0.4;
+}
+
+.table-button {
+    display: inline-flex;
+    align-items: center;
+    padding:0.25em 0.5em;
+    font-size: 1rem;
+    & > img {
+        padding-right:0.25em;
+        width:1.5em;
+        height: 1.5em;
+    }
 }

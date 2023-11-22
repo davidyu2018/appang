@@ -13,7 +13,7 @@
       <ul class="header-icons" >
         <li *ngFor="let tool of toolbars; let last = last;let i = index" [style]="{'margin-left': last ? '5em' : '2em'}" >
           <a (click)="tapevent(tool, $event)" *ngIf="!isLogin || (isLogin && !last)">
-            <img [id]="'OUTSIDE_CLICK_AREA' + i" [src]="'./assets/icons/' + tool.button.icon" [title]='"SECTION.NAV." + tool.button.id | translate' *ngIf="tool.button.icon" class="nav-links_icon" />
+            <img [id]="'OUTSIDE_CLICK_AREA' + i" [src]="'./assets/images/icons/' + tool.button.icon" [title]='"SECTION.NAV." + tool.button.id | translate' *ngIf="tool.button.icon" class="nav-links_icon" />
             <span [id]="'OUTSIDE_CLICK_AREA' + i" class="link-text" *ngIf="tool.button.name">{{ "SECTION.NAV." + tool.button.name | translate}}</span>
           </a>
           <a (click)="tapevent(tool, $event)" *ngIf="isLogin && last">
@@ -25,10 +25,10 @@
             <dt>
                 <div class="triangle location"></div>
                 <div class="triangle location inner"></div>
-              <!-- <img src="./assets/icons/x-circle.svg" class="mini-close" /> -->
+              <!-- <img src="./assets/images/icons/x-circle.svg" class="mini-close" /> -->
             </dt>
             <dd *ngFor="let link of dropdowns" (click)="goLink(link)" [class.active]="link.active">
-              <img [src]="'./assets/icons/' + link.icon" />
+              <img [src]="'./assets/images/icons/' + link.icon" />
               <span>{{ "SECTION.NAV." + link.name || link.id | translate}}</span>
               <span *ngIf="link.switch" style="padding-left: 20px;">
                <app-switch [switchState]="link.switchState" (onSwitch)="onSwitch($event, link)"></app-switch>
