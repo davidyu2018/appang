@@ -1,10 +1,17 @@
-<form novalidate #form="ngForm" (ngSubmit)="save(form)" class="form-group">
+<form novalidate #form="ngForm" (ngSubmit)="save(form)" class="form-group" autocomplete="off">
   <h4 class="form-caption">{{mode }} Product</h4>
   <aweso-input label="Name">
     <input class="form-control" inputRef name="name" [disabled]="mode === 'view'" [(ngModel)]="product.title" />
   </aweso-input>
-  <aweso-input icon="upload-s.svg" label="Category">
-    <input class="form-control" inputRef name="category" [disabled]="mode === 'view'" [(ngModel)]="product.category" />
+  <aweso-input label="Category">
+    <!-- <input class="form-control" inputRef name="category" [disabled]="mode === 'view'" [(ngModel)]="product.category" /> -->
+    <select [(ngModel)]="product.category" inputRef name="category" (ngModelChange)="onChange($event)" [disabled]="mode === 'view'">
+      <option
+          *ngFor="let category of categorys"
+          [ngValue]="category">
+          {{category}}
+      </option>
+  </select>
   </aweso-input>
   
   <aweso-input label="Price" icon="calendar-color-icon.svg">
@@ -12,13 +19,6 @@
   </aweso-input>
   <aweso-input label="Description">
     <input class="form-control" inputRef name="description" [disabled]="mode === 'view'" [(ngModel)]="product.description" />
-  </aweso-input>
-  <aweso-input label="Description">
-    <select >
-      <option>USD</option>
-      <option>EUR</option>
-      <option>RMB</option>
-    </select>
   </aweso-input>
   <div class="form-buttons-box">
     <button type="submit" class="form-button" *ngIf="mode !== 'view'" [class.btn-waring]="mode === 'editing'">{{mode === 'edit' ? "Save" : "Create"

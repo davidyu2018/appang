@@ -1,42 +1,51 @@
 <div class="table-wrapper">
   <div class="table-toolbar">
-    <!-- 指令自定义事件发送数据：newProductcCtegory :{{newProductcCtegory}} -->
-    <button routerLink="../products/create" class="table-button">
-      <img src="../../assets/images/icons/plus.svg" width="18" height="18" /> Create New Product
-    </button>
+    <div style="display: inline-flex;">
+      <div class="table-search">
+        <input name="searchBox" class="table-search-box" autocomplete="off" [(ngModel)]="searchString" placeholder="Search Here" (keyup)="search()" />
+        <a>
+          <img src="./assets/images/icons/x-circle.svg" *ngIf="searchString.length > 3" (click)="searchRemove()" />
+          <img src="./assets/images/icons/search.svg" class="search-icon" [class.move-away]="searchString.length > 3"/>
+        </a>
+      </div>
+      <button routerLink="../products/create" class="table-button">
+        <img src="../../assets/images/icons/plus.svg" width="18" height="18" /> Create New Product
+      </button>
   </div>
-  <!-- <ag-grid-angular
-    #agGrid
-    style="width: 100%; height: 550px"
-    class="ag-theme-alpine"
-    [columnDefs]="columnDefs"
-    [rowData]="getProducts()"
-    (cellClicked)="onCellClicked($event)"
-    (gridReady)="onGridReady($event)"
-    [pagination]="true"
-    [animateRows]="true"
-  ></ag-grid-angular> -->
-  <table class="table-self">
+
+  </div>
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+  <!-- 、、、、、、、、、、、、、、、、、、、 -->
+
+  <table class="my-table">
     <thead>
       <tr>
         <th>Name</th>
         <th>Category</th>
         <th>Price</th>
-        <th></th>
+        <th>Store</th>
+        <th>Opteration</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let p of getProducts()" [pa-product]="p" (pa-category)="newProductcCtegory = $event"
-        [add-class]="getProducts().length < 6 ? 'bg-info' : 'bg-warning'">
-        <td>{{p.title}}</td>
-        <td>{{p.category}}</td>
-        <td>{{p.price | currency:"USD":"symbol":"2.2-2"}}</td>
+      <!-- [pa-product]="product" (pa-category)="newProductcCtegory = $event" -->
+      <tr *ngFor="let product of products$ | async as products; index as i" >
+        <td>{{product.title}}</td>
+        <td>{{product.category}}</td>
+        <td>{{product.price | currency:"USD":"symbol":"2.2-2"}}</td>
+        <td>{{product.stock}}</td>
         <td>
-          <button [routerLink]="['../products/view', p.id]">View</button>
+          <button [routerLink]="['../products/view', product.id]">View</button>
           &nbsp;&nbsp;
-          <button [routerLink]="['../products/edit', p.id]">Edit</button>
+          <button [routerLink]="['../products/edit', product.id]">Edit</button>
           &nbsp;&nbsp;
-          <button (click)="deleteProduct(p.id)">Delete</button>
+          <button (click)="delete(product.id)">Delete</button>
         </td>
       </tr>
     </tbody>

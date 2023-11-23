@@ -9,7 +9,6 @@
       <span class="slogan"></span>
     </div>
     <div class="landing-header-right">
-      <div class="header-search-box" *ngIf="hasHeaderSearch"><app-search ></app-search></div>
       <ul class="header-icons" >
         <li *ngFor="let tool of toolbars; let last = last;let i = index" [style]="{'margin-left': last ? '5em' : '2em'}" >
           <a (click)="tapevent(tool, $event)" *ngIf="!isLogin || (isLogin && !last)">

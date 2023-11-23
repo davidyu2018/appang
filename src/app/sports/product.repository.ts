@@ -11,9 +11,13 @@ export class ProductRepository {
   constructor(private dataSource: RestDataSource) {
     dataSource.getProducts().subscribe((data: Product[]) => {
       this.products = data;
+    // console.log('zoule zheli', this.products)
       this.categories = data.map(p => p.category)
         .filter((c, index, array) => array.indexOf(c) == index).sort()
     })
+  }
+  queryProducts(query: string): Observable<Product[]> {
+    return this.dataSource.query(query)
   }
   getProducts(category: string = ''): Product[] {
     return this.products.filter(p => category == '' || category == p.category)

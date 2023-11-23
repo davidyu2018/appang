@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Product } from '../sports/product.model';
 import { ProductRepository } from '../sports/product.repository';
-import { CellClickedEvent, GridReadyEvent ,ColDef} from 'ag-grid-community';
 import { Observable, fromEvent, merge, map, Subject} from 'rxjs';
+import { debounceTime, distinctUntilChanged, scan, share, startWith, switchMap, tap} from 'rxjs/operators'
 
 @Component({
   selector: 'app-product-table',
@@ -10,39 +10,31 @@ import { Observable, fromEvent, merge, map, Subject} from 'rxjs';
   styleUrls: ["./admin.component.scss"]
 })
 export class ProductTableComponent {
+  searchString: string = ''
+  searchSubject$: Subject<string> = new Subject()
   newProductcCtegory: string = '';
-  products: any[] = []
-  columnDefs: any[] = [
-    {
-      field: 'title',
-      colId: 'Title'
-    },
-    {
-      field: 'price',
-      colId: 'Price'
-    },
-    {
-      field: 'stock',
-      colId: 'Store'
-    },
-    {
-      field: 'category',
-      colId: 'Category'
-    }
-  ]
+  products$: Observable<Product[]>;
   constructor(private repository: ProductRepository) {
-
+    
   }
-  getProducts(): Product[] {
-    return this.repository.getProducts()
+  ngOnInit() {
+    this.products$ = this.searchSubject$.pipe(
+      startWith(this.searchString),
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(query => this.repository.queryProducts(query)),
+      share()
+    )
   }
-  deleteProduct(id: string) {
+  search() {
+    this.searchSubject$.next(this.searchString)
+  }
+  searchRemove() {
+    if (this.searchString.length <= 3) return
+    this.searchString = ''
+    this.search()
+  }
+  delete(id: string) {
     this.repository.deleteProduct(id)
-  }
-  onCellClicked(e: any): void {
-    console.log(e)
-  }
-  onGridReady(params: GridReadyEvent) {
-    // this.rowData$ = this.mockServer.getAgGridData().pipe(tap(r => console.log('rrr', r)))
   }
 }

@@ -25,18 +25,36 @@
   }
 }
 .aside-box {
-  // border:1px solid #666666;
-  text-align: center;
+  border:1px solid #666666;
+  background-image: linear-gradient(#eaeaea,#f0f0f0);
   border-radius: 7px;
+  & > dt {
+    background-color: #242424;
+    padding:0.5em 1em;
+    color:whitesmoke
+  }
+  & > dd {
+    padding: 0.5em;
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #d5d5d5;
+    cursor: pointer;
+  }
+  & > dd:hover {
+    border-bottom: 1px solid #fafafa;
+    border-top: 1px solid #d5d5d5;
+  }
 }
 .category-header {
   border-top:1px solid #8d7d95;
   border-bottom:1px solid #221e26;
-  background-image: linear-gradient(#5a505f,#372f3b);
   border-radius: 8px 8px 0 0;
   padding:1em 1em;
   color: #dbdbdb;
   font-size: 1.2rem;
+}
+.category-btn.active {
+  background-color: #d0d0d0;
+  color:#221e26;
 }
 ////////////////////////////////////////////////
 
@@ -124,6 +142,7 @@ section.card {
   min-height: 10em;
   height: 20em;
   width:100%;
+  margin: 0 0.5em 1em 0.5em;
   background-color: #fff;
   border-radius: 10px;
   // display: flex;

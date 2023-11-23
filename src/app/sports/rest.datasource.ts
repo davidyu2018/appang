@@ -14,6 +14,9 @@ export class RestDataSource {
     this.baseUrl = `https://dummyjson.com`;
     this.auth.getAuth().subscribe((auth) => this.auth_token = auth.token)
   }
+  query(query: string): Observable<Product[]> {
+    return this.http.get<any>(this.baseUrl + '/products/search?q=' + query).pipe(map(res => res.products))
+  }
   getProducts(): Observable<Product[]> {
     return this.http.get<any>(this.baseUrl + '/products').pipe(map(res => res.products))
   }

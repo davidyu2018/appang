@@ -21,7 +21,7 @@ export class SportsComponent {
     return this.repository.getProducts(this.selectedCategory).slice(pageIndex, pageIndex + this.productsPerPage)
   }
   get categories(): any[] {
-    return this.repository.getCategories().map(ca => ({text: ca}))
+    return this.repository.getCategories()
   }
   changeCategory(newCategory: string) {
     this.selectedCategory = newCategory;

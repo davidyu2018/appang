@@ -13,7 +13,7 @@ export class AuFaInputComponent implements AfterContentInit {
     @ContentChild(InputRefDirective)
     input: InputRefDirective;
     ngAfterContentInit() {
-        console.log('inputtt', this.input)
+        // console.log('inputtt', this.input)
         if (!this.input) {
             // console.error('the au-fa-input needs an input inside its content');
         }

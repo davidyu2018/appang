@@ -1,5 +1,7 @@
 .search-bar-box {
-  display: flex;
+  display: inline-flex;
+  max-width: 27em;
+  min-width: 15em;
   border-top: 1px solid #a3a4a6;
   border-bottom: 1px solid #e0e0e0;
   background-image: linear-gradient(#f4f5f7,#fdfdfd);

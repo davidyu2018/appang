@@ -14,7 +14,6 @@ export class HeaderComponent {
   dropdowns: any[] = [];
   posY: number = 0;
   @Input() logo: any ={};
-  @Input() hasHeaderSearch: boolean = false
   @Input() 
   set headerToolbar(toolbars: any[]) {
     this.toolbars = [...toolbars]

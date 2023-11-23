@@ -5,7 +5,7 @@
     <div class="nav-item-text">
         {{menu.text}}
     </div>
-    <div class="nav-item-addicon">
+    <div class="nav-item-addicon" *ngIf="menu.addicon">
         <img [src]="'../../../assets/images/icons/' + menu.addicon" />
     </div>
 </div>

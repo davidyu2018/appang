@@ -18,7 +18,7 @@ export class TodoService {
   getTodos() {
     this.http.get(this.api_url).pipe(
       map(res => res as Todo[]),
-      tap(evt => console.log('tap-evt', evt))
+      // tap(evt => console.log('tap-evt', evt))
     ).subscribe(todos => this.updateStoreAndSubject(todos))
   }
   filterTodos(filter: string) {

@@ -1,4 +1,4 @@
-<span class="cart-box">
+<a class="cart-box" routerLink="../sports/cart">
   <small>Your cart:
     <span *ngIf="cart.itemCount> 0">
       {{cart.itemCount}} item(s)
@@ -8,7 +8,4 @@
     <img *ngIf="cart.itemCount == 0" src="./assets/images/icons/shopping-cart-icon.svg" />
     <img *ngIf="cart.itemCount > 0" src="./assets/images/icons/cart-icon.svg" />
   </small>
-  <!-- <a routerLink="./cart" class="buton-cart">
-    <img src="./assets/images/icons/shopping-cart-icon.svg" />
-  </a> -->
-</span>
+</a>

@@ -19,12 +19,11 @@ export const routes: Routes = [
       {
         path: "products/:mode/:id",
         component: ProductEditorComponent,
-        resolve: { data: DataResolver }
+        // resolve: { data: DataResolver }
       },
       {
         path: "products/:mode",
         component: ProductEditorComponent,
-        resolve: { data: DataResolver },
         canActivate: [MenusLoadedGuardService]
       },
       {

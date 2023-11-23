@@ -22,11 +22,6 @@ export const routes: Routes = [
     component: CheckoutComponent,
     canActivate: [SportsFirstGuard]
   },
-  {
-    path: 'admin',
-    canActivate: [AuthGuardService],
-    loadChildren: () => import('../admin/admin.module').then(mod => mod.AdminModule),
-  }
   // {
   //   path: 'admin',
   //   component: AdminComponent,
