@@ -1,10 +1,10 @@
 <a class="cart-box" routerLink="../sports/cart">
-  <small>Your cart:
+  <small>{{"PAGE.TITLE.YOUR_CART" | translate}}:
     <span *ngIf="cart.itemCount> 0">
       {{cart.itemCount}} item(s)
       {{cart.cartPrice | currency:"USD":"symbol":"2.2-2"}}
     </span>
-    <span *ngIf="cart.itemCount == 0">(empty) </span>
+    <span *ngIf="cart.itemCount == 0">({{"PAGE.TITLE.EMPTY" | translate}}) </span>
     <img *ngIf="cart.itemCount == 0" src="./assets/images/icons/shopping-cart-icon.svg" />
     <img *ngIf="cart.itemCount > 0" src="./assets/images/icons/cart-icon.svg" />
   </small>

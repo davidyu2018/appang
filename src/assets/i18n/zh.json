@@ -61,5 +61,19 @@
     "PLACEHOLDER": {
       "SEARCH": "输入文本..."
     }
+  },
+  "PAGE": {
+    "TITLE": {
+      "SPORTS_STORE": "体育商店",
+      "ADMIN_PRODUCT": "商品管理",
+      "YOUR_CART": "你的购物车",
+      "EMPTY": "空",
+      "PRODUCT_CATEGORY": "产品分类",
+      "ALL": "全部",
+      "BACK_TO_STORE": "返回商店"
+    }
+  },
+  "BUTTONS": {
+    "CREATE": "新增"
   }
 }

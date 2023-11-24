@@ -29,12 +29,6 @@
                 },
                 "dropdown": [
                     {
-                        "name": "FIXED_WIDTH",
-                        "id": "FIXED_WIDTH",
-                        "icon": "desktop-mobile-icon.svg",
-                        "switch": true
-                    },
-                    {
                         "name": "FIXED_HEADER",
                         "id": "FIXED_HEADER",
                         "icon": "pushpin-icon.svg",
@@ -57,27 +51,22 @@
             {
                 "button": {
                     "name": "",
-                    "icon": "map-marker-2.svg",
+                    "icon": "language-translator-icon.svg",
                     "langKey": "langage",
                     "id": "LANG"
                 }
+            }
+        ],
+        "loginDropdowns": [
+            {
+                "name": "PROFILE",
+                "id": "PROFILE",
+                "icon": "resume-cv-icon.svg"
             },
             {
-                "button": {
-                    "name": "LOGIN",
-                    "icon": "user-circle.svg",
-                    "id": "LOGIN"
-                },
-                "dropdown": [
-                    {
-                        "name": "PROFILE",
-                        "icon": "resume-cv-icon.svg"
-                    },
-                    {
-                        "name": "LOGOUT",
-                        "icon": "power.svg"
-                    }
-                ]
+                "name": "LOGOUT",
+                "id": "LOGOUT",
+                "icon": "power.svg"
             }
         ],
         "osso": ""

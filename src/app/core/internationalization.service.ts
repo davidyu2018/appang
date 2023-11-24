@@ -17,8 +17,8 @@ export class InternationalizationServiceTsService {
   }
   setInternation(useLanKey: string = '') {
     const originLangs = [
-      { name: MAP_INTERNATION_NAME['en'].name, icon: MAP_INTERNATION_NAME['en'].icon, langKey: 'en', id: MAP_INTERNATION_NAME['en'].name},
-      { name: MAP_INTERNATION_NAME['zh'].name, icon: MAP_INTERNATION_NAME['zh'].icon, langKey: 'zh', id: MAP_INTERNATION_NAME['zh'].name}
+      {  icon: MAP_INTERNATION_NAME['en'].icon, langKey: 'en', id: MAP_INTERNATION_NAME['en'].name},
+      {  icon: MAP_INTERNATION_NAME['zh'].icon, langKey: 'zh', id: MAP_INTERNATION_NAME['zh'].name}
     ]
     originLangs.length && this.translate.addLangs(originLangs.map(lang => lang.langKey))
     if (originLangs.length === 0)  return 

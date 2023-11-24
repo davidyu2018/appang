@@ -37,16 +37,16 @@ export class StockComponent {
   ];
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
-  constructor(private stockService: StockService, private mockServer: MockStockService) {  }
-
+  constructor(private stockService: StockService, private mockServer: MockStockService) { 
+  //   this.stocks$ = this.searchTerms.pipe(
+  //     startWith(this.searchString),
+  //     debounceTime(500),
+  //     distinctUntilChanged(),
+  //     switchMap(query => this.stockService.getStocks(query)),
+  //     share()
+  //   )
+   }
   ngOnInit(){
-    this.stocks$ = this.searchTerms.pipe(
-      startWith(this.searchString),
-      debounceTime(500),
-      distinctUntilChanged(),
-      switchMap(query => this.stockService.getStocks(query)),
-      share()
-    )
     /////////////////////////////////
     this.currencies$ = this.mockServer.getCurrencyObservable();
     this.rowData$ = this.mockServer.getDataObservable()

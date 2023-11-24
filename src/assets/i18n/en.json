@@ -60,5 +60,19 @@
     "PLACEHOLDER": {
       "SEARCH": "Input..."
     }
+  },
+  "PAGE": {
+    "TITLE": {
+      "SPORTS_STORE": "Sports Store",
+      "ADMIN_PRODUCT": "Admin Product",
+      "YOUR_CART": "Your Cart",
+      "EMPTY": "empty",
+      "PRODUCT_CATEGORY": "Product Category",
+      "ALL": "All",
+      "BACK_TO_STORE": "Back To Store"
+    }
+  },
+  "BUTTONS": {
+    "CREATE": "Create"
   }
 }

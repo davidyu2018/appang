@@ -2,14 +2,14 @@
   <div class="table-toolbar">
     <div style="display: inline-flex;">
       <div class="table-search">
-        <input name="searchBox" class="table-search-box" autocomplete="off" [(ngModel)]="searchString" placeholder="Search Here" (keyup)="search()" />
+        <input name="searchBox" class="table-search-box" autocomplete="off" [(ngModel)]="searchString" [placeholder]="'FORM.PLACEHOLDER.SEARCH' | translate" (keyup)="search()" />
         <a>
           <img src="./assets/images/icons/x-circle.svg" *ngIf="searchString.length > 3" (click)="searchRemove()" />
           <img src="./assets/images/icons/search.svg" class="search-icon" [class.move-away]="searchString.length > 3"/>
         </a>
       </div>
       <button routerLink="../products/create" class="table-button">
-        <img src="../../assets/images/icons/plus.svg" width="18" height="18" /> Create New Product
+        <img src="../../assets/images/icons/plus.svg" width="18" height="18" /> {{"BUTTONS.CREATE" | translate}}
       </button>
   </div>
 

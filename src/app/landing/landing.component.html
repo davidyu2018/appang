@@ -1,7 +1,7 @@
 <div class="c-container" [class.fixed-width]="fixWidth$ | async">
     <header class="c-header">
         <div class="c-header-body">
-            <app-header [logo]="logo" (onSwitchEvent)="onSwitchEvent($event)" [headerToolbar]="headerToolbar" [headerDropdowns]="headerDropdowns" (onEventMenu)="onEventMenu($event)" (onEventLink)="onEventLink($event)"></app-header>
+            <app-header></app-header>
         </div>
     </header>
     <nav class="c-nav">
@@ -12,62 +12,6 @@
     <main class="c-main">
         <div class="c-main-body">
             <router-outlet></router-outlet>
-            <!-- <div class="collapse-menu-box">
-                <div class="collapse-menu-aside">
-                    <router-outlet name="aside"></router-outlet>
-                </div>
-                <div class="collapse-menu-main">
-                    <router-outlet name="whole"></router-outlet>
-                </div>
-            </div> -->
         </div>
-            
-            <!-- <div>
-            <p>1111.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>22222.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>333333.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>44444.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-
-            dfghjkl的功夫好看
-            <p>.c-container.fixed-width .c-header-content.c-container.fixed-width .c-header-content</p>
-            </div> -->
-        </main>
+    </main>
 </div>

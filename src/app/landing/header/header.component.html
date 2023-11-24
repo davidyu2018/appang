@@ -1,40 +1,33 @@
-<div class="landing-header-wrapper">
-    <div class="landing-header-left">
-      <h1 style="margin: 0;">
-        <span class="logo">
-           <strong *ngIf = "!logo.img">{{logo.text || 'LOGO'}}</strong>
-           <img *ngIf = "logo.img" [src]="'./assets/images/logo/' + logo.img"/>
-        </span>
-      </h1>
+<div class="ang-header-wrapper">
+    <div class="ang-header-left" >
+        <strong *ngIf="!logo.img">{{logo.text || 'LOGO'}}</strong>
+         <img *ngIf="logo.img" [src]="'./assets/images/logo/' + logo.img"/>
       <span class="slogan"></span>
     </div>
-    <div class="landing-header-right">
-      <ul class="header-icons" >
-        <li *ngFor="let tool of toolbars; let last = last;let i = index" [style]="{'margin-left': last ? '5em' : '2em'}" >
-          <a (click)="tapevent(tool, $event)" *ngIf="!isLogin || (isLogin && !last)">
-            <img [id]="'OUTSIDE_CLICK_AREA' + i" [src]="'./assets/images/icons/' + tool.button.icon" [title]='"SECTION.NAV." + tool.button.id | translate' *ngIf="tool.button.icon" class="nav-links_icon" />
+    <div class="ang-header-right">
+      <ul class="toobar-ul" >
+        <li *ngFor="let tool of toolbars; let last = last;let i = index" (click)="tapevent(tool, $event)">
+            <img [id]="'OUTSIDE_CLICK_AREA' + i" [src]="'./assets/images/icons/' + tool.button.icon" [title]='"SECTION.NAV." + tool.button.id | translate' class="nav-links_icon" />
             <span [id]="'OUTSIDE_CLICK_AREA' + i" class="link-text" *ngIf="tool.button.name">{{ "SECTION.NAV." + tool.button.name | translate}}</span>
-          </a>
-          <a (click)="tapevent(tool, $event)" *ngIf="isLogin && last">
-            <img [src]="tool.button.icon" class="nav-links_icon scale" [id]="'OUTSIDE_CLICK_AREA' + i"/>
-            <span class="link-text" *ngIf="tool.button.name" [id]="'OUTSIDE_CLICK_AREA' + i">{{ tool.button.name }}</span>
-          </a>
         </li>
-        <dl class="dropdown-box" [class.toggle]="toggle" *ngIf="dropdowns.length" [style]="{'left': posY + 'px'}" appClickOutside (clickOutside)="onClickOutside($event)">
-            <dt>
-                <div class="triangle location"></div>
-                <div class="triangle location inner"></div>
-              <!-- <img src="./assets/images/icons/x-circle.svg" class="mini-close" /> -->
-            </dt>
-            <dd *ngFor="let link of dropdowns" (click)="goLink(link)" [class.active]="link.active">
-              <img [src]="'./assets/images/icons/' + link.icon" />
-              <span>{{ "SECTION.NAV." + link.name || link.id | translate}}</span>
-              <span *ngIf="link.switch" style="padding-left: 20px;">
-               <app-switch [switchState]="link.switchState" (onSwitch)="onSwitch($event, link)"></app-switch>
-              </span>
-            </dd>
-          </dl>
+        <li (click)="userHandler($event)" id="OUTSIDE_CLICK_AREA_login">
+            <img class="nav-links_icon" [src]="(loginfo$ | async)?.avatar" id="OUTSIDE_CLICK_AREA_loginimg" [class.expand]="isLogin"/>
+            <span id="OUTSIDE_CLICK_AREA_logintext">{{ (loginfo$ | async)?.name | translate }}</span>
+        </li>
       </ul>
-    
+      <dl class="dropdown-box" [style]="{'right': posY + 'px', 'transition': 'all 0.25s linear'}" *ngIf="dropdowns.length" appClickOutside (clickOutside)="onClickOutside($event)">
+        <dt>
+            <div class="triangle location"></div>
+            <div class="triangle location inner"></div>
+          <!-- <img src="./assets/images/icons/x-circle.svg" class="mini-close" (click)="dropdowns = []"/> -->
+        </dt>
+        <dd *ngFor="let link of dropdowns" (click)="goLink(link)" [class.active]="link.active">
+          <img [src]="'./assets/images/icons/' + link.icon" />
+          <span>{{ "SECTION.NAV." + link.id | translate}}</span>
+          <span *ngIf="link.switch" style="padding-left: 20px;">
+           <app-switch [switchState]="link.switchState" (onSwitch)="onSwitch($event, link)"></app-switch>
+          </span>
+        </dd>
+      </dl>
     </div>
-  </div>
+</div>

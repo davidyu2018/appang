@@ -41,7 +41,8 @@ export class AuthService {
       map((res:any) => {
         if (res.results) {
           const loginfo = res.results[0].login
-          const loginname = loginfo.username
+          const nameSet = res.results[0].name
+          const loginname = `${nameSet.first} ${nameSet.last}`
           const token = loginfo.uuid
           const password = loginfo.password
           const avatar = res.results[0].picture.medium

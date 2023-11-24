@@ -1,17 +1,17 @@
 <app-layout [asideBar]="[]">
   <div class="sports-store">
     <header class="page-header">
-      <h3>Sports Store</h3>
+      <h3>{{"PAGE.TITLE.SPORTS_STORE" | translate}}</h3>
       <div class="header-right">
-        <button class="button-gray" routerLink="/admin">Admin Product</button>
+        <button class="button-gray" routerLink="/admin">{{"PAGE.TITLE.ADMIN_PRODUCT" | translate}}</button>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <app-cart></app-cart>
       </div>
     </header>
     <div class="equal-altitude">
       <ul class="columns_1 aside-box">
-        <dt>Product Category</dt>
-        <dd class="category-btn" [class.active]="'' == selectedCategory" (click)="changeCategory('')">All</dd>
+        <dt>{{"PAGE.TITLE.PRODUCT_CATEGORY" | translate}}</dt>
+        <dd class="category-btn" [class.active]="'' == selectedCategory" (click)="changeCategory('')">{{"PAGE.TITLE.ALL" | translate}}</dd>
         <dd class="category-btn" *ngFor="let cat of categories" [class.active]="cat == selectedCategory"
           (click)="changeCategory(cat)">{{cat}}</dd>
       </ul>

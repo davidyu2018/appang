@@ -1,6 +1,9 @@
-import { Component,Input, Output, EventEmitter, ElementRef } from '@angular/core';
-import { Auth } from '../../auth/services/model';
+import { Component,Input, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { InternationalizationServiceTsService } from '../../core/internationalization.service';
+import { LayoutService } from '../../core/layout.service';
 import { AuthService } from '../../auth/services/auth.service';
+import { Observable, map } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,71 +11,102 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 
 export class HeaderComponent {
-  isLogin: boolean = false;
-  toggle: boolean = false
+  logo: any = {}
+  loginfo$: Observable<any>;
   toolbars: any[] = [];
+  loginDropdowns: any[] = []
+  isLogin: boolean = false
   dropdowns: any[] = [];
+  languages: any = {}
   posY: number = 0;
-  @Input() logo: any ={};
-  @Input() 
-  set headerToolbar(toolbars: any[]) {
-    this.toolbars = [...toolbars]
+  cashDom: any = null;
+  layoutOption: any
+  // @Output() onEventMenu = new EventEmitter<object>()
+  // @Output() onEventLink = new EventEmitter<object>()
+  // @Output() onSwitchEvent = new EventEmitter<boolean>()
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    setTimeout(() => this.cashDom && this.setPosition(this.cashDom), 30)
+    
   }
-  @Input() 
-  set headerDropdowns(dropdowns: any[]) {
-    this.dropdowns = [...dropdowns]
-    this.dropdowns.length && (this.toggle = true)
-    this.dropdowns.length === 0 && (this.toggle = false)
-  }
-
-  @Output() onEventMenu = new EventEmitter<object>()
-  @Output() onEventLink = new EventEmitter<object>()
-  @Output() onSwitchEvent = new EventEmitter<boolean>()
-
-  constructor(private el: ElementRef, private socialAuth: AuthService) { 
-    this.socialAuth.getAuth().subscribe((auth: Auth) => {
-      this.isLogin = !!auth.token
+  constructor(private el: ElementRef, private socialAuth: AuthService, private http: HttpClient, private internation: InternationalizationServiceTsService, private layoutService: LayoutService) {
+    this.http.get('./assets/configs/configs.json').subscribe((data: any) => {
+      const resdata = {...data.data}
+      this.logo = resdata.logo;
+      this.toolbars = resdata.headerToolbar;
+      this.loginDropdowns = resdata.loginDropdowns
+      this.toolbars.some(t => t.button && t.button.langKey === 'langage') && (this.languages = this.internation.getInternation())
+      this.toolbars.some(t => t.button && t.button.langKey === 'langage') && this.goLink(this.languages.currentLang)
     })
+    this.loginfo$ = this.socialAuth.getAuth().pipe(map(auth => ({token: auth.token ? auth.token : '', name: auth.token ? auth.loginname : 'SECTION.NAV.LOGIN', avatar: auth.token ? auth.avatar : './assets/images/icons/user-account-login-icon.svg'})))
+    this.loginfo$.subscribe(auth => this.isLogin = !!auth.token)
   }
   ngOnInit() {
+    this.layoutService.getLayoutOption.subscribe(option => this.layoutOption = {...option})
+  }
+  userHandler($event: any) {
+      if (this.isLogin) {
+        this.dropdowns = this.loginDropdowns
+        this.setPosition($event.target, 20)
+      } else {
+        this.socialAuth.unAuth()
+      }
   }
   tapevent(li: any, $event: any) {
-    const elm = $event.target
-    const parelm = this.el.nativeElement.querySelector('.header-icons')
-    this.onEventMenu.emit(li)
-    // capture cursor axious
-    const tardompos = this.getElementTop(parelm, elm)
-    this.posY = tardompos + 13
+    this.generateDropdown(li, $event)
+    this.setPosition($event.target)
+  }
+  generateDropdown(toolbar: any, $event: any) {
+    if (toolbar.button.langKey) {
+      this.dropdowns = this.languages.langs
+      } else {
+      const finIdx = this.toolbars.findIndex(t => t.button && (t.button.id === toolbar.button.id))
+      this.dropdowns = [...this.toolbars[finIdx].dropdown]
+      this.dropdowns = this.dropdowns.map(dd => (dd.switch ? {...dd, switchState: this.layoutOption[dd.id]} : dd))
+    }
 
-    li.dropdown && li.dropdown.length && setTimeout(() => {
-      const dropdom = this.el.nativeElement.querySelector('.dropdown-box')
-      dropdom && (this.posY = this.posY - dropdom.offsetWidth / 2)
-    }, 0)
+  }
+  updateToolbar(toolbar: any) {
+    if (toolbar.langKey) {
+      const hasLan = this.toolbars.findIndex(it => it.button.langKey)
+      const newbutton = {...this.toolbars[hasLan], button: toolbar}
+      this.toolbars = [...this.toolbars.slice(0, hasLan), newbutton, ...this.toolbars.slice(hasLan+1)]
+    } else {
+
+    }
+  }
+  setPosition(elm: any, value: number = 0) {
+    // const elm = $event.target
+    this.cashDom = elm;
+    const parelm = this.el.nativeElement.querySelector('.toobar-ul')
+    const parElemWidth = parelm.offsetWidth
+    const tardompos = this.getElementTop(parelm, elm)
+    setTimeout(() => {
+      const dropelem = this.el.nativeElement.querySelector('.dropdown-box')
+      const droplemwidth = dropelem ? dropelem.offsetWidth : 0
+      const calcValue = parElemWidth - tardompos - (droplemwidth / 2) - 10
+      this.posY = value > 0 ? value : calcValue
+    }, 10)
   }
   goLink(link: any) {
-    if (link.switch) {
-      setTimeout(() => {
-      this.toggle = false
-    }, 1000)
-      return;
+    if(link.langKey) {
+      this.internation.setInternation(link.langKey)
+      this.updateToolbar(link)
+    } else if(link.id === "LOGOUT") {
+      this.socialAuth.unAuth()
     }
-    this.toggle = false
-    this.onEventLink.emit(link)
+    !link.switch && (this.dropdowns = [])
   }
   getElementTop(parent: any, sub: any): any {
     const parentClient = parent.getBoundingClientRect()
-    // console.log('poss1', parentClient )
-
     const subClient = sub.getBoundingClientRect()
-    // console.log('poss2', subClient )
-
     return (subClient.left - parentClient.left)
   }
   onClickOutside($event: boolean) {
     $event && (this.dropdowns = [])
   }
   onSwitch(e: any, link: any) {
-    const newlink = {...link, switchState: e}
-    this.onSwitchEvent.emit(newlink)
+    const opti = {[link.id]: e}
+    this.layoutService.setLayoutOption(opti)
   }
 }
