@@ -24,7 +24,7 @@ export class AuthService {
     return this.subject.asObservable()
   }
   unAuth(url: string = ''): void {
-    this.router.navigate(['/auth'])
+    this.router.navigate(['/auth'], { replaceUrl: true })
 
     const curUrl = url ? url : this.router.url
     this.auth = Object.assign({}, this.auth, {loginname: '', token: '', redirectUrl: curUrl, avatar: '', password:'' });

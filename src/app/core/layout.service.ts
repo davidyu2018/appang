@@ -8,6 +8,7 @@ import { Observable, of, ReplaySubject, defer, interval, from } from 'rxjs';
 export class LayoutService {
   layoutOptions: any
   subject$: ReplaySubject<any> = new ReplaySubject<any>(1);
+  subjectLoading$: ReplaySubject<any> = new ReplaySubject<boolean>(1);
   constructor() {
     const layoutStore = JSON.parse(localStorage.getItem('LAYOUT_OPTIONS') || 'null') 
     this.layoutOptions = layoutStore ? {...this.layoutOptions, ...layoutStore} : 
@@ -16,6 +17,12 @@ export class LayoutService {
   }
   get getLayoutOption() {
     return this.subject$.asObservable()
+  }
+  get showLoading() {
+    return this.subjectLoading$.asObservable()
+  }
+  setLoading(value: boolean) {
+    this.subjectLoading$.next(value)
   }
   setLayoutOption(option: any) {
     this.layoutOptions = {...this.layoutOptions, ...option}

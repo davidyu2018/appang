@@ -47,8 +47,8 @@
          
          <div class="sign-up">
           <!-- routerLink="/auth/register" -->
-          <a [routerLink]="['/auth/register']">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
-            <a  [routerLink]="['/auth/forgetpw']" style="float: right;">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
+          <a routerLink="/auth/register" replaceUrl = "true">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
+          <a  routerLink="/auth/forgetpw" replaceUrl = "true" style="float: right;">{{"USER.ADD_LINK.FORGOT_PW" | translate}}</a>
          </div>
          <!-- <a routerLink="/auth/register">{{"USER.ADD_LINK.NOT_SIGNUP"  | translate}}</a>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

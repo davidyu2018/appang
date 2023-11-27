@@ -25,7 +25,7 @@ export class AdminComponent {
   ]
   constructor(private auth: AuthService, private router: Router) {
     router.events.pipe(filter((event: NavigationEvent) => event instanceof NavigationStart)).subscribe((event: any) => {
-      console.log("navigation id:", event.restoredState)
+      // console.log("navigation id:", event.restoredState)
     })
    }
   // logoutAdmin() {
