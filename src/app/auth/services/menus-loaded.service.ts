@@ -1,8 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, Route, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { map } from 'rxjs/operators'
-import { Observable, of } from 'rxjs';
+import { Observable, of,Subject } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { ProductEditorComponent } from '../../admin/product-editor.component'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,5 +48,31 @@ export class MenusLoadedGuardService {
       !tof && (this.router.navigate(['/landing']))
       return tof ? resolve(true) : resolve(false)
     })
+  }
+  canDeactivate(component: ProductEditorComponent, route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | boolean {
+      console.log('ccccccccccccc', component)
+    if (component) {
+      if (
+        ["name", "category", "price"]
+        // .some((prop:string) => component.product[prop] != component.originalProduct[prop])
+      ) {
+        let subject = new Subject<boolean>();
+        let responses: [string, (string: string) => void][] = [
+          ["Yes", () => {
+            subject.next(true);
+            subject.complete();
+          }],
+          ["No", () => {
+            this.router.navigateByUrl(this.router.url);
+            subject.next(false);
+            subject.complete();
+          }]
+        ];
+        alert('Discard change?');
+        return subject;
+      }
+    }
+    return true;
   }
 }

@@ -13,11 +13,13 @@ export class AdminComponent {
     {
       icon: 'serve-f.svg',
       text: 'Products',
+      path: './products',
       addicon: 'line-angle-down-icon.svg'
     },
     {
       icon: 'file-f.svg',
       text: 'Order list',
+      path: './orders',
       addicon: ''
     }
   ]

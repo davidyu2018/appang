@@ -6,11 +6,12 @@
         position: relative;
         transition: 0.2s ease;
         border-bottom:1px solid #d4d4d4;
-        background-color: #f4f3ef;
+        background-image: linear-gradient(#c6e6f3, #d3f1f6)
     }
     & > .c-nav {
-        background-image: linear-gradient(#f4f3ef, #ecebe7);
+        background-image: linear-gradient(#e3e4db, #e8dbc8  );
         border-top: 1px solid #fff;
+        border-bottom: 1px solid #cbad94;
         transition: 0.2s ease;
     }
     & > .c-main {

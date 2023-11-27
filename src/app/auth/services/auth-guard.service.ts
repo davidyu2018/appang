@@ -30,8 +30,8 @@ export class AuthGuardService {
     return this.socialAuth.getAuth().pipe(
       map((auth: Auth) => {
         if(!auth.token ){
-          this.router.navigate(['/auth'])
-          // this.socialAuth.unAuth('/' + url)
+          // this.router.navigate(['/auth'])
+          this.socialAuth.unAuth('/' + url)
           // this.socialAuth.goLogin(`/${url}`)
         } 
         console.log('xxx',auth)

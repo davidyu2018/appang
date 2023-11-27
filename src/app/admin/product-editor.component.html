@@ -1,35 +1,35 @@
 <form novalidate #form="ngForm" (ngSubmit)="save(form)" class="form-group" autocomplete="off">
   <h4 class="form-caption">{{mode }} Product</h4>
   <aweso-input label="Name">
-    <input class="form-control" inputRef name="name" [disabled]="mode === 'view'" [(ngModel)]="product.title" />
+    <input class="form-control" required inputRef name="name" [disabled]="mode === 'view'" [(ngModel)]="product.title" />
   </aweso-input>
   <aweso-input label="Category">
     <!-- <input class="form-control" inputRef name="category" [disabled]="mode === 'view'" [(ngModel)]="product.category" /> -->
-    <select [(ngModel)]="product.category" inputRef name="category" (ngModelChange)="onChange($event)" [disabled]="mode === 'view'">
+    <select [(ngModel)]="product.category" required inputRef name="category" (ngModelChange)="onChange($event)" [disabled]="mode === 'view'">
       <option
-          *ngFor="let category of categorys"
+          *ngFor="let category of categories"
           [ngValue]="category">
           {{category}}
       </option>
   </select>
   </aweso-input>
-  
   <aweso-input label="Price" icon="calendar-color-icon.svg">
-    <input class="form-control" inputRef name="price" [disabled]="mode === 'view'" [(ngModel)]="product.price" />
+    <input class="form-control" inputRef required name="price" [disabled]="mode === 'view'" [(ngModel)]="product.price" />
   </aweso-input>
   <aweso-input label="Description">
     <input class="form-control" inputRef name="description" [disabled]="mode === 'view'" [(ngModel)]="product.description" />
   </aweso-input>
   <div class="form-buttons-box">
-    <button type="submit" class="form-button" *ngIf="mode !== 'view'" [class.btn-waring]="mode === 'editing'">{{mode === 'edit' ? "Save" : "Create"
+    <button type="button" class="form-button" *ngIf="prevId !== -1" style="float: left;"
+      [routerLink]="['/admin/products/edit', prevId]">Previous
+    </button>
+
+    <button type="submit" class="form-button" [disabled]="!form.valid" *ngIf="mode !== 'view'">{{mode === 'edit' ? "Save" : "Create"
     }}</button>
     <button type="button" class="form-button" routerLink="../../">Cancel</button>
-    <button type="button" *ngIf="mode !== 'create'" class="form-button"
-      [routerLink]="['/landing/sports/admin/products/edit', repository.getPreviousProductId(product.id)]">
-      Previous
-    </button>
-    <button type="button" *ngIf="mode !== 'create'" class="form-button"
-      [routerLink]="['/landing/sports/admin/products/edit', repository.getNextProductId(product.id)]"> Next
+    
+    <button type="button" *ngIf="mode !== 'create' && nextId !== -1" class="form-button"
+      [routerLink]="['/admin/products/edit', nextId]" style="float: right;"> Next
     </button>
   </div>
 </form>

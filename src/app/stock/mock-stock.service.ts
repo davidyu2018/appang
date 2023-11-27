@@ -19,7 +19,6 @@ export class MockStockService {
       this.http.get<Stock[]>(this.stocksUrl).subscribe((data: Stock[]) => {
         this.immutableData = data;
         observer.next(this.immutableData);
-
         setInterval(() => {
           this.immutableData = this.immutableData.map((row: Stock) =>
             this.updateRandomRowWithData(row)

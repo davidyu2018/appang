@@ -64,8 +64,7 @@ export class LoginComponent implements OnInit {
     ).subscribe((auth: Auth) => {
       if (auth.token) {
         this.toastr.showSuccess('login sucess')
-        const goUdrl = auth.redirectUrl || '/'
-        this.router.navigate([goUdrl])
+        this.router.navigate([auth.redirectUrl])
       } else {
         console.log('login-success:', '找不到本用户')
       }

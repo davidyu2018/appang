@@ -40,7 +40,7 @@ export class RestDataSource {
     return this.http.put<Product>(`${this.baseUrl}products/${product.id}`, product,
       this.getOptions())
   }
-  deleteProduct(id: string): Observable<Product> {
+  deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(`data/posts/${id}`, this.getOptions());
   }
   getOrders(): Observable<Order[]> {

@@ -1,17 +1,18 @@
 .nav-ul-0 {
-    background-image: linear-gradient(#e4e3e8, #ededef);
+    background-image: linear-gradient(#f1e5d9, #e1dcd9);
     & > .nav-li-0 {
-        border-top:1px solid #fafafa;
-        border-bottom:1px solid #d4d4d4;
+        // background-image: linear-gradient(#f1e5d9, #f1e5d9);
+        border-top:1px solid whitesmoke;
+        border-bottom:1px solid wheat;
     }
     & > .nav-li-0:hover {
-        border-bottom:1px solid #fafafa;
-        border-top:1px solid #d4d4d4;
+        border-bottom:1px solid whitesmoke;
+        border-top:1px solid wheat;
     }
     & > li.active {    
         border-top:1px solid #e08e40;
-        border-bottom:1px solid #9a2f09;
-        background-image: linear-gradient(#d16413,#8d2908);
-        color: #fff;
+        // border-bottom:1px solid #9a2f09;
+        // background-image: linear-gradient(#d16413,#8d2908);
+        color: #58311c;
       }
 }

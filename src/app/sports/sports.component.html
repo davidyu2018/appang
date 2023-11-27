@@ -10,7 +10,7 @@
     </header>
     <div class="equal-altitude">
       <ul class="columns_1 aside-box">
-        <dt>{{"PAGE.TITLE.PRODUCT_CATEGORY" | translate}}</dt>
+        <!-- <dt>{{"PAGE.TITLE.PRODUCT_CATEGORY" | translate}}</dt> -->
         <dd class="category-btn" [class.active]="'' == selectedCategory" (click)="changeCategory('')">{{"PAGE.TITLE.ALL" | translate}}</dd>
         <dd class="category-btn" *ngFor="let cat of categories" [class.active]="cat == selectedCategory"
           (click)="changeCategory(cat)">{{cat}}</dd>

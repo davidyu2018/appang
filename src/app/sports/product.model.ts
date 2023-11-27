@@ -1,7 +1,7 @@
 export interface Product {
   title: string;
   rating: number; //
-  id: string;
+  id: number;
   brand: string;
   category: string;
   description: string;

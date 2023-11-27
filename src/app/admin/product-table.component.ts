@@ -34,7 +34,7 @@ export class ProductTableComponent {
     this.searchString = ''
     this.search()
   }
-  delete(id: string) {
-    this.repository.deleteProduct(id)
+  delete(product: Product) {
+    this.repository.deleteProduct(product)
   }
 }

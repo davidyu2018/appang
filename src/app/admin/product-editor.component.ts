@@ -10,25 +10,31 @@ import { Observable } from 'rxjs';
 })
 export class ProductEditorComponent {
   mode: string = '';
+  categories: string[]
   product: Product = {
     price: 0,
-    id: '', 
+    id: -1, 
     title: '',
-     rating: 0, 
-     category: '', 
-     brand: '', 
-     description:'',
-     stock: 0
-    };
-    categorys: string[];
-
+    rating: 0, 
+    category: '', 
+    brand: '', 
+    description:'',
+    stock: 0
+  };
+  prevId:number = -1;
+  nextId:number = -1
   constructor(public repository: ProductRepository, private router: Router, activeRoute: ActivatedRoute) {
     activeRoute.params.subscribe(params => {
       this.mode = params['mode'];
-      let id = params['id'];
-      id && (this.product = Object.assign({}, this.product, repository.getProduct(id)))
+      let id = Number(params['id']);
+      repository.getProduct(id).subscribe(p => this.product = {...p})
+      this.prevId = repository.getPreviousProductId(id)
+      this.nextId = repository.getNextProductId(id)
     })
-    this.categorys = this.repository.getCategories()
+    repository.getCategories()
+    repository.categories$.subscribe(cats => this.categories = cats)
+  }
+  ngOnInit() {
   }
   onChange(e: any) {
 

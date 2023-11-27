@@ -1,59 +1,130 @@
 import { from, Observable } from 'rxjs';
 import { Injectable } from "@angular/core";
 import { Product } from "./product.model"
-// import { StaticDataSource } from './static.datasource'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, map } from 'rxjs';
 import { RestDataSource } from './rest.datasource';
 @Injectable()
 export class ProductRepository {
-  private products: Product[] = [];
-  private categories: any[] = [];
-  private locator = (p: Product, id: string) => p.id == id;
-  constructor(private dataSource: RestDataSource) {
-    dataSource.getProducts().subscribe((data: Product[]) => {
-      this.products = data;
-    // console.log('zoule zheli', this.products)
-      this.categories = data.map(p => p.category)
-        .filter((c, index, array) => array.indexOf(c) == index).sort()
-    })
+  baseUrl: string = ''
+  private mockDataUrl: string = 'assets/json/data.json';
+  private mockImmutableData: Product[];
+  private locator = (p: Product, id: number) => p.id == id;
+///////////////////////////////////////////////////////////////////
+  private dataStore: { products: Product[], categories: string[] }
+  private _products$: BehaviorSubject<Product[]>;
+  private _categories$: BehaviorSubject<string[]>;
+  public productsIds: number[] = []
+  constructor(private dataSource: RestDataSource, private http: HttpClient) {
+    this.baseUrl = `https://dummyjson.com`;
+    this.dataStore = { products: [], categories: [] }
+    this._products$ = new BehaviorSubject<Product[]>([])
+    this._categories$ = new BehaviorSubject<string[]>([])
+    // dataSource.getProducts().subscribe((data: Product[]) => {
+    //   this.products = data;
+    //   this.categories = data.map(p => p.category)
+    //     .filter((c, index, array) => array.indexOf(c) == index).sort()
+    // })
+  }
+  get categories$() {
+    return this._categories$.asObservable()
+  }
+  get products$() {
+    return this._products$.asObservable()
   }
   queryProducts(query: string): Observable<Product[]> {
+    this.dataSource.query(query).subscribe(products => {
+      this.productsIds = products.map(p => p.id)
+      this.updateStoreAndSubject('PRODUCTS', '',products)
+    })
     return this.dataSource.query(query)
   }
-  getProducts(category: string = ''): Product[] {
-    return this.products.filter(p => category == '' || category == p.category)
+  getCategories() {
+    return this.http.get<any>(this.baseUrl + '/products/categories').subscribe(cats => this.updateStoreAndSubject('CATEGORY', '', cats ))
   }
-  getProduct(id: string): Product | undefined {
-    return this.products.find((p: Product) => p.id == id)
-  }
-  getCategories(): string[] {
-    return this.categories;
-  }
-  saveProduct(product: Product) {
-    if (!product.id) {
-      this.dataSource.saveProduct(product).subscribe(p => this.products.push(p))
-    } else {
-      this.dataSource.updateProduct(product).subscribe(p => this.products.splice(this.products.findIndex(p => p.id == product.id), 1, product))
-    }
-  }
-  deleteProduct(id: string) {
-    this.dataSource.deleteProduct(id).subscribe(p => {
-      this.products.splice(this.products.findIndex(p => p.id == id), 1)
+  getProducts(category: string = '') {
+    this.http.get<any>(this.baseUrl + '/products').pipe(map(res => res.products as Product[])).subscribe(products => {
+      this.productsIds = products.map(p => p.id)
+      this.updateStoreAndSubject('PRODUCTS', '',products)
     })
   }
-  getNextProductId(id: string): string {
-    let index = this.products.findIndex(p => this.locator(p, id));
-    if (index > -1) {
-      return this.products[this.products.length > index + 2 ? index + 1 : 0].id;
+  getProduct(id: number):Observable<Product> {
+    return this.http.get(this.baseUrl + '/products/' + id).pipe(map(res => res as Product))
+  }
+  addProduct(product: Product) {
+    this.http.post(this.baseUrl + '/products/add', product).pipe(map(res => res as Product)).subscribe(ps => this.updateStoreAndSubject('PRODUCTS', 'add', ps))
+  }
+  saveProduct(product: Product) {
+      this.http.put(this.baseUrl + '/products/' + product.id, product).subscribe(p =>  this.updateStoreAndSubject('PRODUCTS', 'edit', Object.assign(product, p)))
+  }
+  deleteProduct(product: Product) {
+    const i = this.dataStore.products.findIndex(p => p.id === product.id)
+    this.http.delete<Product>(`${this.baseUrl}/data/${product.id}`).subscribe(_ => {
+      this.updateStoreAndSubject('PRODUCTS', 'delete', product)
+    })
+  }
+  updateStoreAndSubject(channel: string = '',  mode: string = '', product: any,) {
+    if (channel === 'CATEGORY') {
+      if (mode === '') {
+        this.dataStore.categories = [...product]
+        this._categories$.next(Object.assign({}, this.dataStore).categories)
+      }
     } else {
-      return id || '';
+      const i = this.dataStore.products.findIndex(p => p.id === product.id)
+      if (mode === 'add') {
+        this.dataStore.products = [...this.dataStore.products, product]
+      } else if (mode === 'edit') {
+        i > -1 && (this.dataStore.products = [...this.dataStore.products.slice(0, i), product, ...this.dataStore.products.slice(i + 1)]);
+      } else if (mode === 'delete') {
+        i > -1 && (this.dataStore.products = [...this.dataStore.products.slice(0, i), ...this.dataStore.products.slice(i + 1)]);
+      } else {
+        this.dataStore.products = [...product]
+      }
+    }
+    this._products$.next(Object.assign({}, this.dataStore).products)
+  }
+  getNextProductId(id: number): number {
+    const index = this.productsIds.findIndex(pid => pid === id);
+    if (index > -1) {
+      const oLen = this.productsIds.length
+      return index + 1 < oLen ? this.productsIds[index + 1] : -1;
+    } else {
+      return -1;
     }
   }
-  getPreviousProductId(id: string): string {
-    let index = this.products.findIndex(p => this.locator(p, id));
-    if (index > -1) {
-      return this.products[index > 0 ? index - 1 : this.products.length].id;
+  getPreviousProductId(id: number): number {
+    const index = this.productsIds.findIndex(pid => pid === id);
+    if (index > 0) {
+      return this.productsIds[index -1];
     } else {
-      return id || '';
+      return -1;
+    }
+  }
+  getDataObservable(): Observable<Product[]> {
+    return new Observable<Product[]>(observer => {
+      this.http.get<Product[]>(this.mockDataUrl).subscribe((data: Product[]) => {
+        this.mockImmutableData = data;
+        observer.next(this.mockImmutableData);
+        setInterval(() => {
+          this.mockImmutableData = this.mockImmutableData.map((row: Product) =>
+            this.updateRandomRowWithData(row)
+          );
+
+          observer.next(this.mockImmutableData);
+        }, 1000);
+      });
+    });
+  }
+  updateRandomRowWithData(row: Product): Product {
+    const shouldUpdateData = Math.random() < 0.3;
+    if (shouldUpdateData) {
+      let delta = Math.floor(30 * Math.random()) / 10;
+      delta *= Math.round(Math.random()) ? 1 : -1;
+      const newValue = row.price + Math.floor(delta);
+      let newRow = { ...row, amount: newValue };
+      return newRow;
+    } else {
+      return row;
     }
   }
 }

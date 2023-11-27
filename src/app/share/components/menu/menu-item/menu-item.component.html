@@ -1,4 +1,4 @@
-<div class="nav-item-box" (click)="navItemHandler(menu)">
+<a class="nav-item-box" [routerLink]="[menu.path]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
     <div class="nav-item-icon">
         <img [src]="'../../../assets/images/icons/' + menu.icon" />
     </div>
@@ -8,4 +8,4 @@
     <div class="nav-item-addicon" *ngIf="menu.addicon">
         <img [src]="'../../../assets/images/icons/' + menu.addicon" />
     </div>
-</div>
+</a>

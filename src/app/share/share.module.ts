@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularResizeEventModule } from 'angular-resize-event';
+import { Routes, RouterModule } from '@angular/router';
 
 import { TranslateModule} from '@ngx-translate/core';
 import { ImagePicker} from './components/image-picker/image-picker.component'
@@ -40,7 +41,8 @@ const MODULES = [
   ReactiveFormsModule,
   TranslateModule,
   AgGridModule,
-  AngularResizeEventModule
+  AngularResizeEventModule,
+  RouterModule
 ]
 @NgModule({
   declarations: [...COMPONENTS, ...DIRECTIVE],

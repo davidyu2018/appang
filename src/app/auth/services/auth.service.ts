@@ -24,13 +24,13 @@ export class AuthService {
     return this.subject.asObservable()
   }
   unAuth(url: string = ''): void {
+    this.router.navigate(['/auth'])
 
     const curUrl = url ? url : this.router.url
     this.auth = Object.assign({}, this.auth, {loginname: '', token: '', redirectUrl: curUrl, avatar: '', password:'' });
     localStorage.setItem('AUTH_LOGIN', JSON.stringify(this.auth))
    
-    !url && this.subject.next(this.auth)
-    this.goLogin()
+    this.subject.next(this.auth)
   }
   goLogin(url:string = '') {
 

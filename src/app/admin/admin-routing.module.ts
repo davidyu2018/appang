@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductEditorComponent } from './product-editor.component';
 import { ProductTableComponent } from './product-table.component';
@@ -6,7 +7,7 @@ import { AdminComponent } from './admin.component';
 import { UnsavedGuard } from "../auth/services/unsaved-guard.service"
 import { DataResolver } from "../core/data-resover.service"
 import { MenusLoadedGuardService } from '../auth/services/menus-loaded.service'
-export const routes: Routes = [
+const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
@@ -19,7 +20,7 @@ export const routes: Routes = [
       {
         path: "products/:mode/:id",
         component: ProductEditorComponent,
-        // resolve: { data: DataResolver }
+        resolve: { data: DataResolver }
       },
       {
         path: "products/:mode",
@@ -36,6 +37,10 @@ export const routes: Routes = [
       }
     ]
   },
-];
+]
 
-export const routing = RouterModule.forChild(routes)
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class LandingRoutingModule {}

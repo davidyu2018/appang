@@ -94,6 +94,11 @@
             font-size: 1rem;
             cursor: pointer;
         }
+        & > .form-button.disabled {
+            background-color: silver;
+            color:gray;
+            cursor: not-allowed;
+        }
         & > .form-button:hover {
             color: #000;
         }
@@ -110,14 +115,14 @@
 form.ng-invalid button[type="submit"] {
     background-color: silver!important;
     color: #999999!important;
-    cursor: not-allowed;
-    opacity: 0.4;
+    cursor: not-allowed!important;
+    opacity: 0.7!important;
 }
 .table-search {
     display: flex;
     align-items: stretch;
     position: relative;
-    height: 2em;
+    min-height: 2em;
     border:1px solid #747474;
     padding:0 0.5em 0 0.5em;
     border-radius: 0.25em;
@@ -143,6 +148,13 @@ form.ng-invalid button[type="submit"] {
         vertical-align: middle;
       }
     }
+    & .remove-icon {
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    & .show-remove {
+        opacity: 1;
+    }
     &  .search-icon {
       position: absolute;
       top: 2px;
@@ -166,17 +178,21 @@ form.ng-invalid button[type="submit"] {
     display: inline-flex;
     vertical-align: middle;
     align-items: center;
-    padding:0.15em 0.5em;
-    background-color: transparent;
-    border:1px solid #747474;
+    padding:0.5em 0.75em;
+    background-color: #f5f5f5;
+    border:1px solid gray;
     border-radius: 0.25em;
     font-size: 1rem;
-    // color:gray;
+    color:gray;
     & > img {
-        padding-right:0.25em;
-        width:1.5em;
-        height: 1.5em;
+        padding-right:0.5em;
+        width:1em;
+        height: 1em;
     }
+}
+.table-button:hover {
+    color:#000;
+    background-color: white;
 }
 .my-table {
     // border:1px solid #babfc7;

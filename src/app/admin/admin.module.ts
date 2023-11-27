@@ -3,7 +3,7 @@ import { ShareModule } from '../share/share.module'
 import { ProductRepository } from '../sports/product.repository'
 import { RestDataSource } from '../sports/rest.datasource';
 import { AddClassDirective } from '../sports/addclass-attr.directive'
-import { routing } from './admin-routing.module'
+import { LandingRoutingModule } from './admin-routing.module' 
 import { ProductEditorComponent } from './product-editor.component';
 import { ProductTableComponent } from './product-table.component';
 import { OrderTableComponent } from './order-table.component';
@@ -21,7 +21,7 @@ import { DataResolver } from "../core/data-resover.service"
   ],
   imports: [
     ShareModule,
-    routing
+    LandingRoutingModule
   ],
   providers: [DataResolver, ProductRepository, RestDataSource, OrderRepository]
 })
